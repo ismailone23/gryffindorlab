@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-React + Vite with shadcn/ui, selected by the user.
+Next.js App Router with static export, Tailwind CSS, and shadcn/ui. The first version used React + Vite; the user requested migration for SEO.
 
 ## Users
 
@@ -20,7 +20,7 @@ An agency website that attracts clients to Gryffindorlab and helps them start a 
 
 ## Capabilities and Constraints
 
-First delivery is the hero section. Confirmed services: video editing, website development, and graphic design. Contact destination, client work, pricing, and agency location are undecided.
+The homepage includes a hero, services section, animated work-preview strip, and a clearly labeled placeholder testimonial section. Confirmed services: video editing, website development, and graphic design. The work strip also lists additional creative categories from the user's reference as previews, not verified services or completed projects. Contact destination, pricing, and agency location are undecided.
 
 ## Brand Commitments
 
@@ -28,4 +28,4 @@ Agency name: Gryffindorlab. Simple, clean, premium presentation with carefully c
 
 ## Evidence on Hand
 
-No logo, portfolio images, client names, testimonials, performance claims, or contact address have been supplied. Do not fabricate these.
+The user has some graphic-design work but has not supplied the files yet; video and web portfolio work has not been confirmed. No portfolio images, client names, testimonials, performance claims, or contact address have been supplied. Do not fabricate these.

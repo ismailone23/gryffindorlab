@@ -77,7 +77,7 @@ This identity pairs pale lilac paper, oversized near-black lettering, and a sing
 - One expressive artwork against generous quiet space.
 - Bricolage Grotesque display, Manrope body and controls; both are bundled locally.
 - Carefully timed entrances; the artwork alone carries sustained motion.
-- Tailwind CSS utilities implement composition, controls, and responsive behavior; `src/index.css` holds tokens, base browser treatments, and animation keyframes.
+- Next.js statically prerenders the hero for SEO; Tailwind CSS utilities implement composition, controls, and responsive behavior; `src/index.css` holds tokens, base browser treatments, and animation keyframes.
 
 ## Colors
 
@@ -124,7 +124,7 @@ The artboard and form fields have a small 5px corner; the dialog has a softer 12
 The home-linked violet SVG mark moves gently on hover; the exact same SVG is used as the favicon. The wordmark carries an understated studio descriptor, hidden on narrow phones so it does not wrap. The desktop-only service words are noninteractive context, not disguised links. A focus-revealed skip link goes directly to the hero. The contact action opens the shadcn dialog.
 
 ### Buttons and form
-The dark hero action turns violet and lifts 2px on hover. The form submit is a full-width dark pill with a violet hover. Fields are labeled native text/email inputs and textarea with a violet 2px focus outline. The service picker is a shadcn Select within the shadcn Dialog, keyboard-accessible and included in the downloaded brief. Field text is 15px, field labels 14px, supporting dialog copy 14px; artwork labels and captions are at least 12px. The dialog uses shadcn focus management and Escape dismissal. Until a real `VITE_CONTACT_EMAIL` is supplied, submitting downloads a brief and explicitly says nothing was sent; when provided, it prepares an email rather than claiming server submission.
+The dark hero action turns violet and lifts 2px on hover. The form submit is a full-width dark pill with a violet hover. Fields are labeled native text/email inputs and textarea with a violet 2px focus outline. The service picker is a shadcn Select within the shadcn Dialog, keyboard-accessible and included in the downloaded brief. Field text is 15px, field labels 14px, supporting dialog copy 14px; artwork labels are at least 12px. The dialog uses shadcn focus management and Escape dismissal. Until a real `NEXT_PUBLIC_CONTACT_EMAIL` is supplied, submitting downloads a brief and explicitly says nothing was sent; when provided, it prepares an email rather than claiming server submission.
 
 ### Motion artwork
 The lone violet artboard contains three staggered lines reading “edit. build. design.”, explicitly corresponding to video editing, website development, and graphic design. Native CSS `kinetic-type` and `film-progress` run over 9 seconds. Pause/play controls the animation play state, with `aria-pressed` and a contrasting paper-colored focus outline. There is no caption below the artboard. Reduced-motion preferences disable animations, retain the readable still composition, and replace playback controls with a truthful status. Headline entrance lasts 1.05s, details 1.1s, artboard entrance 1.25s. All are disabled for reduced motion.

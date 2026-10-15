@@ -1,0 +1,23 @@
+import type { Metadata } from 'next'
+import '@fontsource-variable/bricolage-grotesque'
+import '@fontsource-variable/manrope'
+import '../index.css'
+
+export const metadata: Metadata = {
+  title: 'Gryffindorlab — Good ideas. Made real.',
+  description: 'Gryffindorlab is a creative agency for video editing, website development, and graphic design. Good ideas. Made real.',
+  openGraph: {
+    title: 'Gryffindorlab — Good ideas. Made real.',
+    description: 'Video editing, website development, and graphic design. Good ideas. Made real.',
+    type: 'website',
+  },
+  icons: { icon: '/favicon.svg' },
+}
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  )
+}
