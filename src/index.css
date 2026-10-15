@@ -1,0 +1,75 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme inline {
+  --color-background: var(--paper);
+  --color-foreground: var(--ink);
+  --color-primary: var(--ink);
+  --color-primary-foreground: var(--paper);
+  --color-secondary: var(--soft);
+  --color-secondary-foreground: var(--ink);
+  --color-muted: var(--soft);
+  --color-muted-foreground: var(--muted);
+  --color-accent: var(--soft);
+  --color-accent-foreground: var(--ink);
+  --color-destructive: #a83042;
+  --color-border: var(--rule);
+  --color-input: var(--rule);
+  --color-ring: var(--violet);
+  --font-sans: "Manrope Variable", sans-serif;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+}
+
+:root {
+  font-family: "Manrope Variable", sans-serif;
+  color: #242127;
+  background: #f1eef5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --paper: #f1eef5;
+  --ink: #242127;
+  --muted: #65616b;
+  --soft: #e7e1ef;
+  --rule: #d6d0dc;
+  --violet: #6845d6;
+  --display: "Bricolage Grotesque Variable", sans-serif;
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+}
+
+html { scroll-behavior: smooth; scrollbar-color: #a79bb9 var(--paper); }
+body { min-width: 320px; margin: 0; }
+button:not(:disabled), [role="button"]:not(:disabled) { cursor: pointer; }
+button, input, textarea, select { font: inherit; }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--violet); outline-offset: 5px; }
+input, textarea { caret-color: var(--violet); }
+::selection { color: var(--paper); background: var(--violet); }
+
+@keyframes headline-arrive {
+  from { transform: translateY(30%); clip-path: inset(0 0 18% 0); }
+  to { transform: translateY(0); clip-path: inset(0); }
+}
+@keyframes details-arrive {
+  from { opacity: .4; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes artwork-arrive {
+  from { opacity: .45; transform: translateY(20px) rotate(2deg); }
+  to { opacity: 1; transform: translateY(0) rotate(0deg); }
+}
+@keyframes kinetic-type {
+  0% { transform: translateY(110%); }
+  12%, 85% { transform: translateY(0); }
+  96% { transform: translateY(-115%); }
+  100% { transform: translateY(110%); }
+}
+@keyframes film-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
