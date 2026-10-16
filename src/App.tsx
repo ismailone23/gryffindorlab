@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Dialog } from "@/components/ui/dialog";
 import { Showcase } from "@/components/showcase";
 import { Services } from "@/components/services";
@@ -11,12 +11,19 @@ import { Testimonials } from "@/components/testimonials";
 import { MorphingCta } from "@/components/morphing-cta";
 import { HeroIntro } from "@/components/hero-intro";
 import { SiteHeader } from "@/components/site-header";
+import { ContactFinale } from "@/components/contact-finale";
+import { SiteFooter } from "@/components/site-footer";
 
 export default function App() {
   const artworkDestination = useRef<HTMLDivElement>(null);
+  const [darkBrief, setDarkBrief] = useState(false);
 
   return (
-    <Dialog>
+    <Dialog
+      onOpenChange={(open) => {
+        if (!open) setDarkBrief(false);
+      }}
+    >
       <a
         href="#main"
         className="fixed top-3 left-4 z-50 translate-y-[-160%] bg-foreground px-4 py-3 text-background focus:translate-y-0"
@@ -24,7 +31,10 @@ export default function App() {
         Skip to content
       </a>
 
-      <SiteHeader />
+      <SiteHeader onStartProject={(dark) => setDarkBrief(dark)} />
+      <noscript>
+        <style>{".site-header{position:absolute!important}"}</style>
+      </noscript>
 
       <main id="main" className="pt-35 min-[901px]:pt-26.5">
         <div className="mx-auto w-full max-w-[1680px] px-6 min-[901px]:px-[clamp(32px,4.4vw,80px)]">
@@ -37,13 +47,18 @@ export default function App() {
                 id="hero-heading"
                 className="word-wave-active m-0 font-(family-name:--display) text-[clamp(48px,15.4vw,60px)] leading-[0.99] font-semibold tracking-[-0.04em] [font-variation-settings:'opsz'_96,'wdth'_98] min-[391px]:text-[clamp(65px,12vw,88px)] min-[901px]:text-[clamp(76px,8.5vw,136px)] min-[901px]:max-[1100px]:text-[clamp(72px,8.4vw,94px)]"
               >
-                <span className="block"><WordReveal text="Good ideas." /></span>
-                <span className="block"><WordReveal text="Made real." start={2} accentDot /></span>
+                <span className="block">
+                  <WordReveal text="Good ideas." />
+                </span>
+                <span className="block">
+                  <WordReveal text="Made real." start={2} accentDot />
+                </span>
               </h1>
 
               <div className="mt-6 min-[901px]:mt-8">
                 <p className="hero-details m-0 max-w-92.5 animate-[details-arrive_1.1s_var(--ease-out)_0.15s_both] text-base leading-[1.7] font-[450] tracking-tight text-muted-foreground motion-reduce:animate-none min-[901px]:max-w-100 min-[901px]:text-[clamp(16px,1.22vw,19px)] min-[901px]:leading-[1.75]">
-                  Some ideas stay with you for a reason. Let’s see how far yours can go.
+                  Some ideas stay with you for a reason. Let’s see how far yours
+                  can go.
                 </p>
                 <MorphingCta />
               </div>
@@ -53,14 +68,18 @@ export default function App() {
               <Showcase />
             </div>
             <HeroIntro destination={artworkDestination} />
-            <noscript><style>{'.hero-intro { display: none !important; }'}</style></noscript>
+            <noscript>
+              <style>{".hero-intro { display: none !important; }"}</style>
+            </noscript>
           </section>
           <Services />
         </div>
         <WorkSlider />
         <Testimonials />
+        <ContactFinale onStartProject={() => setDarkBrief(true)} />
       </main>
-      <ProjectBrief />
+      <SiteFooter />
+      <ProjectBrief dark={darkBrief} />
     </Dialog>
   );
 }
