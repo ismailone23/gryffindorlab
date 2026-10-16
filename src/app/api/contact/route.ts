@@ -3,6 +3,7 @@ import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { Resend } from "resend";
 import { services } from "@/lib/services";
+import { isSameOrigin } from "@/lib/request-origin";
 
 export const runtime = "nodejs";
 
@@ -10,8 +11,7 @@ const allowedServices = new Set(["A bit of everything", ...services.map((service
 const failure = { error: "We couldn’t send your idea. Please try again or email info@gryffindorlab.com." };
 
 export async function POST(request: Request) {
-  const origin = request.headers.get("origin");
-  if (origin && origin !== new URL(request.url).origin) {
+  if (!isSameOrigin(request)) {
     return Response.json({ error: "Invalid request origin." }, { status: 403 });
   }
   if (!request.headers.get("content-type")?.startsWith("application/json")) {

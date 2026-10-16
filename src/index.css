@@ -581,6 +581,22 @@ textarea {
     scroll-margin-top: 145px;
   }
 }
+#booking-times input[data-slot="input"] {
+  --autofill-background: #000;
+  color-scheme: dark;
+}
+.project-brief[data-surface="dark"] input {
+  --autofill-background: #111016;
+  color-scheme: dark;
+}
+:is(#booking-times input[data-slot="input"], .project-brief[data-surface="dark"] input):is(:autofill, :-webkit-autofill) {
+  -webkit-text-fill-color: #f1eef5;
+  caret-color: #aa8bf7;
+  box-shadow: inset 0 0 0 1000px var(--autofill-background);
+}
+:is(#booking-times input[data-slot="input"], .project-brief[data-surface="dark"] input):is(:autofill, :-webkit-autofill):focus-visible {
+  box-shadow: inset 0 0 0 1000px var(--autofill-background), 0 0 0 2px #aa8bf7;
+}
 .project-brief[data-surface="dark"],
 .project-brief-options[data-surface="dark"] {
   --paper: #111016;

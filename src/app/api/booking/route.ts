@@ -4,25 +4,9 @@ import { Redis } from "@upstash/redis";
 import { Resend } from "resend";
 import { availableTimes, bookingUrl, createBooking } from "@/lib/calendly";
 import { bookingEmail } from "@/lib/booking-email";
+import { isSameOrigin } from "@/lib/request-origin";
 
 export const runtime = "nodejs";
-
-function isSameOrigin(request: Request) {
-  const origin = request.headers.get("origin");
-  if (!origin) return true;
-
-  try {
-    const submitted = new URL(origin);
-    if (submitted.origin !== origin || !["http:", "https:"].includes(submitted.protocol)) return false;
-    if (submitted.origin === new URL(request.url).origin) return true;
-
-    // Proxies may give Next an internal request.url; Host is the browser-facing address.
-    const host = request.headers.get("host");
-    return !!host && submitted.host.toLowerCase() === host.toLowerCase();
-  } catch {
-    return false;
-  }
-}
 
 export async function POST(request: Request) {
   if (!isSameOrigin(request)) return Response.json({ error: "Invalid request origin." }, { status: 403 });
@@ -87,6 +71,10 @@ export async function POST(request: Request) {
       return Response.json({ booked: true, confirmationSent });
     }
     if (status === 409 || status === 422) return Response.json({ error: "That time could not be booked. Please choose another." }, { status: 409 });
+    console.warn("Calendly rejected the booking request", { status });
+    if (status === 403) return Response.json({ error: "Booking failed. Please try Calendly directly.", bookingUrl }, { status: 502 });
+    if (status === 401) return Response.json({ error: "Calendly booking access has expired. Please book directly on Calendly.", bookingUrl }, { status: 502 });
+    if (status === 400) return Response.json({ error: "Calendly could not accept this event’s booking details. Please book directly on Calendly.", bookingUrl }, { status: 502 });
     return Response.json({ error: "Booking failed. Please try Calendly directly.", bookingUrl }, { status: 502 });
   } catch {
     return Response.json({ error: "Booking is temporarily unavailable. Please try Calendly directly.", bookingUrl }, { status: 503 });

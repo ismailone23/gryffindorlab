@@ -9,6 +9,11 @@ colors:
   rule: "#d6d0dc"
   violet: "#6845d6"
   field-border: "#bdb4c7"
+  contact-dark: "#000000"
+  contact-glow: "#aa8bf7"
+  contact-panel: "#111016"
+  contact-border: "#62586d"
+  contact-placeholder: "#b2a8bd"
 typography:
   display:
     fontFamily: '"Bricolage Grotesque Variable", sans-serif'
@@ -83,6 +88,7 @@ This identity pairs pale lilac paper, oversized near-black lettering, and a sing
 
 ### Primary
 - **Violet** (`violet`): motion-study field, mark, punctuation, hover and focus feedback. It is a surface at artwork scale, not a glow.
+- **Contact dark** (`contact-dark`): the user-requested closing field. A restrained violet glow radiates from the actual four-form mark; the rest of the page keeps its lilac paper.
 
 ### Neutral
 - **Lilac paper** (`paper`): page and dialog ground, reversed text on dark buttons and violet.
@@ -128,6 +134,9 @@ The dark hero action turns violet and lifts 2px on hover. The form submit is a f
 
 ### Motion artwork
 The lone violet artboard contains three staggered lines reading “edit. build. design.”, explicitly corresponding to video editing, website development, and graphic design. Native CSS `kinetic-type` and `film-progress` run over 9 seconds. Pause/play controls the animation play state, with `aria-pressed` and a contrasting paper-colored focus outline. There is no caption below the artboard. Reduced-motion preferences disable animations, retain the readable still composition, and replace playback controls with a truthful status. Headline entrance lasts 1.05s, details 1.1s, artboard entrance 1.25s. All are disabled for reduced motion.
+
+### Closing invitation
+The black closing section scrolls into view as one continuous field, without a separate circular overlay or forced snapping. The four exact favicon geometries assemble outward from a single violet point while rotating into place; no complete static logo is shown ahead of the formation. A violet glow then spreads from the center to left and right. This entrance runs once per page load; the finished mark remains visible when scrolling away and back. The header adapts to the actual surface beneath it. The project dialog adopts a dark lilac-ink treatment when opened against dark surfaces, while triggers on paper keep the original paper dialog. The booking surface is one compact ruled black panel with three columns: Gryffindorlab details and a searchable shadcn timezone combobox, a shadcn-button calendar of real Calendly availability, and understated shadcn time buttons within a dark shadcn ScrollArea leading into a name/email confirmation form. It stacks on mobile and jumps straight to dates. Server-side Calendly APIs retrieve available times and create bookings; Resend sends an additional branded email only after Calendly accepts a booking. No iframe, nested border, fake dates, cookie label, or invented staff. Keep the external Calendly fallback when APIs are unavailable. Reduced motion and no-JavaScript keep the mark readable without movement.
 
 ## Do's and Don'ts
 

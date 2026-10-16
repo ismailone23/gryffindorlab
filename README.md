@@ -37,6 +37,16 @@ The full-viewport, endlessly moving work strip uses lazy-loaded copies of the sh
 
 The staggered testimonial layout uses the site's lilac-paper palette and consistent 5px corners. Its three slots and brand-geometry tile are intentionally marked pending. No reviews, ratings, client names, or portraits have been invented. Replace the slots and tile in `src/components/testimonials.tsx` when approved client quotes, attribution, and imagery are available.
 
+## Closing contact
+
+The final dark section uses the four shapes of the actual mark and a restrained violet glow. The section itself is the only black surface; no separate overlay covers the testimonials. The floating hero button yields to the section actions on entry. When the mark reaches the reading area, its four pieces spread and spin outward from a violet point into the finished logo; only then does the horizontal glow follow. The sequence runs once per page load and leaves the logo visible during further scrolling. The header adapts to the surface beneath it. “Start a project” opens the existing Resend-backed form in a dark treatment here; other triggers keep its lilac-paper treatment. “Book a call” opens a three-column black booking panel: event and selectable timezone, live Calendly dates, then available times and name/email confirmation. No iframe, nested border, or third-party cookie label is present. Calendly provides every real slot and accepts the booking through its server-side API. If API access is unavailable, the calendar shows an honest error and offers the direct Calendly link. Reduced-motion and no-JavaScript visitors retain that link.
+
+### Calendly booking setup
+
+The custom calendar needs a **Calendly Standard-or-higher plan** to create bookings. Add `CALENDLY_ACCESS_TOKEN` or `CALENDLY_API_KEY` (a Personal Access Token from the account that owns `https://calendly.com/gryffindorlab-info/30min`) to `.env.local` and to your deployment's server-side secrets. Grant the token `users:read` (to find the account), `event_types:read` (to find the event and its availability), and `scheduled_events:write` (to book invitees). Do **not** prefix it with `NEXT_PUBLIC_`, paste it into chat, or commit it. The server finds that event type from the account; `CALENDLY_EVENT_TYPE_URI` may be set to the matching `https://api.calendly.com/event_types/...` URI if automatic discovery is unavailable. Keep `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` configured for booking rate limits. For the additional branded confirmation email, configure the existing `RESEND_API_KEY` and verified `RESEND_FROM_EMAIL` as described below. Restart the server after setting secrets.
+
+The calendar never invents availability. The server checks the selected slot again before creating a Calendly invitee, and sends the event type’s single supported conferencing location (for example, Google Meet) as required by Calendly. Events with multiple location choices or unsupported location requirements must use the direct Calendly link rather than guessing. It only reports success after Calendly accepts the booking; Resend is attempted afterward, so an email failure does not falsely report a booking failure. Meeting links and standard Calendly notifications remain controlled by the Calendly event settings. The direct Calendly link remains available if the API or Redis is unavailable. The email is **not** tested by creating a real booking during development.
+
 ## Contact setup
 
 This site needs a Next.js server deployment (not a static `out/` export) for `POST /api/contact`. The shadcn/Tailwind project form sends a plain-text email to `info@gryffindorlab.com` via Resend, using the visitor's address as `replyTo`. It only shows success after Resend accepts the message. On failure, visitors get a retry message and a direct mailto fallback. No credentials go to the browser.
@@ -57,6 +67,9 @@ Deploy with a Node.js-compatible Next.js host so the contact API remains availab
 - `src/app/page.tsx` — statically rendered homepage
 - `src/App.tsx` — homepage composition and hero
 - `src/components/site-header.tsx` — adaptive scroll-aware navigation
+- `src/components/contact-finale.tsx` — closing contact and booking placement
+- `src/components/booking-calendar.tsx` — shadcn-based booking calendar and confirmation form
+- `src/app/api/booking/` — server-only Calendly availability, booking, and Resend confirmation
 - `src/components/showcase.tsx` — the single kinetic typography artwork
 - `src/components/morphing-cta.tsx` — hero-to-floating contact action
 - `src/components/services.tsx` — service descriptions and the brand-geometry motion piece

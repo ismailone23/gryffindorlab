@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { services } from "@/lib/services";
 import { WordReveal, useScrollWordReveal } from "@/components/word-reveal";
-import { LogoDots, useInteractiveLogoDots } from "@/components/logo-dots";
 
 const descriptions = {
   video: "Editing and pacing that bring the story in your footage into focus.",
@@ -34,7 +33,6 @@ const positions = [
 
 export function Services() {
   const artwork = useRef<HTMLDivElement>(null);
-  useInteractiveLogoDots(artwork);
   const heading = useScrollWordReveal();
   const [phase, setPhase] = useState(0);
   const [moving, setMoving] = useState(false);
@@ -95,7 +93,7 @@ export function Services() {
             setMoving(true);
             setPhase(1);
           }, 550);
-          markTimer = window.setTimeout(() => setPhase(2), 2100);
+          markTimer = window.setTimeout(() => setPhase(2), 1900);
         } else {
           setMoving(false);
           setPhase(2);
@@ -133,23 +131,15 @@ export function Services() {
           data-phase={phase}
           className="mx-auto w-full max-w-130 min-[901px]:sticky min-[901px]:top-14"
           role="img"
-          aria-label="Four violet dotted shapes move from a line to a grid, then form the Gryffindorlab mark"
+          aria-label="Four violet shapes move from a line to a grid, then form the Gryffindorlab mark"
         >
           <svg
             viewBox="0 0 560 560"
             className="block h-auto w-full overflow-visible text-ring"
             aria-hidden="true"
           >
-            <defs>
-              <clipPath id="service-circle-dots">
-                <circle r="66" />
-              </clipPath>
-              <clipPath id="service-square-dots">
-                <rect x="-66" y="-66" width="132" height="132" />
-              </clipPath>
-            </defs>
             <g
-              className={`origin-center duration-1000 ease-out ${moving ? "transition-transform" : "transition-none"}`}
+              className={`origin-center duration-[800ms] ease-out ${moving ? "transition-transform" : "transition-none"}`}
               style={{
                 transform: phase === 2 ? "rotate(-15deg)" : "rotate(0deg)",
               }}
@@ -157,8 +147,7 @@ export function Services() {
               {positions[phase].map(([x, y], index) => (
                 <g
                   key={index}
-                  data-service-shape
-                  className={`duration-1000 ease-out ${moving ? "transition-transform" : "transition-none"}`}
+                  className={`duration-[800ms] ease-out ${moving ? "transition-transform" : "transition-none"}`}
                   style={{ transform: `translate(${x}px, ${y}px)` }}
                 >
                   {index === 0 || index === 3 ? (
@@ -172,11 +161,6 @@ export function Services() {
                       fill="currentColor"
                     />
                   )}
-                  <g
-                    clipPath={`url(#service-${index === 0 || index === 3 ? "circle" : "square"}-dots)`}
-                  >
-                    <LogoDots round={index === 0 || index === 3} />
-                  </g>
                 </g>
               ))}
             </g>
