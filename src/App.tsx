@@ -36,7 +36,7 @@ export default function App() {
         <style>{".site-header{position:absolute!important}"}</style>
       </noscript>
 
-      <main id="main" className="pt-35 min-[901px]:pt-26.5">
+      <main id="main" className="pt-24 min-[901px]:pt-26.5">
         <div className="mx-auto w-full max-w-[1680px] px-6 min-[901px]:px-[clamp(32px,4.4vw,80px)]">
           <section
             aria-labelledby="hero-heading"

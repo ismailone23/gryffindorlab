@@ -177,28 +177,24 @@ textarea {
   scroll-margin-top: 120px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .site-header-inner {
     grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-rows: 60px 50px;
-    row-gap: 0;
-    height: 140px;
-    padding-inline: 24px;
   }
   .site-header-nav {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    justify-self: center;
-    padding: 4px;
+    display: none;
   }
-  .site-header-nav a {
-    padding: 8px 14px;
-    font-size: 13px;
+}
+@media (max-width: 900px) {
+  .site-header-inner {
+    gap: 8px;
+    height: 80px;
+    padding-inline: 24px;
   }
   #services,
   #work,
   #testimonials {
-    scroll-margin-top: 150px;
+    scroll-margin-top: 100px;
   }
 }
 
@@ -575,10 +571,10 @@ textarea {
 }
 @media (max-width: 900px) {
   #book-a-call {
-    scroll-margin-top: 145px;
+    scroll-margin-top: 100px;
   }
   #booking-times {
-    scroll-margin-top: 145px;
+    scroll-margin-top: 100px;
   }
 }
 #booking-times input[data-slot="input"] {

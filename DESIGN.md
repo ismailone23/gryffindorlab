@@ -110,7 +110,7 @@ This identity pairs pale lilac paper, oversized near-black lettering, and a sing
 
 ## Layout
 
-The centered shell has a 1680px maximum. Above 900px, the hero is an asymmetric 1.32fr / 1fr grid; at 1100px and below, it tightens to 1.25fr / 1fr. At 900px and below, copy and CTA stack ahead of the artboard. The artboard stays at a 1.04 aspect ratio. At 390px and below, typography and the navigation tighten without horizontal scrolling. The borderless fixed header pairs the mark and wordmark with a centered section-link pill and a contact action; on narrow screens the pill becomes a second row.
+The centered shell has a 1680px maximum. Above 900px, the hero is an asymmetric 1.32fr / 1fr grid; at 1100px and below, it tightens to 1.25fr / 1fr. At 900px and below, copy and CTA stack ahead of the artboard. The artboard stays at a 1.04 aspect ratio. At 390px and below, typography and the navigation tighten without horizontal scrolling. The borderless fixed header shows the mark, wordmark, centered section links, and a contact action on wide screens. At 1100px and below, it shows only the brand and “Let’s talk” in one row; at 360px and below, the mark alone keeps the full contact label legible. The full-width work strip uses generous project preview tiles (up to 400px wide on desktop) while remaining horizontally browsable on mobile.
 
 The project-brief dialog has a 560px maximum width and scrolls within the viewport. Two form columns stack at 390px and below. The actual breakpoint and sizing rules are authored in Tailwind utilities in the components.
 

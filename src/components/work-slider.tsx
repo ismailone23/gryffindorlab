@@ -183,11 +183,11 @@ export function WorkSlider() {
                   prefetch={false}
                   tabIndex={copy > 0 ? -1 : undefined}
                   aria-label={`View ${work.name} case study preview`}
-                  className="group block w-[clamp(240px,21vw,300px)] shrink-0 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+                  className="group block w-[clamp(290px,28vw,400px)] shrink-0 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
                 >
                   <span
                     data-nav-surface={index % 5 === 0 ? "dark" : undefined}
-                    className={`flex aspect-[1.35] items-center justify-center rounded-[5px] ${index % 5 === 0 ? "bg-foreground" : "bg-(--soft)"} transition-colors duration-300 group-hover:bg-[#ddd4eb] group-focus-visible:bg-[#ddd4eb]`}
+                    className={`flex aspect-[1.28] items-center justify-center rounded-[5px] ${index % 5 === 0 ? "bg-foreground" : "bg-(--soft)"} transition-colors duration-300 group-hover:bg-[#ddd4eb] group-focus-visible:bg-[#ddd4eb]`}
                   >
                     <img
                       src="/favicon.svg"
@@ -196,7 +196,7 @@ export function WorkSlider() {
                       loading="lazy"
                       decoding="async"
                       alt=""
-                      className="size-28"
+                      className="size-32 min-[901px]:size-36"
                     />
                   </span>
                   <span className="mt-3 block font-(family-name:--display) text-base font-semibold leading-tight text-foreground">
