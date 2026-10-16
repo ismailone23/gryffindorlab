@@ -32,6 +32,7 @@ export function Testimonials() {
 
   return (
     <section
+      id="testimonials"
       aria-labelledby="testimonials-heading"
       className="border-t border-border bg-background py-22 text-foreground min-[901px]:py-32"
     >
@@ -53,7 +54,7 @@ export function Testimonials() {
         <div className="mt-12 grid gap-5 min-[901px]:mt-16 min-[901px]:grid-cols-[.9fr_1.1fr] min-[901px]:gap-6">
           <div className="grid gap-5 min-[901px]:gap-6">
             <TestimonialSlot text={pendingStories[0]} />
-            <div className="relative flex min-h-75 flex-col justify-end overflow-hidden rounded-[5px] bg-ring p-7 text-background min-[901px]:min-h-85 min-[901px]:p-9">
+            <div data-nav-surface="dark" className="relative flex min-h-75 flex-col justify-end overflow-hidden rounded-[5px] bg-ring p-7 text-background min-[901px]:min-h-85 min-[901px]:p-9">
               <svg
                 viewBox="0 0 560 330"
                 className="absolute inset-x-0 top-0 h-[calc(100%-72px)] w-full"

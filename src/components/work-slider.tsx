@@ -186,6 +186,7 @@ export function WorkSlider() {
                   className="group block w-[clamp(240px,21vw,300px)] shrink-0 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
                 >
                   <span
+                    data-nav-surface={index % 5 === 0 ? "dark" : undefined}
                     className={`flex aspect-[1.35] items-center justify-center rounded-[5px] ${index % 5 === 0 ? "bg-foreground" : "bg-(--soft)"} transition-colors duration-300 group-hover:bg-[#ddd4eb] group-focus-visible:bg-[#ddd4eb]`}
                   >
                     <img

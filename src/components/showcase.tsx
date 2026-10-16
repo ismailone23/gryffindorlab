@@ -29,12 +29,14 @@ export function Showcase() {
 
   return (
     <div
-      className="min-w-0 animate-[artwork-arrive_1.25s_var(--ease-out)_both] perspective-[1100px] motion-reduce:animate-none min-[901px]:pt-5"
+      className="hero-artwork min-w-0 perspective-[1100px] min-[901px]:pt-5"
       onPointerMove={tilt}
       onPointerLeave={resetTilt}
     >
       <div
         ref={artboard}
+        data-hero-artboard
+        data-nav-surface="dark"
         className="relative isolate aspect-[1.04] overflow-hidden rounded-[5px] bg-ring p-4 text-background transform-[rotateX(var(--tilt-x,0deg))_rotateY(var(--tilt-y,0deg))] transition-transform duration-650 ease-out motion-reduce:transform-none min-[901px]:p-6"
       >
         <div className="flex items-center justify-between gap-4 text-xs">

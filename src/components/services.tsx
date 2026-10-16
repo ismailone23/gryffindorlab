@@ -115,6 +115,7 @@ export function Services() {
 
   return (
     <section
+      id="services"
       aria-labelledby="services-heading"
       className="border-t border-border pt-20 pb-28 min-[901px]:pt-28 min-[901px]:pb-40"
     >

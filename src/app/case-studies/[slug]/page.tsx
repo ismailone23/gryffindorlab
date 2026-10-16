@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { workCategories } from "@/lib/work";
+import { siteUrl } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -20,6 +21,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description:
       "A Gryffindorlab case study placeholder. Project details have not been published yet.",
     robots: { index: false, follow: true },
+    openGraph: {
+      title: `${work?.name ?? "Work"} — Case study preview | Gryffindorlab`,
+      description: "Project details have not been published yet.",
+      url: `${siteUrl}/case-studies/${slug}/`,
+      type: "website",
+    },
   };
 }
 

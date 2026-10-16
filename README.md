@@ -16,6 +16,8 @@ npm run lint
 
 ## Hero interactions
 
+- The borderless fixed header has section links to Services, Work, and Voices. It slips away on downward scroll, returns on upward scroll or keyboard focus, and adjusts each control's contrast to dark artwork behind it. On narrow screens the links occupy a second, centered row.
+- On page load, the shared mark appears at the center of the hero, travels to the right-hand artwork, then expands to its full panel size before the artwork and hero message are revealed. The introduction is skipped for reduced motion and never blocks interaction.
 - Nine-second “edit. build. design.” kinetic typography sequence, with pause/play and no caption below the artwork.
 - One focused kinetic typography artwork. No tabs or secondary studies.
 - Subtle pointer-responsive artwork and deliberate entrance transitions.
@@ -37,17 +39,24 @@ The staggered testimonial layout uses the site's lilac-paper palette and consist
 
 ## Contact setup
 
-Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_CONTACT_EMAIL` to the agency's real email address, then restart/rebuild. The form prepares an email in the visitor's email app. With no address configured, it downloads a text brief to the visitor's device and clearly states that nothing has been sent. The address is embedded in the client bundle; do not use a private address here.
+This site needs a Next.js server deployment (not a static `out/` export) for `POST /api/contact`. The shadcn/Tailwind project form sends a plain-text email to `info@gryffindorlab.com` via Resend, using the visitor's address as `replyTo`. It only shows success after Resend accepts the message. On failure, visitors get a retry message and a direct mailto fallback. No credentials go to the browser.
+
+1. Verify `gryffindorlab.com` in Resend and configure its DNS records. Use a sender address on that verified domain.
+2. Create a Resend API key and an Upstash Redis database. Copy `.env.example` to `.env.local`, fill in `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `UPSTASH_REDIS_REST_URL`, and `UPSTASH_REDIS_REST_TOKEN`. `CONTACT_TO_EMAIL` defaults to `info@gryffindorlab.com` if omitted. Set the same server-side variables on the deployment platform; keep them out of git and do not prefix them with `NEXT_PUBLIC_`.
+3. Restart the Next.js server. If Resend or Redis is unconfigured or Redis is unavailable, the endpoint fails closed instead of claiming delivery or sending unmetered emails.
+
+The route validates content and origin, ignores a hidden honeypot field, and uses Redis-backed rate limits: **3 requests per visitor per hour**, plus **100 requests site-wide per day**. IP-based limits depend on the deployment proxy overwriting `x-forwarded-for`; configure that at your hosting edge. Review limits as real traffic arrives.
 
 ## Deployment and SEO
 
-`npm run build` writes a static site to `out/`; deploy that folder to any static host. Page title, description, and Open Graph text are supplied in `src/app/layout.tsx`. Add a canonical URL, sitemap, and social preview image once the production domain and image are known. No server-side API or form submission is required.
+Deploy with a Node.js-compatible Next.js host so the contact API remains available; `npm run build` creates a Next.js server build, **not** a deployable static `out/` directory. The canonical homepage URL is `https://www.gryffindorlab.com/`. `src/app/sitemap.ts` lists only the published homepage, and `src/app/robots.ts` points to it while excluding the API. Placeholder case-study pages remain `noindex` and are intentionally absent from the sitemap. The homepage includes accurate title, description, Open Graph/Twitter image, and organization structured data. The site's main document hides its vertical scrollbar without disabling scrolling.
 
 ## Files
 
 - `src/app/layout.tsx` — document, fonts, and metadata
 - `src/app/page.tsx` — statically rendered homepage
-- `src/App.tsx` — interactive header and hero
+- `src/App.tsx` — homepage composition and hero
+- `src/components/site-header.tsx` — adaptive scroll-aware navigation
 - `src/components/showcase.tsx` — the single kinetic typography artwork
 - `src/components/morphing-cta.tsx` — hero-to-floating contact action
 - `src/components/services.tsx` — service descriptions and the brand-geometry motion piece
@@ -55,7 +64,9 @@ Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_CONTACT_EMAIL` to the a
 - `src/components/testimonials.tsx` — pending testimonial layout without fabricated client claims
 - `src/lib/work.ts` — preview categories and case-study slugs
 - `src/app/case-studies/[slug]/page.tsx` — statically generated placeholder pages
-- `src/components/project-brief.tsx` — project brief and email/download handoff
+- `src/components/project-brief.tsx` — project form and send/error feedback
+- `src/app/api/contact/route.ts` — validated Resend submission and Redis rate limits
+- `src/app/sitemap.ts`, `src/app/robots.ts` — crawl directives for the production domain
 - `src/index.css` — shared tokens, browser defaults, and animation keyframes; component/layout styles live in Tailwind classes
 - `src/components/ui/` — shadcn/ui primitives
 - `PRODUCT.md`, `DESIGN.md` — product context and implemented design system

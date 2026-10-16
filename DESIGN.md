@@ -89,7 +89,7 @@ This identity pairs pale lilac paper, oversized near-black lettering, and a sing
 - **Ink** (`ink`): headlines, wordmark and resting actions.
 - **Muted ink** (`muted`): supporting copy.
 - **Soft lilac** (`soft`): shadcn secondary surface alias.
-- **Rule** (`rule`): hairline under navigation.
+- **Rule** (`rule`): restrained separators between content sections, not under the floating header.
 - **Field border** (`field-border`): the project-brief fields.
 
 **The Violet Punctuation Rule.** Resting copy and actions stay in ink; violet carries the one artwork and precise emphasis.
@@ -104,13 +104,13 @@ This identity pairs pale lilac paper, oversized near-black lettering, and a sing
 
 ## Layout
 
-The centered shell has a 1680px maximum. Above 900px, the hero is an asymmetric 1.32fr / 1fr grid; at 1100px and below, it tightens to 1.25fr / 1fr. At 900px and below, copy and CTA stack ahead of the artboard. The artboard stays at a 1.04 aspect ratio. At 390px and below, typography and the navigation tighten without horizontal scrolling. The header pairs a violet letter mark and two-line wordmark with a small desktop service descriptor and a dark contact action. It is not a service navigation.
+The centered shell has a 1680px maximum. Above 900px, the hero is an asymmetric 1.32fr / 1fr grid; at 1100px and below, it tightens to 1.25fr / 1fr. At 900px and below, copy and CTA stack ahead of the artboard. The artboard stays at a 1.04 aspect ratio. At 390px and below, typography and the navigation tighten without horizontal scrolling. The borderless fixed header pairs the mark and wordmark with a centered section-link pill and a contact action; on narrow screens the pill becomes a second row.
 
 The project-brief dialog has a 560px maximum width and scrolls within the viewport. Two form columns stack at 390px and below. The actual breakpoint and sizing rules are authored in Tailwind utilities in the components.
 
 ## Elevation & Depth
 
-The page is flat: scale, spacing, and the header hairline provide hierarchy. The artboard has mouse-only tilt bounded at ±2.5 degrees, eased with `cubic-bezier(.22, 1, .36, 1)`; it resets on pointer leave. The project dialog alone uses a soft 0 24px 80px #20152e30 shadow above its overlay.
+The page is flat: scale and spacing provide hierarchy. The artboard has mouse-only tilt bounded at ±2.5 degrees, eased with `cubic-bezier(.22, 1, .36, 1)`; it resets on pointer leave. The project dialog alone uses a soft 0 24px 80px #20152e30 shadow above its overlay.
 
 **The Flat Page Rule.** Reserve elevation for the dialog; do not wrap content in floating cards.
 
@@ -121,10 +121,10 @@ The artboard and form fields have a small 5px corner; the dialog has a softer 12
 ## Components
 
 ### Navigation
-The home-linked violet SVG mark moves gently on hover; the exact same SVG is used as the favicon. The wordmark carries an understated studio descriptor, hidden on narrow phones so it does not wrap. The desktop-only service words are noninteractive context, not disguised links. A focus-revealed skip link goes directly to the hero. The contact action opens the shadcn dialog.
+The home-linked violet SVG mark moves gently on hover; the exact same SVG is used as the favicon. The wordmark carries an understated studio descriptor, hidden on narrow phones so it does not wrap. The centered pill links only to real sections (Services, Work, Voices). The fixed header hides on downward scroll, returns on upward scroll or keyboard focus, and samples the surface beneath each control so the pill, brand and contact action remain legible on the violet artboard as well as lilac paper. A focus-revealed skip link goes directly to the hero. The contact action opens the shadcn dialog.
 
 ### Buttons and form
-The dark hero action turns violet and lifts 2px on hover. The form submit is a full-width dark pill with a violet hover. Fields are labeled native text/email inputs and textarea with a violet 2px focus outline. The service picker is a shadcn Select within the shadcn Dialog, keyboard-accessible and included in the downloaded brief. Field text is 15px, field labels 14px, supporting dialog copy 14px; artwork labels are at least 12px. The dialog uses shadcn focus management and Escape dismissal. Until a real `NEXT_PUBLIC_CONTACT_EMAIL` is supplied, submitting downloads a brief and explicitly says nothing was sent; when provided, it prepares an email rather than claiming server submission.
+The dark hero action turns violet and lifts 2px on hover. The form submit is a full-width dark pill with a violet hover. Fields are labeled native text/email inputs and textarea with a violet 2px focus outline. The service picker is a shadcn Select within the shadcn Dialog and remains keyboard-accessible. Field text is 15px, field labels 14px, supporting dialog copy 14px; artwork labels are at least 12px. The dialog uses shadcn focus management and Escape dismissal. The form sends plain-text project details through a server-only Resend endpoint protected by Redis rate limits. A success state appears only after acceptance by Resend; errors offer retry or direct email.
 
 ### Motion artwork
 The lone violet artboard contains three staggered lines reading “edit. build. design.”, explicitly corresponding to video editing, website development, and graphic design. Native CSS `kinetic-type` and `film-progress` run over 9 seconds. Pause/play controls the animation play state, with `aria-pressed` and a contrasting paper-colored focus outline. There is no caption below the artboard. Reduced-motion preferences disable animations, retain the readable still composition, and replace playback controls with a truthful status. Headline entrance lasts 1.05s, details 1.1s, artboard entrance 1.25s. All are disabled for reduced motion.
@@ -139,4 +139,4 @@ The lone violet artboard contains three staggered lines reading “edit. build. 
 ### Don't:
 - **Don't** bring back tabs, secondary studies, a service strip, or extra hero cards without a new brief.
 - **Don't** claim the studio artwork is commissioned client work.
-- **Don't** claim the downloadable brief was submitted to the agency.
+- **Don't** claim the brief was delivered if Resend rejected it or the server is not configured.

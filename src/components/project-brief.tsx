@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { ArrowUpRight, Check, Download } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DialogContent,
@@ -17,37 +17,36 @@ import {
 import { services } from "@/lib/services";
 
 export function ProjectBrief() {
-  const [saved, setSaved] = useState(false);
-  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim();
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error" | "limited">("idle");
 
-  function prepareBrief(event: FormEvent<HTMLFormElement>) {
+  async function sendBrief(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const brief = [
-      "A new idea for Gryffindorlab",
-      "",
-      `Name: ${data.get("name")}`,
-      `Email: ${data.get("email")}`,
-      `Service: ${data.get("service")}`,
-      "",
-      "The idea:",
-      String(data.get("idea")),
-    ].join("\n");
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    setStatus("sending");
 
-    if (contactEmail) {
-      window.location.href = `mailto:${encodeURIComponent(contactEmail)}?subject=${encodeURIComponent("Let’s make something good — " + data.get("name"))}&body=${encodeURIComponent(brief)}`;
-      return;
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          service: data.get("service"),
+          idea: data.get("idea"),
+          website: data.get("website"),
+        }),
+      });
+      if (response.status === 429) {
+        setStatus("limited");
+        return;
+      }
+      if (!response.ok) throw new Error("Contact request failed");
+      setStatus("sent");
+      form.reset();
+    } catch {
+      setStatus("error");
     }
-
-    const url = URL.createObjectURL(
-      new Blob([brief], { type: "text/plain;charset=utf-8" }),
-    );
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "gryffindorlab-project-brief.txt";
-    link.click();
-    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
-    setSaved(true);
   }
 
   return (
@@ -64,9 +63,14 @@ export function ProjectBrief() {
       </DialogHeader>
       <form
         className="mt-2.5 grid gap-5 [&_label]:flex [&_label]:flex-col [&_label]:gap-2 [&_label]:text-sm [&_label]:font-semibold [&_input]:w-full [&_input]:min-w-0 [&_input]:rounded-[5px] [&_input]:border [&_input]:border-[#bdb4c7] [&_input]:bg-transparent [&_input]:p-3 [&_input]:text-[15px] [&_input]:font-normal [&_input]:outline-offset-[3px] [&_input]:placeholder:text-[#746b7d] [&_textarea]:min-h-22.5 [&_textarea]:max-h-55 [&_textarea]:w-full [&_textarea]:resize-y [&_textarea]:rounded-[5px] [&_textarea]:border [&_textarea]:border-[#bdb4c7] [&_textarea]:bg-transparent [&_textarea]:p-3 [&_textarea]:text-[15px] [&_textarea]:font-normal [&_textarea]:outline-offset-[3px] [&_textarea]:placeholder:text-[#746b7d] [&_input:focus-visible]:outline-2 [&_input:focus-visible]:outline-ring [&_textarea:focus-visible]:outline-2 [&_textarea:focus-visible]:outline-ring"
-        onSubmit={prepareBrief}
-        onChange={() => setSaved(false)}
+        onSubmit={sendBrief}
+        onChange={() => { if (status !== "sending") setStatus("idle"); }}
+        aria-busy={status === "sending"}
       >
+        <div className="sr-only" aria-hidden="true">
+          <label htmlFor="project-website">Leave this field empty</label>
+          <input id="project-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+        </div>
         <div className="grid grid-cols-1 gap-4.25 min-[391px]:grid-cols-2">
           <label>
             Your name
@@ -97,7 +101,7 @@ export function ProjectBrief() {
           <Select
             name="service"
             defaultValue="A bit of everything"
-            onValueChange={() => setSaved(false)}
+            onValueChange={() => setStatus("idle")}
           >
             <SelectTrigger
               id="project-service"
@@ -107,7 +111,7 @@ export function ProjectBrief() {
             </SelectTrigger>
             <SelectContent
               position="popper"
-              className="z-60 rounded-md border-[#bdb4c7] bg-background text-foreground shadow-[0_12px_36px_#20152e22]"
+              className="z-80 rounded-md border-[#bdb4c7] bg-background text-foreground shadow-[0_12px_36px_#20152e22]"
             >
               <SelectItem
                 value="A bit of everything"
@@ -134,36 +138,31 @@ export function ProjectBrief() {
             rows={3}
             placeholder="The big idea, the small details, and what you have in mind…"
             required
+            minLength={10}
             maxLength={2500}
           />
         </label>
         <Button
           type="submit"
+          disabled={status === "sending"}
           className="h-12 w-full justify-between rounded-full bg-foreground px-5 text-[15px] text-background hover:bg-ring"
         >
-          {contactEmail ? (
-            <>
-              Prepare email <ArrowUpRight aria-hidden="true" />
-            </>
-          ) : saved ? (
-            <>
-              Brief downloaded <Check aria-hidden="true" />
-            </>
-          ) : (
-            <>
-              Download project brief <Download aria-hidden="true" />
-            </>
-          )}
+          {status === "sending" ? "Sending…" : status === "sent" ? "Message sent" : "Send your idea"}
+          {status === "sent" ? <Check aria-hidden="true" /> : <ArrowUpRight aria-hidden="true" />}
         </Button>
         <p
           className="-mt-2 mb-0 text-xs leading-[1.6] text-muted-foreground"
-          role="status"
+          role={status === "error" || status === "limited" ? "alert" : "status"}
         >
-          {contactEmail
-            ? "Opens your email app with your brief ready to send."
-            : saved
-              ? "Your brief is saved to your device. Nothing has been sent."
-              : "Save your thoughts as a brief. Downloads to your device; nothing is sent."}
+          {status === "sent"
+            ? "Thanks — your idea has been sent to Gryffindorlab."
+            : status === "limited"
+              ? <>Too many requests. Please try later or email <a className="underline underline-offset-2" href="mailto:info@gryffindorlab.com">info@gryffindorlab.com</a>.</>
+            : status === "error"
+              ? <>We couldn’t send your idea. Please try again or email <a className="underline underline-offset-2" href="mailto:info@gryffindorlab.com">info@gryffindorlab.com</a>.</>
+              : status === "sending"
+                ? "Sending your idea securely…"
+                : "Share your idea with Gryffindorlab."}
         </p>
       </form>
     </DialogContent>
