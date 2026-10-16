@@ -7,7 +7,7 @@ type Slot = { start_time: string; status: string };
 let resolvedEvent: { token: string; uri: string } | undefined;
 
 export function calendlyToken() {
-  const value = process.env.CALENDLY_ACCESS_TOKEN || process.env.CALENDLY_API_KEY;
+  const value = process.env.CALENDLY_API_KEY;
   if (!value) throw new Error("Calendly is not configured");
   return value;
 }

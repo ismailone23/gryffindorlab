@@ -139,7 +139,7 @@ export function Services() {
             aria-hidden="true"
           >
             <g
-              className={`origin-center duration-[800ms] ease-out ${moving ? "transition-transform" : "transition-none"}`}
+              className={`origin-center duration-800 ease-out ${moving ? "transition-transform" : "transition-none"}`}
               style={{
                 transform: phase === 2 ? "rotate(-15deg)" : "rotate(0deg)",
               }}
@@ -147,7 +147,7 @@ export function Services() {
               {positions[phase].map(([x, y], index) => (
                 <g
                   key={index}
-                  className={`duration-[800ms] ease-out ${moving ? "transition-transform" : "transition-none"}`}
+                  className={`duration-800 ease-out ${moving ? "transition-transform" : "transition-none"}`}
                   style={{ transform: `translate(${x}px, ${y}px)` }}
                 >
                   {index === 0 || index === 3 ? (
