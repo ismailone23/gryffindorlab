@@ -12,7 +12,7 @@ function TestimonialSlot({ text }: { text: string }) {
   return (
     <article className="flex min-h-62 flex-col justify-between rounded-[5px] bg-(--soft) p-7 min-[901px]:min-h-68 min-[901px]:p-9">
       <span className="flex items-center gap-2.5 text-sm text-muted-foreground">
-        <span aria-hidden="true" className="size-2 rounded-full bg-(--orange)" />
+        <span aria-hidden="true" className="size-2 rounded-full bg-ring" />
         Testimonial pending
       </span>
       <div>
@@ -56,7 +56,7 @@ export function Testimonials() {
             <TestimonialSlot text={pendingStories[0]} />
             <div
               data-nav-surface="orange"
-              className="relative flex min-h-75 flex-col justify-end overflow-hidden rounded-[5px] bg-(--orange) p-7 text-(--ink) min-[901px]:min-h-85 min-[901px]:p-9"
+              className="relative flex min-h-75 flex-col justify-end overflow-hidden rounded-[5px] bg-ring p-7 text-(--ink) min-[901px]:min-h-85 min-[901px]:p-9"
             >
               <svg
                 viewBox="0 0 560 330"

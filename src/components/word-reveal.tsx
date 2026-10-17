@@ -24,7 +24,7 @@ export function WordReveal({
           {accentDot && index === words.length - 1 && word.endsWith(".") ? (
             <>
               {word.slice(0, -1)}
-              <span className="text-(--orange)">.</span>
+              <span className="text-ring">.</span>
             </>
           ) : (
             word

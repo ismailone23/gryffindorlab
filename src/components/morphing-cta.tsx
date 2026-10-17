@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties, type TransitionEvent } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type TransitionEvent,
+} from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DialogTrigger } from "@/components/ui/dialog";
@@ -16,7 +22,12 @@ export function MorphingCta() {
   const [floating, setFloating] = useState(false);
   const [phase, setPhase] = useState<Phase>("hero");
   const [rebasing, setRebasing] = useState(false);
-  const [origin, setOrigin] = useState<Position>({ top: 0, left: 0, width: 192, height: 56 });
+  const [origin, setOrigin] = useState<Position>({
+    top: 0,
+    left: 0,
+    width: 192,
+    height: 56,
+  });
 
   useEffect(() => {
     const home = anchor.current;
@@ -29,8 +40,9 @@ export function MorphingCta() {
     let second = 0;
     let timer = 0;
     let direction: "out" | "back" | "idle" = "idle";
-    const threshold = () => window.innerWidth <= 900 ? 100 : 120;
-    const contactVisible = () => contact.getBoundingClientRect().top <= window.innerHeight * 0.35;
+    const threshold = () => (window.innerWidth <= 900 ? 100 : 120);
+    const contactVisible = () =>
+      contact.getBoundingClientRect().top <= window.innerHeight * 0.35;
 
     function changePhase(next: Phase) {
       currentPhase.current = next;
@@ -39,7 +51,9 @@ export function MorphingCta() {
 
     function measure(rect: DOMRect, clampToScreen = false) {
       setOrigin({
-        top: clampToScreen ? Math.max(16, Math.min(rect.top, window.innerHeight - 80)) : rect.top,
+        top: clampToScreen
+          ? Math.max(16, Math.min(rect.top, window.innerHeight - 80))
+          : rect.top,
         left: rect.left,
         width: rect.width,
         height: rect.height,
@@ -112,7 +126,10 @@ export function MorphingCta() {
         return;
       }
 
-      if (currentPhase.current === "hero" || currentPhase.current === "compact") {
+      if (
+        currentPhase.current === "hero" ||
+        currentPhase.current === "compact"
+      ) {
         measure(rect);
         if (currentPhase.current === "hero") {
           active.current = false;
@@ -145,7 +162,8 @@ export function MorphingCta() {
     function sync() {
       frame = 0;
       const rect = home!.getBoundingClientRect();
-      const homeVisible = rect.top > threshold() && rect.bottom <= window.innerHeight - 16;
+      const homeVisible =
+        rect.top > threshold() && rect.bottom <= window.innerHeight - 16;
 
       if (!active.current) {
         if (rect.top <= threshold()) depart(rect);
@@ -166,7 +184,10 @@ export function MorphingCta() {
           window.clearTimeout(timer);
           timer = window.setTimeout(() => {
             const current = home!.getBoundingClientRect();
-            if (current.top > threshold() && current.bottom <= window.innerHeight - 16) {
+            if (
+              current.top > threshold() &&
+              current.bottom <= window.innerHeight - 16
+            ) {
               returnHome(current);
             }
           }, 140);
@@ -198,11 +219,17 @@ export function MorphingCta() {
   }, []);
 
   function finishReturn(event: TransitionEvent<HTMLButtonElement>) {
-    if (event.target !== event.currentTarget || !["width", "top", "left", "transform"].includes(event.propertyName)) return;
+    if (
+      event.target !== event.currentTarget ||
+      !["width", "top", "left", "transform"].includes(event.propertyName)
+    )
+      return;
     const target = anchor.current?.getBoundingClientRect();
     const actual = event.currentTarget.getBoundingClientRect();
     if (
-      returning.current && currentPhase.current === "compact" && target &&
+      returning.current &&
+      currentPhase.current === "compact" &&
+      target &&
       target.bottom <= window.innerHeight - 16 &&
       Math.abs(actual.top - target.top) < 2 &&
       Math.abs(actual.left - target.left) < 2 &&
@@ -213,7 +240,8 @@ export function MorphingCta() {
       return;
     }
     if (
-      currentPhase.current === "hero" && target &&
+      currentPhase.current === "hero" &&
+      target &&
       Math.abs(actual.top - target.top) < 2 &&
       Math.abs(actual.left - target.left) < 2 &&
       Math.abs(actual.width - target.width) < 2
@@ -225,7 +253,10 @@ export function MorphingCta() {
   }
 
   return (
-    <span ref={anchor} className="mt-6.25 block h-13.5 w-48 min-[901px]:mt-8 min-[901px]:h-14.5">
+    <span
+      ref={anchor}
+      className="mt-6.25 block h-13.5 w-48 min-[901px]:mt-8 min-[901px]:h-14.5"
+    >
       <DialogTrigger asChild>
         <Button
           type="button"
@@ -236,18 +267,32 @@ export function MorphingCta() {
           data-phase={phase}
           data-rebasing={rebasing}
           onTransitionEnd={finishReturn}
-          style={{
-            "--cta-start-top": `${origin.top}px`,
-            "--cta-start-left": `${origin.left}px`,
-            "--cta-open-width": `${origin.width}px`,
-            "--cta-open-height": `${origin.height}px`,
-          } as CSSProperties}
+          style={
+            {
+              "--cta-start-top": `${origin.top}px`,
+              "--cta-start-left": `${origin.left}px`,
+              "--cta-open-width": `${origin.width}px`,
+              "--cta-open-height": `${origin.height}px`,
+            } as CSSProperties
+          }
           className="start-now-button group relative h-13.5 w-48 overflow-hidden rounded-full bg-foreground p-0 text-background shadow-none hover:bg-[#dedede] min-[901px]:h-14.5"
         >
-          <span className="start-now-label absolute left-5.5 text-lg">Start now</span>
+          <span className="start-now-label absolute left-5.5 text-lg">
+            Start now
+          </span>
           <span className="start-now-icon absolute top-1/2 right-2 grid size-9 -translate-y-1/2 place-items-center rounded-full border border-black/25 transition-colors duration-300 min-[901px]:size-9.75">
-            <ArrowUpRight aria-hidden="true" className="start-now-arrow size-4.75 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            <img src="/favicon.svg" width="32" height="32" alt="" aria-hidden="true" className="start-now-mark absolute size-8" />
+            <ArrowUpRight
+              aria-hidden="true"
+              className="start-now-arrow size-4.75 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+            <img
+              src="/favicon.svg"
+              width="32"
+              height="32"
+              alt=""
+              aria-hidden="true"
+              className="start-now-mark absolute size-8"
+            />
           </span>
         </Button>
       </DialogTrigger>

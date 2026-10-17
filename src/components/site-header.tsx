@@ -12,7 +12,8 @@ export function SiteHeader() {
   useEffect(() => {
     const element = header.current;
     if (!element) return;
-    if (element.contains(document.activeElement)) element.dataset.intro = "false";
+    if (element.contains(document.activeElement))
+      element.dataset.intro = "false";
 
     let previousY = window.scrollY;
     let movement = 0;
@@ -28,7 +29,8 @@ export function SiteHeader() {
         element!.dataset.hidden = "false";
         movement = 0;
       } else if (Math.abs(delta) > 0) {
-        movement = Math.sign(delta) === Math.sign(movement) ? movement + delta : delta;
+        movement =
+          Math.sign(delta) === Math.sign(movement) ? movement + delta : delta;
         if (Math.abs(movement) > 12) {
           element!.dataset.hidden = String(movement > 0);
           movement = 0;
@@ -39,15 +41,31 @@ export function SiteHeader() {
       const introRect = intro?.getBoundingClientRect();
       const introVisible = intro && getComputedStyle(intro).opacity !== "0";
 
-      for (const control of element!.querySelectorAll<HTMLElement>("[data-nav-control]")) {
+      for (const control of element!.querySelectorAll<HTMLElement>(
+        "[data-nav-control]",
+      )) {
         const rect = control.getBoundingClientRect();
-        const sampleY = rect.top + rect.height * (control.matches("nav") ? 0.5 : 0.8) - element!.getBoundingClientRect().top;
+        const sampleY =
+          rect.top +
+          rect.height * (control.matches("nav") ? 0.5 : 0.8) -
+          element!.getBoundingClientRect().top;
         const sampleX = rect.left + rect.width / 2;
-        const covered = introVisible && introRect && sampleX >= introRect.left && sampleX <= introRect.right && sampleY >= introRect.top && sampleY <= introRect.bottom;
-        const below = document.elementsFromPoint(sampleX, sampleY)
-          .find((candidate) => !element!.contains(candidate) && candidate !== element);
+        const covered =
+          introVisible &&
+          introRect &&
+          sampleX >= introRect.left &&
+          sampleX <= introRect.right &&
+          sampleY >= introRect.top &&
+          sampleY <= introRect.bottom;
+        const below = document
+          .elementsFromPoint(sampleX, sampleY)
+          .find(
+            (candidate) =>
+              !element!.contains(candidate) && candidate !== element,
+          );
         control.dataset.surface = !covered
-          ? below?.closest<HTMLElement>("[data-nav-surface]")?.dataset.navSurface || "dark"
+          ? below?.closest<HTMLElement>("[data-nav-surface]")?.dataset
+              .navSurface || "dark"
           : "dark";
       }
     }
@@ -67,7 +85,16 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header ref={header} className="site-header" data-intro="true" data-hidden="false" aria-label="Site header" onFocusCapture={(event) => { event.currentTarget.dataset.intro = "false"; }}>
+    <header
+      ref={header}
+      className="site-header"
+      data-intro="true"
+      data-hidden="false"
+      aria-label="Site header"
+      onFocusCapture={(event) => {
+        event.currentTarget.dataset.intro = "false";
+      }}
+    >
       <div className="site-header-inner">
         <Link
           href="/"
@@ -93,17 +120,27 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav data-nav-control className="site-header-nav" aria-label="Main navigation">
+        <nav
+          data-nav-control
+          className="site-header-nav"
+          aria-label="Main navigation"
+        >
           <Link href="#services">Services</Link>
           <Link href="#work">Work</Link>
           <Link href="#testimonials">Voices</Link>
         </nav>
 
         <DialogTrigger asChild>
-          <Button data-nav-control className="site-header-contact group h-11 shrink-0 gap-3 rounded-full py-1.5 pr-1.5 pl-4 text-base shadow-none min-[901px]:h-12.5 min-[901px]:gap-5 min-[901px]:pl-5">
+          <Button
+            data-nav-control
+            className="site-header-contact group h-11 shrink-0 gap-3 rounded-full py-1.5 pr-1.5 pl-4 text-base shadow-none min-[901px]:h-12.5 min-[901px]:gap-5 min-[901px]:pl-5"
+          >
             <span>Let’s talk</span>
             <span className="site-header-contact-icon grid size-8 place-items-center rounded-full min-[901px]:size-9">
-              <ArrowUpRight aria-hidden="true" className="size-4 transition-transform duration-500 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ArrowUpRight
+                aria-hidden="true"
+                className="size-4 transition-transform duration-500 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
             </span>
           </Button>
         </DialogTrigger>

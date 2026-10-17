@@ -135,7 +135,7 @@ export function Services() {
         >
           <svg
             viewBox="0 0 560 560"
-            className="block h-auto w-full overflow-visible text-(--orange)"
+            className="block h-auto w-full overflow-visible text-ring"
             aria-hidden="true"
           >
             <g

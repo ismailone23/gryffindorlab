@@ -37,7 +37,7 @@ export function Showcase() {
         ref={artboard}
         data-hero-artboard
         data-nav-surface="orange"
-        className="relative isolate aspect-[1.04] overflow-hidden rounded-[5px] bg-(--orange) p-4 text-(--ink) transform-[rotateX(var(--tilt-x,0deg))_rotateY(var(--tilt-y,0deg))] transition-transform duration-650 ease-out motion-reduce:transform-none min-[901px]:p-6"
+        className="relative isolate aspect-[1.04] overflow-hidden rounded-[5px] bg-ring p-4 text-(--ink) transform-[rotateX(var(--tilt-x,0deg))_rotateY(var(--tilt-y,0deg))] transition-transform duration-650 ease-out motion-reduce:transform-none min-[901px]:p-6"
       >
         <div className="flex items-center justify-between gap-4 text-xs">
           <span className="font-(family-name:--display) text-base font-semibold">

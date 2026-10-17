@@ -261,7 +261,7 @@ export function BookingCalendar() {
                   aria-expanded={timezoneOpen}
                   aria-labelledby="booking-timezone-label"
                   disabled={booked}
-                  className="h-11 w-full justify-start rounded-[5px] border border-white/35 bg-[#191919] px-3 text-sm text-(--paper) hover:border-white/65 hover:bg-[#262626] hover:text-(--paper) focus-visible:border-(--orange) focus-visible:ring-(--orange)/50"
+                  className="h-11 w-full justify-start rounded-[5px] border border-white/35 bg-[#191919] px-3 text-sm text-(--paper) hover:border-white/65 hover:bg-[#262626] hover:text-(--paper) focus-visible:border-ring focus-visible:ring-(--orange)/50"
                 >
                   <Globe2
                     aria-hidden="true"
@@ -313,7 +313,7 @@ export function BookingCalendar() {
                           {zone === timezone && (
                             <Check
                               aria-hidden="true"
-                              className="size-4 shrink-0 text-(--orange)"
+                              className="size-4 shrink-0 text-ring"
                             />
                           )}
                         </CommandItem>
@@ -549,7 +549,7 @@ export function BookingCalendar() {
                   key={time}
                   variant="ghost"
                   onClick={() => chooseTime(time)}
-                  className="h-10 w-full rounded-[5px] border border-white/25 bg-transparent text-sm text-(--paper) hover:border-(--orange) hover:bg-transparent hover:text-(--paper) dark:hover:bg-transparent focus-visible:border-(--orange) focus-visible:ring-(--orange)/50"
+                  className="h-10 w-full rounded-[5px] border border-white/25 bg-transparent text-sm text-(--paper) hover:border-ring hover:bg-transparent hover:text-(--paper) dark:hover:bg-transparent focus-visible:border-ring focus-visible:ring-(--orange)/50"
                 >
                   {timeLabel(time)}
                 </Button>
