@@ -15,7 +15,7 @@ function CommandInput({ className, ...props }: React.ComponentProps<typeof Comma
       <Search aria-hidden="true" className="size-4 shrink-0 opacity-70" />
       <CommandPrimitive.Input
         data-slot="command-input"
-        className={cn("h-10 w-full bg-transparent text-sm outline-none placeholder:text-[#c8c0d2]", className)}
+        className={cn("h-10 w-full bg-transparent text-sm outline-none placeholder:text-[#c2c2c2]", className)}
         {...props}
       />
     </div>
@@ -38,7 +38,7 @@ function CommandItem({ className, ...props }: React.ComponentProps<typeof Comman
   return (
     <CommandPrimitive.Item
       data-slot="command-item"
-      className={cn("flex min-h-9 cursor-default items-center rounded-[3px] px-2 text-sm outline-none data-[selected=true]:bg-[#292333] data-[selected=true]:text-(--paper)", className)}
+      className={cn("flex min-h-9 cursor-default items-center rounded-[3px] px-2 text-sm outline-none data-[selected=true]:bg-[#2b2b2b] data-[selected=true]:text-(--paper)", className)}
       {...props}
     />
   )

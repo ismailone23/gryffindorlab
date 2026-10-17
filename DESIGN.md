@@ -1,19 +1,19 @@
 ---
 name: Gryffindorlab
-description: A clean typographic studio poster with one violet motion-graphics study.
+description: A clean typographic studio poster with one orange motion-graphics study.
 colors:
-  paper: "#f1eef5"
+  paper: "#f8f2ef"
   ink: "#242127"
-  muted: "#65616b"
-  soft: "#e7e1ef"
-  rule: "#d6d0dc"
-  violet: "#6845d6"
-  field-border: "#bdb4c7"
+  muted: "#655e5b"
+  soft: "#f1e2db"
+  rule: "#ddcec7"
+  orange: "#fc6749"
+  orange-deep: "#b73721"
+  field-border: "#c9b6ad"
   contact-dark: "#000000"
-  contact-glow: "#aa8bf7"
-  contact-panel: "#111016"
-  contact-border: "#62586d"
-  contact-placeholder: "#b2a8bd"
+  contact-panel: "#171210"
+  contact-border: "#755b52"
+  contact-placeholder: "#bdaba3"
 typography:
   display:
     fontFamily: '"Bricolage Grotesque Variable", sans-serif'
@@ -50,7 +50,7 @@ components:
     rounded: "{rounded.pill}"
     height: "58px"
   button-primary-hover:
-    backgroundColor: "{colors.violet}"
+    backgroundColor: "{colors.orange-deep}"
   button-submit:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.paper}"
@@ -61,8 +61,8 @@ components:
     textColor: "{colors.ink}"
     rounded: "{rounded.artboard}"
   motion-artboard:
-    backgroundColor: "{colors.violet}"
-    textColor: "{colors.paper}"
+    backgroundColor: "{colors.orange}"
+    textColor: "{colors.ink}"
     rounded: "{rounded.artboard}"
   project-dialog:
     backgroundColor: "{colors.paper}"
@@ -76,7 +76,7 @@ components:
 
 **Creative North Star: "Studio poster"**
 
-This identity pairs pale lilac paper, oversized near-black lettering, and a single saturated violet motion graphic. The language is open and deliberate, not an assemblage of cards or effects. The first surface is one hero with an authored edit / build / design loop, tying the artwork to the agency's three services; it has no service tabs or extra sections.
+This identity pairs warm paper, oversized near-black lettering, and a single saturated orange motion graphic. The language is open and deliberate, not an assemblage of cards or effects. The first surface is one hero with an authored edit / build / design loop, tying the artwork to the agency's three services; it has no service tabs or extra sections.
 
 **Key Characteristics:**
 - One expressive artwork against generous quiet space.
@@ -87,18 +87,18 @@ This identity pairs pale lilac paper, oversized near-black lettering, and a sing
 ## Colors
 
 ### Primary
-- **Violet** (`violet`): motion-study field, mark, punctuation, hover and focus feedback. It is a surface at artwork scale, not a glow.
-- **Contact dark** (`contact-dark`): the user-requested closing field. A restrained violet glow radiates from the actual four-form mark; the rest of the page keeps its lilac paper.
+- **Orange** (`orange`): motion-study field, mark, and punctuation. Use deeper orange for light-surface focus and button hovers to preserve contrast.
+- **Contact dark** (`contact-dark`): the user-requested closing field has no decorative mark or glow; the rest of the page keeps its warm paper.
 
 ### Neutral
-- **Lilac paper** (`paper`): page and dialog ground, reversed text on dark buttons and violet.
+- **Warm paper** (`paper`): page and dialog ground, reversed text on dark buttons.
 - **Ink** (`ink`): headlines, wordmark and resting actions.
 - **Muted ink** (`muted`): supporting copy.
-- **Soft lilac** (`soft`): shadcn secondary surface alias.
+- **Soft warm neutral** (`soft`): shadcn secondary surface alias.
 - **Rule** (`rule`): restrained separators between content sections, not under the floating header.
 - **Field border** (`field-border`): the project-brief fields.
 
-**The Violet Punctuation Rule.** Resting copy and actions stay in ink; violet carries the one artwork and precise emphasis.
+**The Orange Punctuation Rule.** Resting copy and actions stay in ink; orange carries the one artwork and precise emphasis.
 
 ## Typography
 
@@ -116,7 +116,7 @@ The project-brief dialog has a 560px maximum width and scrolls within the viewpo
 
 ## Elevation & Depth
 
-The page is flat: scale and spacing provide hierarchy. The artboard has mouse-only tilt bounded at ±2.5 degrees, eased with `cubic-bezier(.22, 1, .36, 1)`; it resets on pointer leave. The project dialog alone uses a soft 0 24px 80px #20152e30 shadow above its overlay.
+The page is flat: scale and spacing provide hierarchy. The artboard has mouse-only tilt bounded at ±2.5 degrees, eased with `cubic-bezier(.22, 1, .36, 1)`; it resets on pointer leave. The project dialog alone uses a soft 0 24px 80px #32201730 shadow above its overlay.
 
 **The Flat Page Rule.** Reserve elevation for the dialog; do not wrap content in floating cards.
 
@@ -127,22 +127,22 @@ The artboard and form fields have a small 5px corner; the dialog has a softer 12
 ## Components
 
 ### Navigation
-The home-linked violet SVG mark moves gently on hover; the exact same SVG is used as the favicon. The wordmark carries an understated studio descriptor, hidden on narrow phones so it does not wrap. The centered pill links only to real sections (Services, Work, Voices). The fixed header hides on downward scroll, returns on upward scroll or keyboard focus, and samples the surface beneath each control so the pill, brand and contact action remain legible on the violet artboard as well as lilac paper. A focus-revealed skip link goes directly to the hero. The contact action opens the shadcn dialog.
+The home-linked orange SVG mark moves gently on hover; the exact same SVG is used as the favicon. The wordmark carries an understated studio descriptor, hidden on narrow phones so it does not wrap. The centered pill links only to real sections (Services, Work, Voices) on desktop. During the mark's move to the artboard, the header stays above the viewport; it drops in when the left-hand text starts appearing. Reduced motion, no JavaScript, or early keyboard focus shows it immediately. The fixed header hides on downward scroll, returns on upward scroll or keyboard focus, and samples the surface beneath each control so the pill, brand and contact action remain legible on the orange artboard as well as warm paper. A focus-revealed skip link goes directly to the hero. The contact action opens the shadcn dialog.
 
 ### Buttons and form
-The dark hero action turns violet and lifts 2px on hover. The form submit is a full-width dark pill with a violet hover. Fields are labeled native text/email inputs and textarea with a violet 2px focus outline. The service picker is a shadcn Select within the shadcn Dialog and remains keyboard-accessible. Field text is 15px, field labels 14px, supporting dialog copy 14px; artwork labels are at least 12px. The dialog uses shadcn focus management and Escape dismissal. The form sends plain-text project details through a server-only Resend endpoint protected by Redis rate limits. A success state appears only after acceptance by Resend; errors offer retry or direct email.
+The dark hero action turns deep orange and lifts 2px on hover. The project-form submit is a full-width monochrome pill; its “Send your idea” label and arrow stay centered and unchanged after submission. Native text/email inputs, textarea, and the shadcn Select use neutral focus feedback. Browser-autofilled inputs retain the dialog's light or dark ground. Field text is 15px, field labels 14px, supporting dialog copy 14px; artwork labels are at least 12px. The dialog uses shadcn focus management and Escape dismissal. The form sends plain-text project details through a server-only Resend endpoint protected by Redis rate limits. A clear status appears above the button after acceptance by Resend, or offers retry or direct email on failure.
 
 ### Motion artwork
-The lone violet artboard contains three staggered lines reading “edit. build. design.”, explicitly corresponding to video editing, website development, and graphic design. Native CSS `kinetic-type` and `film-progress` run over 9 seconds. Pause/play controls the animation play state, with `aria-pressed` and a contrasting paper-colored focus outline. There is no caption below the artboard. Reduced-motion preferences disable animations, retain the readable still composition, and replace playback controls with a truthful status. Headline entrance lasts 1.05s, details 1.1s, artboard entrance 1.25s. All are disabled for reduced motion.
+The lone orange artboard contains three staggered lines reading “edit. build. design.”, explicitly corresponding to video editing, website development, and graphic design. Native CSS `kinetic-type` and `film-progress` run over 9 seconds. Pause/play controls the animation play state, with `aria-pressed` and a contrasting ink-colored focus outline. There is no caption below the artboard. Reduced-motion preferences disable animations, retain the readable still composition, and replace playback controls with a truthful status. Headline entrance lasts 1.05s, details 1.1s, artboard entrance 1.25s. All are disabled for reduced motion.
 
 ### Closing invitation
-The black closing section scrolls into view as one continuous field, without a separate circular overlay or forced snapping. The four exact favicon geometries assemble outward from a single violet point while rotating into place; no complete static logo is shown ahead of the formation. A violet glow then spreads from the center to left and right. This entrance runs once per page load; the finished mark remains visible when scrolling away and back. The header adapts to the actual surface beneath it. The project dialog adopts a dark lilac-ink treatment when opened against dark surfaces, while triggers on paper keep the original paper dialog. The booking surface is one compact ruled black panel with three columns: Gryffindorlab details and a searchable shadcn timezone combobox, a shadcn-button calendar of real Calendly availability, and understated shadcn time buttons within a dark shadcn ScrollArea leading into a name/email confirmation form. It stacks on mobile and jumps straight to dates. Server-side Calendly APIs retrieve available times and create bookings; Resend sends an additional branded email only after Calendly accepts a booking. No iframe, nested border, fake dates, cookie label, or invented staff. Keep the external Calendly fallback when APIs are unavailable. Reduced motion and no-JavaScript keep the mark readable without movement.
+The black closing section scrolls into view as one continuous field, without a decorative mark or glow. The invitation, project action, and booking link remain centered and accessible. The header adapts to the actual surface beneath it. The project dialog adopts a dark neutral treatment when opened against dark surfaces, while triggers on paper keep the light dialog. The booking surface is one compact ruled black panel with three columns: Gryffindorlab details and a searchable shadcn timezone combobox, a shadcn-button calendar of real Calendly availability, and understated shadcn time buttons within a dark shadcn ScrollArea leading into a name/email confirmation form. It stacks on mobile and jumps straight to dates. Server-side Calendly APIs retrieve available times and create bookings; Resend sends an additional branded email only after Calendly accepts a booking. No iframe, nested border, fake dates, cookie label, or invented staff. Keep the external Calendly fallback when APIs are unavailable.
 
 ## Do's and Don'ts
 
 ### Do:
 - **Do** lead with clear words, a project action, and one authored visual.
-- **Do** keep the artwork pausable and its focus visible on violet.
+- **Do** keep the artwork pausable and its focus visible on orange.
 - **Do** use responsive Tailwind classes for layout and component styling; reserve CSS for shared tokens and custom keyframes.
 
 ### Don't:

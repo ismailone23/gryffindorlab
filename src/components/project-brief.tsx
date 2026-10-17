@@ -1,5 +1,5 @@
-import { useState, type FormEvent } from "react";
-import { ArrowUpRight, Check } from "lucide-react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DialogContent,
@@ -17,9 +17,19 @@ import {
 import { services } from "@/lib/services";
 
 export function ProjectBrief({ dark = false }: { dark?: boolean }) {
+  const submitButton = useRef<HTMLButtonElement>(null);
+  const openingTrigger = useRef<HTMLElement | null>(null);
   const [status, setStatus] = useState<
     "idle" | "sending" | "sent" | "error" | "limited"
   >("idle");
+
+  useEffect(() => {
+    if (status !== "sent" && status !== "error" && status !== "limited") return;
+    const frame = requestAnimationFrame(() => {
+      submitButton.current?.scrollIntoView({ behavior: "instant", block: "nearest" });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [status]);
 
   async function sendBrief(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -54,7 +64,16 @@ export function ProjectBrief({ dark = false }: { dark?: boolean }) {
   return (
     <DialogContent
       data-surface={dark ? "dark" : "light"}
-      className="project-brief max-h-[calc(100dvh-36px)] max-w-140 gap-4 overflow-y-auto rounded-xl border-0 bg-background p-[28px_23px] shadow-[0_24px_80px_#20152e30] max-[390px]:p-[28px_23px] min-[391px]:p-9.5 sm:max-w-140 **:data-[slot=dialog-close]:top-3 **:data-[slot=dialog-close]:right-3 **:data-[slot=dialog-close]:grid **:data-[slot=dialog-close]:size-10 **:data-[slot=dialog-close]:place-items-center"
+      onOpenAutoFocus={() => {
+        openingTrigger.current = document.activeElement instanceof HTMLElement
+          ? document.activeElement
+          : null;
+      }}
+      onCloseAutoFocus={(event) => {
+        event.preventDefault();
+        openingTrigger.current?.focus({ preventScroll: true });
+      }}
+      className="project-brief max-h-[calc(100dvh-36px)] max-w-140 gap-4 overflow-y-auto rounded-xl border-0 bg-background p-[28px_23px] shadow-[0_24px_80px_#00000030] max-[390px]:p-[28px_23px] min-[391px]:p-9.5 sm:max-w-140 **:data-[slot=dialog-close]:top-3 **:data-[slot=dialog-close]:right-3 **:data-[slot=dialog-close]:grid **:data-[slot=dialog-close]:size-10 **:data-[slot=dialog-close]:place-items-center"
     >
       <DialogHeader className="text-left">
         <DialogTitle className="font-(family-name:--display) text-[36px] leading-none font-semibold tracking-[-0.04em] min-[391px]:text-[42px]">
@@ -67,10 +86,10 @@ export function ProjectBrief({ dark = false }: { dark?: boolean }) {
         </DialogDescription>
       </DialogHeader>
       <form
-        className="mt-2.5 grid gap-5 [&_label]:flex [&_label]:flex-col [&_label]:gap-2 [&_label]:text-sm [&_label]:font-semibold [&_input]:w-full [&_input]:min-w-0 [&_input]:rounded-[5px] [&_input]:border [&_input]:border-[#bdb4c7] [&_input]:bg-transparent [&_input]:p-3 [&_input]:text-[15px] [&_input]:font-normal [&_input]:outline-offset-[3px] [&_input]:placeholder:text-[#746b7d] [&_textarea]:min-h-22.5 [&_textarea]:max-h-55 [&_textarea]:w-full [&_textarea]:resize-y [&_textarea]:rounded-[5px] [&_textarea]:border [&_textarea]:border-[#bdb4c7] [&_textarea]:bg-transparent [&_textarea]:p-3 [&_textarea]:text-[15px] [&_textarea]:font-normal [&_textarea]:outline-offset-[3px] [&_textarea]:placeholder:text-[#746b7d] [&_input:focus-visible]:outline-2 [&_input:focus-visible]:outline-ring [&_textarea:focus-visible]:outline-2 [&_textarea:focus-visible]:outline-ring"
+        className="mt-2.5 grid gap-5 [&_label]:flex [&_label]:flex-col [&_label]:gap-2 [&_label]:text-sm [&_label]:font-semibold [&_input]:w-full [&_input]:min-w-0 [&_input]:rounded-[5px] [&_input]:border [&_input]:border-[#565656] [&_input]:bg-transparent [&_input]:p-3 [&_input]:text-[15px] [&_input]:font-normal [&_input]:outline-offset-[3px] [&_input]:placeholder:text-[#b0b0b0] [&_textarea]:min-h-22.5 [&_textarea]:max-h-55 [&_textarea]:w-full [&_textarea]:resize-y [&_textarea]:rounded-[5px] [&_textarea]:border [&_textarea]:border-[#565656] [&_textarea]:bg-transparent [&_textarea]:p-3 [&_textarea]:text-[15px] [&_textarea]:font-normal [&_textarea]:outline-offset-[3px] [&_textarea]:placeholder:text-[#b0b0b0] [&_input:focus-visible]:outline-2 [&_input:focus-visible]:outline-(--ink) [&_textarea:focus-visible]:outline-2 [&_textarea:focus-visible]:outline-(--ink)"
         onSubmit={sendBrief}
         onChange={() => {
-          if (status !== "sending") setStatus("idle");
+          if (status === "error" || status === "limited") setStatus("idle");
         }}
         aria-busy={status === "sending"}
       >
@@ -114,18 +133,20 @@ export function ProjectBrief({ dark = false }: { dark?: boolean }) {
           <Select
             name="service"
             defaultValue="A bit of everything"
-            onValueChange={() => setStatus("idle")}
+            onValueChange={() => {
+              if (status === "error" || status === "limited") setStatus("idle");
+            }}
           >
             <SelectTrigger
               id="project-service"
-              className="h-12! w-full! rounded-[5px] border-[#bdb4c7] bg-transparent px-3 text-[15px] font-normal text-foreground shadow-none dark:bg-transparent! dark:hover:bg-transparent! focus-visible:ring-(--violet)/40"
+              className="h-12! w-full! rounded-[5px] border-[#565656] bg-transparent px-3 text-[15px] font-normal text-foreground shadow-none dark:bg-transparent! dark:hover:bg-transparent! focus-visible:ring-(--ink)/40"
             >
               <SelectValue placeholder="Choose a service" />
             </SelectTrigger>
             <SelectContent
               position="popper"
               data-surface={dark ? "dark" : "light"}
-              className="project-brief-options z-80 rounded-md border-[#bdb4c7] bg-background text-foreground shadow-[0_12px_36px_#20152e22]"
+              className="project-brief-options z-80 rounded-md border-[#565656] bg-background text-foreground shadow-[0_12px_36px_#00000022]"
             >
               <SelectItem
                 value="A bit of everything"
@@ -156,35 +177,17 @@ export function ProjectBrief({ dark = false }: { dark?: boolean }) {
             maxLength={2500}
           />
         </label>
-        <Button
-          type="submit"
-          disabled={status === "sending"}
-          className="h-12 w-full justify-between rounded-full bg-foreground px-5 text-[15px] text-background hover:bg-ring"
-        >
-          {status === "sending"
-            ? "Sending…"
-            : status === "sent"
-              ? "Message sent"
-              : "Send your idea"}
-          {status === "sent" ? (
-            <Check aria-hidden="true" />
-          ) : (
-            <ArrowUpRight aria-hidden="true" />
-          )}
-        </Button>
         <p
-          className="-mt-2 mb-0 text-xs leading-[1.6] text-muted-foreground"
+          className="m-0 text-center text-sm leading-relaxed font-medium text-foreground empty:hidden"
           role={status === "error" || status === "limited" ? "alert" : "status"}
+          aria-live={status === "error" || status === "limited" ? "assertive" : "polite"}
         >
           {status === "sent" ? (
             "Thanks — your idea has been sent to Gryffindorlab."
           ) : status === "limited" ? (
             <>
               Too many requests. Please try later or email{" "}
-              <a
-                className="underline underline-offset-2"
-                href="mailto:info@gryffindorlab.com"
-              >
+              <a className="underline underline-offset-2" href="mailto:info@gryffindorlab.com">
                 info@gryffindorlab.com
               </a>
               .
@@ -192,20 +195,24 @@ export function ProjectBrief({ dark = false }: { dark?: boolean }) {
           ) : status === "error" ? (
             <>
               We couldn’t send your idea. Please try again or email{" "}
-              <a
-                className="underline underline-offset-2"
-                href="mailto:info@gryffindorlab.com"
-              >
+              <a className="underline underline-offset-2" href="mailto:info@gryffindorlab.com">
                 info@gryffindorlab.com
               </a>
               .
             </>
           ) : status === "sending" ? (
             "Sending your idea securely…"
-          ) : (
-            "Share your idea with Gryffindorlab."
-          )}
+          ) : null}
         </p>
+        <Button
+          ref={submitButton}
+          type="submit"
+          disabled={status === "sending"}
+          className="h-12 w-full justify-center gap-2 rounded-full bg-foreground px-5 text-[15px] text-background hover:bg-(--brief-button-hover)"
+        >
+          Send your idea
+          <ArrowUpRight aria-hidden="true" />
+        </Button>
       </form>
     </DialogContent>
   );

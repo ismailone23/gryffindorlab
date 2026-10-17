@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Dialog } from "@/components/ui/dialog";
 import { Showcase } from "@/components/showcase";
 import { Services } from "@/components/services";
@@ -16,14 +16,8 @@ import { SiteFooter } from "@/components/site-footer";
 
 export default function App() {
   const artworkDestination = useRef<HTMLDivElement>(null);
-  const [darkBrief, setDarkBrief] = useState(false);
-
   return (
-    <Dialog
-      onOpenChange={(open) => {
-        if (!open) setDarkBrief(false);
-      }}
-    >
+    <Dialog>
       <a
         href="#main"
         className="fixed top-3 left-4 z-50 translate-y-[-160%] bg-foreground px-4 py-3 text-background focus:translate-y-0"
@@ -31,9 +25,9 @@ export default function App() {
         Skip to content
       </a>
 
-      <SiteHeader onStartProject={(dark) => setDarkBrief(dark)} />
+      <SiteHeader />
       <noscript>
-        <style>{".site-header{position:absolute!important}"}</style>
+        <style>{".site-header{position:absolute!important}.site-header-inner{animation:none!important}"}</style>
       </noscript>
 
       <main id="main" className="pt-24 min-[901px]:pt-26.5">
@@ -76,10 +70,10 @@ export default function App() {
         </div>
         <WorkSlider />
         <Testimonials />
-        <ContactFinale onStartProject={() => setDarkBrief(true)} />
+        <ContactFinale />
       </main>
       <SiteFooter />
-      <ProjectBrief dark={darkBrief} />
+      <ProjectBrief dark />
     </Dialog>
   );
 }

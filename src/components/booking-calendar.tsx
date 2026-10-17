@@ -208,7 +208,7 @@ export function BookingCalendar() {
   return (
     <div className="overflow-hidden rounded-[5px] border border-white/20 bg-black text-(--paper) min-[901px]:grid min-[901px]:min-h-128 min-[901px]:grid-cols-[minmax(240px,27%)_minmax(340px,1fr)_minmax(225px,27%)]">
       <div className="border-b border-white/20 px-6 py-8 min-[901px]:border-r min-[901px]:border-b-0 min-[901px]:px-7 min-[901px]:py-8">
-        <div className="flex items-center gap-3 text-sm text-[#c8c0d2]">
+        <div className="flex items-center gap-3 text-sm text-[#c2c2c2]">
           <img
             src="/favicon.svg"
             width="36"
@@ -221,10 +221,10 @@ export function BookingCalendar() {
         <h3 className="mt-8 font-(family-name:--display) text-[clamp(32px,3vw,40px)] leading-none font-semibold tracking-[-.04em]">
           Let’s talk.
         </h3>
-        <p className="mt-4 max-w-58 text-base leading-relaxed text-[#c8c0d2]">
+        <p className="mt-4 max-w-58 text-base leading-relaxed text-[#c2c2c2]">
           Choose a time for a 30-minute conversation.
         </p>
-        <div className="mt-8 grid gap-4 text-sm text-[#c8c0d2]">
+        <div className="mt-8 grid gap-4 text-sm text-[#c2c2c2]">
           <p className="flex items-center gap-3">
             <Clock3
               aria-hidden="true"
@@ -261,11 +261,11 @@ export function BookingCalendar() {
                   aria-expanded={timezoneOpen}
                   aria-labelledby="booking-timezone-label"
                   disabled={booked}
-                  className="h-11 w-full justify-start rounded-[5px] border border-white/35 bg-[#111016] px-3 text-sm text-(--paper) hover:border-white/65 hover:bg-[#19151f] hover:text-(--paper) focus-visible:border-[#aa8bf7] focus-visible:ring-[#aa8bf7]/50"
+                  className="h-11 w-full justify-start rounded-[5px] border border-white/35 bg-[#191919] px-3 text-sm text-(--paper) hover:border-white/65 hover:bg-[#262626] hover:text-(--paper) focus-visible:border-(--orange) focus-visible:ring-(--orange)/50"
                 >
                   <Globe2
                     aria-hidden="true"
-                    className="size-4 text-[#c8c0d2]"
+                    className="size-4 text-[#c2c2c2]"
                   />
                   <span className="min-w-0 flex-1 truncate text-left">
                     {timezone
@@ -274,16 +274,16 @@ export function BookingCalendar() {
                   </span>
                   <ChevronDown
                     aria-hidden="true"
-                    className="size-4 text-[#c8c0d2]"
+                    className="size-4 text-[#c2c2c2]"
                   />
                 </Button>
               </PopoverTrigger>
               <PopoverContent
                 align="start"
                 collisionPadding={16}
-                className="z-80 w-(--radix-popover-trigger-width) max-w-[calc(100vw-3rem)] rounded-[5px] border-white/30 bg-[#111016] p-0 text-(--paper) shadow-[0_16px_40px_#00000080]"
+                className="z-80 w-(--radix-popover-trigger-width) max-w-[calc(100vw-3rem)] rounded-[5px] border-white/30 bg-[#191919] p-0 text-(--paper) shadow-[0_16px_40px_#00000080]"
               >
-                <Command className="bg-[#111016] text-(--paper)">
+                <Command className="bg-[#191919] text-(--paper)">
                   <CommandInput
                     aria-label="Search time zones"
                     placeholder="Search a city or time zone…"
@@ -292,7 +292,7 @@ export function BookingCalendar() {
                     autoFocus
                     className="text-(--paper)"
                   />
-                  <CommandList className="[scrollbar-color:#62586d_#111016] scrollbar-thin">
+                  <CommandList className="[scrollbar-color:#555555_#191919] scrollbar-thin">
                     <CommandEmpty>No matching time zones.</CommandEmpty>
                     <CommandGroup>
                       {zones.map((zone) => (
@@ -313,7 +313,7 @@ export function BookingCalendar() {
                           {zone === timezone && (
                             <Check
                               aria-hidden="true"
-                              className="size-4 shrink-0 text-[#aa8bf7]"
+                              className="size-4 shrink-0 text-(--orange)"
                             />
                           )}
                         </CommandItem>
@@ -367,7 +367,7 @@ export function BookingCalendar() {
           </div>
         </div>
         <div
-          className="mt-7 grid grid-cols-7 text-center text-xs font-semibold text-[#c8c0d2]"
+          className="mt-7 grid grid-cols-7 text-center text-xs font-semibold text-[#c2c2c2]"
           aria-hidden="true"
         >
           {weekdays.map((day) => (
@@ -413,7 +413,7 @@ export function BookingCalendar() {
             );
           })}
         </div>
-        <p className="mt-6 text-sm text-[#c8c0d2]" role="status">
+        <p className="mt-6 text-sm text-[#c2c2c2]" role="status">
           {loading
             ? "Checking live availability…"
             : error && !chosenTime
@@ -473,7 +473,7 @@ export function BookingCalendar() {
                 variant="ghost"
                 aria-pressed={notation === value}
                 onClick={() => setNotation(value)}
-                className={`h-7 rounded-[3px] px-2 text-xs hover:bg-white/10 hover:text-(--paper) ${notation === value ? "bg-white/15 text-(--paper)" : "text-[#c8c0d2]"}`}
+                className={`h-7 rounded-[3px] px-2 text-xs hover:bg-white/10 hover:text-(--paper) ${notation === value ? "bg-white/15 text-(--paper)" : "text-[#c2c2c2]"}`}
               >
                 {value}
               </Button>
@@ -482,7 +482,7 @@ export function BookingCalendar() {
         </div>
         {booked ? (
           <p
-            className="mt-8 text-sm leading-relaxed text-[#c8c0d2]"
+            className="mt-8 text-sm leading-relaxed text-[#c2c2c2]"
             role="status"
           >
             Your call is booked for {dateLabel} at {timeLabel(chosenTime)} (
@@ -500,7 +500,7 @@ export function BookingCalendar() {
                 setChosenTime("");
                 setError("");
               }}
-              className="w-fit px-0 text-sm text-[#c8c0d2] hover:bg-transparent hover:text-(--paper)"
+              className="w-fit px-0 text-sm text-[#c2c2c2] hover:bg-transparent hover:text-(--paper)"
             >
               <ArrowLeft aria-hidden="true" className="size-4" />
               Back to times
@@ -535,7 +535,7 @@ export function BookingCalendar() {
             <Button
               type="submit"
               disabled={sending}
-              className="mt-2 h-11 rounded-full bg-(--paper) text-(--ink) hover:bg-[#c8c0d2]"
+              className="mt-2 h-11 rounded-full bg-(--paper) text-(--ink) hover:bg-[#c2c2c2]"
             >
               {sending ? "Booking…" : "Confirm booking"}
             </Button>
@@ -549,7 +549,7 @@ export function BookingCalendar() {
                   key={time}
                   variant="ghost"
                   onClick={() => chooseTime(time)}
-                  className="h-10 w-full rounded-[5px] border border-white/25 bg-transparent text-sm text-(--paper) hover:border-[#aa8bf7] hover:bg-[#6845d6]/15 hover:text-(--paper) focus-visible:border-[#aa8bf7] focus-visible:ring-[#aa8bf7]/50"
+                  className="h-10 w-full rounded-[5px] border border-white/25 bg-transparent text-sm text-(--paper) hover:border-(--orange) hover:bg-transparent hover:text-(--paper) dark:hover:bg-transparent focus-visible:border-(--orange) focus-visible:ring-(--orange)/50"
                 >
                   {timeLabel(time)}
                 </Button>
@@ -558,7 +558,7 @@ export function BookingCalendar() {
           </ScrollArea>
         ) : (
           !loading && (
-            <p className="mt-6 text-sm text-[#c8c0d2]">
+            <p className="mt-6 text-sm text-[#c2c2c2]">
               {error
                 ? "Use the Calendly link below to book directly."
                 : "No times to show for this date."}

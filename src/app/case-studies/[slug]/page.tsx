@@ -51,7 +51,7 @@ export default async function CaseStudy({ params }: Props) {
             className="size-9 rounded-sm min-[901px]:size-10"
           />
           <span className="font-(family-name:--display) text-lg font-semibold tracking-[-0.035em]">
-            Gryffindorlab<span className="text-ring">.</span>
+            Gryffindorlab<span className="text-(--orange)">.</span>
           </span>
         </Link>
         <Link
@@ -66,7 +66,7 @@ export default async function CaseStudy({ params }: Props) {
         <div>
           <h1 className="m-0 font-(family-name:--display) text-[clamp(56px,7.5vw,112px)] leading-[.98] font-semibold tracking-[-0.04em]">
             {work.name}
-            <span className="text-ring">.</span>
+            <span className="text-(--orange)">.</span>
           </h1>
           <p className="mt-7 mb-0 max-w-106 text-base leading-[1.75] text-muted-foreground min-[901px]:text-lg">
             Case study coming soon. This is a preview page; project details and

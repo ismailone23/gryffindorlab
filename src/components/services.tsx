@@ -131,11 +131,11 @@ export function Services() {
           data-phase={phase}
           className="mx-auto w-full max-w-130 min-[901px]:sticky min-[901px]:top-14"
           role="img"
-          aria-label="Four violet shapes move from a line to a grid, then form the Gryffindorlab mark"
+          aria-label="Four orange shapes move from a line to a grid, then form the Gryffindorlab mark"
         >
           <svg
             viewBox="0 0 560 560"
-            className="block h-auto w-full overflow-visible text-ring"
+            className="block h-auto w-full overflow-visible text-(--orange)"
             aria-hidden="true"
           >
             <g

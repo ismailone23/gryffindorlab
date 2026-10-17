@@ -16,18 +16,18 @@ npm run lint
 
 ## Hero interactions
 
-- The borderless fixed header has section links to Services, Work, and Voices. It slips away on downward scroll, returns on upward scroll or keyboard focus, and adjusts each control's contrast to dark artwork behind it. On narrow screens the links occupy a second, centered row.
-- On page load, the shared mark appears at the center of the hero, travels to the right-hand artwork, then expands to its full panel size before the artwork and hero message are revealed. The introduction is skipped for reduced motion and never blocks interaction.
+- The borderless fixed header has section links to Services, Work, and Voices on desktop. At 1100px and below it shows only the brand and “Let’s talk.” It slips away on downward scroll, returns on upward scroll or keyboard focus, and adjusts each control's contrast to the surface behind it.
+- On page load, the shared mark appears at the center of the hero, travels to the right-hand artwork, then expands to its full panel size. The header stays offscreen during this transition and drops in from above when the left-hand text begins to appear. The introduction is skipped for reduced motion and never blocks interaction.
 - Nine-second “edit. build. design.” kinetic typography sequence, with pause/play and no caption below the artwork.
 - One focused kinetic typography artwork. No tabs or secondary studies.
 - Subtle pointer-responsive artwork and deliberate entrance transitions.
-- The hero “Start now” action shrinks into the shared mark once its original position scrolls out above the screen, then travels to the bottom-right; it reverses when that position returns. It remains the same dialog trigger throughout, and reduced motion switches states without travel.
+- The hero “Start now” action is one in-flow button that shrinks into the shared mark as its position nears the top edge, then travels to the bottom-right. On the way back it stays docked while scrolling, returns as a circle only when its original slot is fully visible, and expands in that slot. Reduced motion switches states without travel.
 - Reduced-motion support, self-hosted fonts, and a responsive project-brief dialog.
 - Project brief uses shadcn/ui Select for service selection; the navbar and favicon share the same SVG mark.
 
 ## Services
 
-The service copy sits beside one large motion piece made from the same four geometric forms as the Gryffindorlab mark. The shapes retain their violet fill, with paper-colored dots inside that gently move away from a desktop pointer, then settle back; touch and reduced-motion visitors see still dots. The shape sequence plays when first seen and replays after leaving the viewport and scrolling down into it again—not when scrolling back up from below. Reduced-motion preferences skip the transition. All service copy remains visible without JavaScript. No portfolio pieces are shown until the agency supplies its real design work.
+The service copy sits beside one large motion piece made from the same four geometric forms as the Gryffindorlab mark. The shapes retain their orange fill, with paper-colored dots inside that gently move away from a desktop pointer, then settle back; touch and reduced-motion visitors see still dots. The shape sequence plays when first seen and replays after leaving the viewport and scrolling down into it again—not when scrolling back up from below. Reduced-motion preferences skip the transition. All service copy remains visible without JavaScript. No portfolio pieces are shown until the agency supplies its real design work.
 
 ## Work previews
 
@@ -35,11 +35,11 @@ The full-viewport, endlessly moving work strip uses lazy-loaded copies of the sh
 
 ## Client voices
 
-The staggered testimonial layout uses the site's lilac-paper palette and consistent 5px corners. Its three slots and brand-geometry tile are intentionally marked pending. No reviews, ratings, client names, or portraits have been invented. Replace the slots and tile in `src/components/testimonials.tsx` when approved client quotes, attribution, and imagery are available.
+The staggered testimonial layout uses the site's warm-paper palette and consistent 5px corners. Its three slots and brand-geometry tile are intentionally marked pending. No reviews, ratings, client names, or portraits have been invented. Replace the slots and tile in `src/components/testimonials.tsx` when approved client quotes, attribution, and imagery are available.
 
 ## Closing contact
 
-The final dark section uses the four shapes of the actual mark and a restrained violet glow. The section itself is the only black surface; no separate overlay covers the testimonials. The floating hero button yields to the section actions on entry. When the mark reaches the reading area, its four pieces spread and spin outward from a violet point into the finished logo; only then does the horizontal glow follow. The sequence runs once per page load and leaves the logo visible during further scrolling. The header adapts to the surface beneath it. “Start a project” opens the existing Resend-backed form in a dark treatment here; other triggers keep its lilac-paper treatment. “Book a call” opens a three-column black booking panel: event and selectable timezone, live Calendly dates, then available times and name/email confirmation. No iframe, nested border, or third-party cookie label is present. Calendly provides every real slot and accepts the booking through its server-side API. If API access is unavailable, the calendar shows an honest error and offers the direct Calendly link. Reduced-motion and no-JavaScript visitors retain that link.
+The final dark section presents the contact invitation without a decorative logo or glow. The section itself is the only black surface; no separate overlay covers the testimonials. The floating hero button yields to the section actions on entry. The header adapts to the surface beneath it. “Start a project” opens the existing Resend-backed form in a dark treatment here; other triggers keep its warm-paper treatment. “Book a call” opens a three-column black booking panel: event and selectable timezone, live Calendly dates, then available times and name/email confirmation. No iframe, nested border, or third-party cookie label is present. Calendly provides every real slot and accepts the booking through its server-side API. If API access is unavailable, the calendar shows an honest error and offers the direct Calendly link. Reduced-motion and no-JavaScript visitors retain that link.
 
 ### Calendly booking setup
 

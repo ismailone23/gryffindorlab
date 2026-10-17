@@ -36,8 +36,8 @@ export function Showcase() {
       <div
         ref={artboard}
         data-hero-artboard
-        data-nav-surface="dark"
-        className="relative isolate aspect-[1.04] overflow-hidden rounded-[5px] bg-ring p-4 text-background transform-[rotateX(var(--tilt-x,0deg))_rotateY(var(--tilt-y,0deg))] transition-transform duration-650 ease-out motion-reduce:transform-none min-[901px]:p-6"
+        data-nav-surface="orange"
+        className="relative isolate aspect-[1.04] overflow-hidden rounded-[5px] bg-(--orange) p-4 text-(--ink) transform-[rotateX(var(--tilt-x,0deg))_rotateY(var(--tilt-y,0deg))] transition-transform duration-650 ease-out motion-reduce:transform-none min-[901px]:p-6"
       >
         <div className="flex items-center justify-between gap-4 text-xs">
           <span className="font-(family-name:--display) text-base font-semibold">
@@ -85,7 +85,7 @@ export function Showcase() {
             aria-label={playing ? "Pause motion study" : "Play motion study"}
             aria-pressed={playing}
             onClick={() => setPlaying(!playing)}
-            className="grid size-11 shrink-0 place-items-center rounded-full border border-white/40 bg-transparent text-background transition-colors duration-300 hover:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-background motion-reduce:hidden"
+            className="grid size-11 shrink-0 place-items-center rounded-full border border-black/40 bg-transparent text-(--ink) transition-colors duration-300 hover:bg-black/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--ink) motion-reduce:hidden"
           >
             {playing ? (
               <Pause aria-hidden="true" className="size-3.25" />
@@ -95,10 +95,10 @@ export function Showcase() {
           </button>
           <span
             aria-hidden="true"
-            className="h-0.5 flex-1 overflow-hidden bg-white/25 motion-reduce:hidden"
+            className="h-0.5 flex-1 overflow-hidden bg-black/25 motion-reduce:hidden"
           >
             <span
-              className={`block h-full origin-left bg-background animate-[film-progress_9s_linear_infinite_paused] motion-reduce:animate-none ${motion}`}
+              className={`block h-full origin-left bg-(--ink) animate-[film-progress_9s_linear_infinite_paused] motion-reduce:animate-none ${motion}`}
             />
           </span>
           <span className="min-w-14.5 text-xs motion-reduce:hidden">
