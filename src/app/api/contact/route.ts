@@ -4,6 +4,7 @@ import { Redis } from "@upstash/redis";
 import { Resend } from "resend";
 import { services } from "@/lib/services";
 import { isSameOrigin } from "@/lib/request-origin";
+import { readLimitedBody } from "@/lib/read-limited-body";
 
 export const runtime = "nodejs";
 
@@ -23,13 +24,14 @@ export async function POST(request: Request) {
 
   let body: Record<string, unknown>;
   try {
-    const raw = await request.text();
-    if (raw.length > 8192) return Response.json({ error: "Message is too long." }, { status: 413 });
+    const raw = await readLimitedBody(request, 8192);
     const parsed: unknown = JSON.parse(raw);
     if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) throw new Error("Invalid form");
     body = parsed as Record<string, unknown>;
-  } catch {
-    return Response.json({ error: "Please check the form and try again." }, { status: 400 });
+  } catch (error) {
+    return error instanceof RangeError
+      ? Response.json({ error: "Message is too long." }, { status: 413 })
+      : Response.json({ error: "Please check the form and try again." }, { status: 400 });
   }
 
   // Quietly accept bot submissions without emailing anyone.

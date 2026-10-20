@@ -5,6 +5,7 @@ import { Resend } from "resend";
 import { availableTimes, bookingUrl, createBooking } from "@/lib/calendly";
 import { bookingEmail } from "@/lib/booking-email";
 import { isSameOrigin } from "@/lib/request-origin";
+import { readLimitedBody } from "@/lib/read-limited-body";
 
 export const runtime = "nodejs";
 
@@ -15,13 +16,14 @@ export async function POST(request: Request) {
 
   let body: Record<string, unknown>;
   try {
-    const text = await request.text();
-    if (text.length > 2048) throw new Error("Invalid payload");
+    const text = await readLimitedBody(request, 2048);
     const parsed: unknown = JSON.parse(text);
     if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) throw new Error("Invalid payload");
     body = parsed as Record<string, unknown>;
-  } catch {
-    return Response.json({ error: "Please check your details." }, { status: 400 });
+  } catch (error) {
+    return error instanceof RangeError
+      ? Response.json({ error: "Request is too long." }, { status: 413 })
+      : Response.json({ error: "Please check your details." }, { status: 400 });
   }
 
   const name = typeof body.name === "string" ? body.name.trim() : "";
