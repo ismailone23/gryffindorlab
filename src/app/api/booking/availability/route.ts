@@ -16,7 +16,8 @@ export async function GET(request: Request) {
   const first = Date.UTC(year, index - 1, 1);
   const now = Date.now();
   const last = Date.UTC(year, index, 1);
-  if (last < now || first > now + 90 * 86400000) {
+  // Local month boundaries can differ from UTC by a day.
+  if (last + 86400000 <= now || first - 86400000 > now + 90 * 86400000) {
     return Response.json({ error: "Choose a date within the next 90 days." }, { status: 400 });
   }
 
@@ -25,7 +26,10 @@ export async function GET(request: Request) {
     return Response.json({ error: "Live availability is not connected yet.", bookingUrl }, { status: 503 });
   }
   const cached = cache.get(month);
-  if (cached && cached.expires > now) return Response.json({ times: cached.times });
+  if (cached && cached.expires > now) {
+    // ponytail: filter aging slots on read; a one-minute cache needn't return past times.
+    return Response.json({ times: cached.times.filter((time) => Date.parse(time) > now + 60_000) });
+  }
   try {
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || request.headers.get("x-real-ip") || "anonymous";
     const key = createHmac("sha256", accessToken).update(ip).digest("hex");
@@ -39,7 +43,7 @@ export async function GET(request: Request) {
     const times = await availableTimes(start, end);
     cache.set(month, { times, expires: now + 60_000 });
     if (cache.size > 5) cache.delete(cache.keys().next().value!);
-    return Response.json({ times });
+    return Response.json({ times: times.filter((time) => Date.parse(time) > Date.now() + 60_000) });
   } catch {
     return Response.json({ error: "Live availability is unavailable. Please book directly on Calendly.", bookingUrl }, { status: 503 });
   }
