@@ -29,7 +29,7 @@ export function ContactFinale() {
           </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <DialogTrigger asChild>
-              <Button className="group h-13.5 gap-5 rounded-full bg-(--paper) pr-2 pl-6 text-base text-(--ink) hover:bg-(--soft)">
+              <Button className="group h-13.5 gap-5 rounded-full bg-(--paper) pr-2 pl-6 text-base text-(--ink) hover:bg-[#dedede] hover:text-(--ink)">
                 Start a project
                 <span className="grid size-9 place-items-center rounded-full bg-(--ink) text-(--paper)">
                   <ArrowUpRight

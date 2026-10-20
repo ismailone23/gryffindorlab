@@ -8,7 +8,7 @@ import { WorkSlider } from "@/components/work-slider";
 import { ProjectBrief } from "@/components/project-brief";
 import { WordReveal } from "@/components/word-reveal";
 import { Testimonials } from "@/components/testimonials";
-import { MorphingCta } from "@/components/morphing-cta";
+import { HeroCta } from "@/components/hero-cta";
 import { HeroIntro } from "@/components/hero-intro";
 import { SiteHeader } from "@/components/site-header";
 import { ContactFinale } from "@/components/contact-finale";
@@ -54,7 +54,7 @@ export default function App() {
                   Some ideas stay with you for a reason. Let’s see how far yours
                   can go.
                 </p>
-                <MorphingCta />
+                <HeroCta />
               </div>
             </div>
 

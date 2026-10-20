@@ -21,7 +21,7 @@ npm run lint
 - Nine-second “edit. build. design.” kinetic typography sequence, with pause/play and no caption below the artwork.
 - One focused kinetic typography artwork. No tabs or secondary studies.
 - Subtle pointer-responsive artwork and deliberate entrance transitions.
-- The hero “Start now” action is one in-flow button that shrinks into the shared mark as its position nears the top edge, then travels to the bottom-right. On the way back it stays docked while scrolling, returns as a circle only when its original slot is fully visible, and expands in that slot. Reduced motion switches states without travel.
+- The hero “Start now” action stays in the hero and opens the project brief; it no longer floats over later sections.
 - Reduced-motion support, self-hosted fonts, and a responsive project-brief dialog.
 - Project brief uses shadcn/ui Select for service selection; the navbar and favicon share the same SVG mark.
 
@@ -39,7 +39,7 @@ The staggered testimonial layout uses the site's warm-paper palette and consiste
 
 ## Closing contact
 
-The final dark section presents the contact invitation without a decorative logo or glow. The section itself is the only black surface; no separate overlay covers the testimonials. The floating hero button yields to the section actions on entry. The header adapts to the surface beneath it. “Start a project” opens the existing Resend-backed form in a dark treatment here; other triggers keep its warm-paper treatment. “Book a call” opens a three-column black booking panel: event and selectable timezone, live Calendly dates, then available times and name/email confirmation. No iframe, nested border, or third-party cookie label is present. Calendly provides every real slot and accepts the booking through its server-side API. If API access is unavailable, the calendar shows an honest error and offers the direct Calendly link. Reduced-motion and no-JavaScript visitors retain that link.
+The final dark section presents the contact invitation without a decorative logo or glow. The section itself is the only black surface; no separate overlay covers the testimonials. The header adapts to the surface beneath it. “Start a project” opens the existing Resend-backed form in a dark treatment here; other triggers keep its warm-paper treatment. “Book a call” opens a three-column black booking panel: event and selectable timezone, live Calendly dates, then available times and name/email confirmation. No iframe, nested border, or third-party cookie label is present. Calendly provides every real slot and accepts the booking through its server-side API. If API access is unavailable, the calendar shows an honest error and offers the direct Calendly link. Reduced-motion and no-JavaScript visitors retain that link.
 
 ### Calendly booking setup
 
@@ -71,7 +71,7 @@ Deploy with a Node.js-compatible Next.js host so the contact API remains availab
 - `src/components/booking-calendar.tsx` — shadcn-based booking calendar and confirmation form
 - `src/app/api/booking/` — server-only Calendly availability, booking, and Resend confirmation
 - `src/components/showcase.tsx` — the single kinetic typography artwork
-- `src/components/morphing-cta.tsx` — hero-to-floating contact action
+- `src/components/hero-cta.tsx` — in-flow hero contact action
 - `src/components/services.tsx` — service descriptions and the brand-geometry motion piece
 - `src/components/work-slider.tsx` — moving category previews and links to placeholder case studies
 - `src/components/testimonials.tsx` — pending testimonial layout without fabricated client claims
