@@ -9,7 +9,9 @@ export function isSameOrigin(request: Request) {
 
     // Behind a proxy, request.url may use an internal address while Host stays public.
     const host = request.headers.get("host");
-    return !!host && submitted.host.toLowerCase() === host.toLowerCase();
+    // ponytail: the edge must overwrite forwarded protocol, just as it does forwarded IPs.
+    const protocol = request.headers.get("x-forwarded-proto")?.split(",")[0]?.trim() || new URL(request.url).protocol.slice(0, -1);
+    return !!host && submitted.host.toLowerCase() === host.toLowerCase() && submitted.protocol === `${protocol}:`;
   } catch {
     return false;
   }

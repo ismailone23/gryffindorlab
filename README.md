@@ -55,7 +55,7 @@ This site needs a Next.js server deployment (not a static `out/` export) for `PO
 2. Create a Resend API key and an Upstash Redis database. Copy `.env.example` to `.env.local`, fill in `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `UPSTASH_REDIS_REST_URL`, and `UPSTASH_REDIS_REST_TOKEN`. `CONTACT_TO_EMAIL` defaults to `info@gryffindorlab.com` if omitted. Set the same server-side variables on the deployment platform; keep them out of git and do not prefix them with `NEXT_PUBLIC_`.
 3. Restart the Next.js server. If Resend or Redis is unconfigured or Redis is unavailable, the endpoint fails closed instead of claiming delivery or sending unmetered emails.
 
-The route validates content and origin, ignores a hidden honeypot field, and uses Redis-backed rate limits: **3 requests per visitor per hour**, plus **100 requests site-wide per day**. IP-based limits depend on the deployment proxy overwriting `x-forwarded-for`; configure that at your hosting edge. Review limits as real traffic arrives.
+The route validates content and origin, ignores a hidden honeypot field, and uses Redis-backed rate limits: **3 requests per visitor per hour**, plus **100 requests site-wide per day**. Configure your hosting edge to overwrite `x-forwarded-for` for IP-based limits and `x-forwarded-proto` for origin checks behind a TLS-terminating proxy. Review limits as real traffic arrives.
 
 ## Deployment and SEO
 
