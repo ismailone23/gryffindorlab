@@ -300,9 +300,15 @@ export function BookingCalendar() {
                           key={zone}
                           value={zone}
                           onSelect={() => {
+                            const zoneMonth = localDay(new Date().toISOString(), zone).slice(0, 7);
+                            const resetMonth = month === currentMonth && month !== zoneMonth;
                             setTimezone(zone);
-                            setChosenDay("");
-                            setChosenTime("");
+                            // ponytail: follow the local current month, but preserve a deliberately chosen future month.
+                            if (resetMonth) changeMonth(zoneMonth);
+                            else {
+                              setChosenDay("");
+                              setChosenTime("");
+                            }
                             setTimezoneOpen(false);
                             setTimezoneSearch("");
                           }}
