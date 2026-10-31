@@ -208,7 +208,7 @@ export function BookingCalendar() {
   return (
     <div className="overflow-hidden rounded-[5px] border border-white/20 bg-black text-(--paper) min-[901px]:grid min-[901px]:min-h-128 min-[901px]:grid-cols-[minmax(240px,27%)_minmax(340px,1fr)_minmax(225px,27%)]">
       <div className="border-b border-white/20 px-6 py-8 min-[901px]:border-r min-[901px]:border-b-0 min-[901px]:px-7 min-[901px]:py-8">
-        <div className="flex items-center gap-3 text-sm text-[#c2c2c2]">
+        <div className="flex items-center gap-3 text-sm text-muted-foreground">
           <img
             src="/favicon.svg"
             width="36"
@@ -221,10 +221,10 @@ export function BookingCalendar() {
         <h3 className="mt-8 font-(family-name:--display) text-[clamp(32px,3vw,40px)] leading-none font-semibold tracking-[-.04em]">
           Let’s talk.
         </h3>
-        <p className="mt-4 max-w-58 text-base leading-relaxed text-[#c2c2c2]">
+        <p className="mt-4 max-w-58 text-base leading-relaxed text-muted-foreground">
           Choose a time for a 30-minute conversation.
         </p>
-        <div className="mt-8 grid gap-4 text-sm text-[#c2c2c2]">
+        <div className="mt-8 grid gap-4 text-sm text-muted-foreground">
           <p className="flex items-center gap-3">
             <Clock3
               aria-hidden="true"
@@ -265,7 +265,7 @@ export function BookingCalendar() {
                 >
                   <Globe2
                     aria-hidden="true"
-                    className="size-4 text-[#c2c2c2]"
+                    className="size-4 text-muted-foreground"
                   />
                   <span className="min-w-0 flex-1 truncate text-left">
                     {timezone
@@ -274,7 +274,7 @@ export function BookingCalendar() {
                   </span>
                   <ChevronDown
                     aria-hidden="true"
-                    className="size-4 text-[#c2c2c2]"
+                    className="size-4 text-muted-foreground"
                   />
                 </Button>
               </PopoverTrigger>
@@ -373,7 +373,7 @@ export function BookingCalendar() {
           </div>
         </div>
         <div
-          className="mt-7 grid grid-cols-7 text-center text-xs font-semibold text-[#c2c2c2]"
+          className="mt-7 grid grid-cols-7 text-center text-xs font-semibold text-muted-foreground"
           aria-hidden="true"
         >
           {weekdays.map((day) => (
@@ -419,7 +419,7 @@ export function BookingCalendar() {
             );
           })}
         </div>
-        <p className="mt-6 text-sm text-[#c2c2c2]" role="status">
+        <p className="mt-6 text-sm text-muted-foreground" role="status">
           {loading
             ? "Checking live availability…"
             : error && !chosenTime
@@ -488,7 +488,7 @@ export function BookingCalendar() {
         </div>
         {booked ? (
           <p
-            className="mt-8 text-sm leading-relaxed text-[#c2c2c2]"
+            className="mt-8 text-sm leading-relaxed text-muted-foreground"
             role="status"
           >
             Your call is booked for {dateLabel} at {timeLabel(chosenTime)} (
@@ -506,7 +506,7 @@ export function BookingCalendar() {
                 setChosenTime("");
                 setError("");
               }}
-              className="w-fit px-0 text-sm text-[#c2c2c2] hover:bg-transparent hover:text-(--paper)"
+              className="w-fit px-0 text-sm text-muted-foreground hover:bg-transparent hover:text-(--paper)"
             >
               <ArrowLeft aria-hidden="true" className="size-4" />
               Back to times
@@ -564,7 +564,7 @@ export function BookingCalendar() {
           </ScrollArea>
         ) : (
           !loading && (
-            <p className="mt-6 text-sm text-[#c2c2c2]">
+            <p className="mt-6 text-sm text-muted-foreground">
               {error
                 ? "Use the Calendly link below to book directly."
                 : "No times to show for this date."}

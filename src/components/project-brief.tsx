@@ -73,7 +73,7 @@ export function ProjectBrief({ dark = false }: { dark?: boolean }) {
         event.preventDefault();
         openingTrigger.current?.focus({ preventScroll: true });
       }}
-      className="project-brief max-h-[calc(100dvh-36px)] max-w-140 gap-4 overflow-y-auto rounded-xl border-0 bg-background p-[28px_23px] shadow-[0_24px_80px_#00000030] max-[390px]:p-[28px_23px] min-[391px]:p-9.5 sm:max-w-140 **:data-[slot=dialog-close]:top-3 **:data-[slot=dialog-close]:right-3 **:data-[slot=dialog-close]:grid **:data-[slot=dialog-close]:size-10 **:data-[slot=dialog-close]:place-items-center"
+      className="project-brief max-h-[calc(100dvh-36px)] max-w-140 gap-4 overflow-y-auto rounded-xl border-0 bg-background p-[28px_24px] shadow-[0_24px_80px_#00000030] max-[390px]:p-[28px_24px] min-[391px]:p-10 sm:max-w-140 **:data-[slot=dialog-close]:top-3 **:data-[slot=dialog-close]:right-3 **:data-[slot=dialog-close]:grid **:data-[slot=dialog-close]:size-10 **:data-[slot=dialog-close]:place-items-center"
     >
       <DialogHeader className="text-left">
         <DialogTitle className="font-(family-name:--display) text-[36px] leading-none font-semibold tracking-[-0.04em] min-[391px]:text-[42px]">
@@ -103,7 +103,7 @@ export function ProjectBrief({ dark = false }: { dark?: boolean }) {
             autoComplete="off"
           />
         </div>
-        <div className="grid grid-cols-1 gap-4.25 min-[391px]:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 min-[391px]:grid-cols-2">
           <label>
             Your name
             <input

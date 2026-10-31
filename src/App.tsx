@@ -1,74 +1,92 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect } from "react";
 import { Dialog } from "@/components/ui/dialog";
-import { Showcase } from "@/components/showcase";
+import { Hero } from "@/components/hero";
+import { Mark } from "@/components/mark";
 import { Services } from "@/components/services";
-import { WorkSlider } from "@/components/work-slider";
+import { Work } from "@/components/work";
 import { ProjectBrief } from "@/components/project-brief";
-import { WordReveal } from "@/components/word-reveal";
 import { Testimonials } from "@/components/testimonials";
-import { HeroCta } from "@/components/hero-cta";
-import { HeroIntro } from "@/components/hero-intro";
 import { SiteHeader } from "@/components/site-header";
 import { ContactFinale } from "@/components/contact-finale";
 import { SiteFooter } from "@/components/site-footer";
 
+// Eased mouse-wheel scrolling. Touch, keyboard and scrollbar stay native.
+function useSmoothWheel() {
+  useEffect(() => {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let target = scrollY;
+    let current = target;
+    let frame = 0;
+    const tick = () => {
+      current += (target - current) * 0.1;
+      if (Math.abs(target - current) < 0.5) current = target;
+      scrollTo({ top: current, behavior: "instant" });
+      frame = current === target ? 0 : requestAnimationFrame(tick);
+    };
+    const onWheel = (event: WheelEvent) => {
+      if (event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+      // leave scrollable boxes (dialog, time list, textareas) to the browser
+      if ((event.target as Element).closest("[role=dialog], textarea, [data-radix-scroll-area-viewport]")) return;
+      event.preventDefault();
+      if (!frame) current = target = scrollY;
+      const max = document.documentElement.scrollHeight - innerHeight;
+      target = Math.max(0, Math.min(max, target + event.deltaY * (event.deltaMode === 1 ? 32 : 1)));
+      if (!frame) frame = requestAnimationFrame(tick);
+    };
+    addEventListener("wheel", onWheel, { passive: false });
+    return () => {
+      cancelAnimationFrame(frame);
+      removeEventListener("wheel", onWheel);
+    };
+  }, []);
+}
+
 export default function App() {
-  const artworkDestination = useRef<HTMLDivElement>(null);
+  useSmoothWheel();
+
   return (
     <Dialog>
       <a
         href="#main"
-        className="fixed top-3 left-4 z-50 translate-y-[-160%] bg-foreground px-4 py-3 text-background focus:translate-y-0"
+        className="fixed top-3 left-4 z-70 translate-y-[-160%] bg-foreground px-4 py-3 text-background focus:translate-y-0"
       >
         Skip to content
       </a>
 
       <SiteHeader />
-      <noscript>
-        <style>{".site-header{position:absolute!important}.site-header-inner{animation:none!important}"}</style>
-      </noscript>
 
-      <main id="main" className="pt-24 min-[901px]:pt-26.5">
-        <div className="mx-auto w-full max-w-[1680px] px-6 min-[901px]:px-[clamp(32px,4.4vw,80px)]">
-          <section
-            aria-labelledby="hero-heading"
-            className="hero-intro-host relative grid min-h-[min(740px,calc(100svh-106px))] grid-cols-1 items-center gap-10 py-14.75 min-[901px]:grid-cols-[1.32fr_1fr] min-[901px]:gap-[clamp(40px,5.4vw,90px)] min-[901px]:py-19.5 min-[1500px]:py-25 min-[901px]:max-[1100px]:grid-cols-[1.25fr_1fr] min-[901px]:max-[1100px]:gap-8.75"
-          >
-            <div className="min-w-0">
-              <h1
-                id="hero-heading"
-                className="word-wave-active m-0 font-(family-name:--display) text-[clamp(48px,15.4vw,60px)] leading-[0.99] font-semibold tracking-[-0.04em] [font-variation-settings:'opsz'_96,'wdth'_98] min-[391px]:text-[clamp(65px,12vw,88px)] min-[901px]:text-[clamp(76px,8.5vw,136px)] min-[901px]:max-[1100px]:text-[clamp(72px,8.4vw,94px)]"
-              >
-                <span className="block">
-                  <WordReveal text="Good ideas." />
-                </span>
-                <span className="block">
-                  <WordReveal text="Made real." start={2} accentDot />
-                </span>
-              </h1>
+      <main id="main">
+        <Hero />
+        <Services />
+        <Work />
 
-              <div className="mt-6 min-[901px]:mt-8">
-                <p className="hero-details m-0 max-w-92.5 animate-[details-arrive_1.1s_var(--ease-out)_0.15s_both] text-base leading-[1.7] font-[450] tracking-tight text-muted-foreground motion-reduce:animate-none min-[901px]:max-w-100 min-[901px]:text-[clamp(16px,1.22vw,19px)] min-[901px]:leading-[1.75]">
-                  Some ideas stay with you for a reason. Let’s see how far yours
-                  can go.
-                </p>
-                <HeroCta />
-              </div>
+        <section
+          aria-label="Studio"
+          className="relative overflow-hidden bg-black px-(--gutter) py-30 text-center"
+        >
+          <div aria-hidden="true" className="statement-glow absolute top-0 left-1/2 h-160 w-225 -translate-x-1/2" />
+          <div aria-hidden="true" className="float relative mx-auto size-65 perspective-[1000px]">
+            <div className="turn absolute inset-0 transform-3d">
+              {[0, 1, 2, 3, 4, 5].map((i) => (
+                <Mark
+                  key={i}
+                  stroke={i === 0 ? "var(--orange)" : `rgb(252 103 73 / ${0.5 - i * 0.07})`}
+                  className={`absolute inset-0 size-full ${i === 0 ? "drop-shadow-[0_0_6px_var(--orange)]" : ""}`}
+                  style={{ transform: `translateZ(${-i * 14}px)` }}
+                />
+              ))}
             </div>
+          </div>
+          <h2 className="reveal relative mx-auto mt-10 max-w-205 text-[clamp(40px,4.8vw,72px)] leading-[1.02] font-medium tracking-[-0.05em]">
+            Good ideas deserve to go somewhere
+          </h2>
+          <a href="#services" className="relative mt-7 inline-block border-b border-(--orange) pb-0.5 text-(--orange)">
+            See what we do
+          </a>
+        </section>
 
-            <div ref={artworkDestination} className="min-w-0">
-              <Showcase />
-            </div>
-            <HeroIntro destination={artworkDestination} />
-            <noscript>
-              <style>{".hero-intro { display: none !important; }"}</style>
-            </noscript>
-          </section>
-          <Services />
-        </div>
-        <WorkSlider />
         <Testimonials />
         <ContactFinale />
       </main>
