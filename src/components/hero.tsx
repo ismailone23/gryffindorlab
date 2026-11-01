@@ -1,7 +1,9 @@
 "use client";
 
 import { DialogTrigger } from "@/components/ui/dialog";
-import PerspectiveTunnelHero, { type TunnelItem } from "@/components/ui/perspective-tunnel-hero";
+import PerspectiveTunnelHero, {
+  type TunnelItem,
+} from "@/components/ui/perspective-tunnel-hero";
 
 // shortcut: stock photos until real project images exist
 const tunnelItems: TunnelItem[] = [
@@ -27,7 +29,10 @@ const madeReal: [string, string][] = [
   ["████  ████ ██   ██ ██   ██ ██          ██   ██ ██      ██   ██ ██", ""],
   ["██ ████ ██ ███████ ██   ██ █████       ██████  █████   ███████ ██", ""],
   ["██  ██  ██ ██   ██ ██   ██ ██          ██   ██ ██      ██   ██ ██", ""],
-  ["██      ██ ██   ██ ██████  ███████     ██   ██ ███████ ██   ██ ███████ ", "██"],
+  [
+    "██      ██ ██   ██ ██████  ███████     ██   ██ ███████ ██   ██ ███████ ",
+    "██",
+  ],
 ];
 
 export function Hero() {
@@ -46,22 +51,30 @@ export function Hero() {
               {madeReal.map(([text, dot], i) => (
                 <span key={i} className="block">
                   {text}
-                  <span className="text-(--orange)">{dot}</span>
+                  <span className="text-ring">{dot}</span>
                 </span>
               ))}
             </span>
           </pre>
         </h1>
         <p className="rise mx-auto mt-6 max-w-110 text-lg leading-[1.45] text-[#a3a3a3] [animation-delay:.22s]">
-          An independent studio for video editing, websites and graphic design. One small team, from first cut to final file.
+          An independent creative studio for web design and development, video
+          editing and graphic design. One small team, from first cut to final
+          file.
         </p>
         <div className="rise mt-9 flex flex-wrap items-center justify-center gap-7 [animation-delay:.34s]">
           <DialogTrigger asChild>
-            <button type="button" className="white-button h-13 rounded-[10px] px-6 text-[17px]">
+            <button
+              type="button"
+              className="white-button h-13 rounded-[10px] px-6 text-[17px]"
+            >
               Start a project
             </button>
           </DialogTrigger>
-          <a href="#book-a-call" className="border-b border-current pb-0.5 text-[17px] text-[#e6e6e6]">
+          <a
+            href="#book-a-call"
+            className="border-b border-current pb-0.5 text-[17px] text-[#e6e6e6]"
+          >
             Book a 30-min call
           </a>
         </div>

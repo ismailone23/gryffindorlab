@@ -25,7 +25,10 @@ export function SiteFooter() {
           </pre>
         </div>
         <div className="mt-10 font-(family-name:--font-pixel) text-[13px]">
-          <span>© {new Date().getFullYear()} Gryffindorlab</span>
+          <span>
+            © {new Date().getFullYear()} Gryffindorlab · Creative studio in
+            Bangladesh
+          </span>
         </div>
       </div>
     </footer>

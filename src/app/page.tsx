@@ -1,13 +1,14 @@
 import App from "@/App";
 import type { Metadata } from "next";
 import { siteUrl } from "@/lib/site";
+import { serviceList } from "@/components/services";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Gryffindorlab — Good ideas. Made real.",
+    title: "Gryffindorlab | Creative Studio",
     description:
-      "Video editing, website development, and graphic design. Good ideas. Made real.",
+      "Gryffindorlab is a creative studio in Bangladesh: web design and website development, video editing, graphic design, branding and animation for clients worldwide.",
     siteName: "Gryffindorlab",
     locale: "en_US",
     type: "website",
@@ -26,13 +27,37 @@ export const metadata: Metadata = {
 
 const organization = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "ProfessionalService",
   name: "Gryffindorlab",
   url: siteUrl,
   logo: siteUrl + "/favicon.svg",
   email: "info@gryffindorlab.com",
+  image: siteUrl + "/og-image.png",
   description:
-    "Creative studio for video editing, website development, and graphic design.",
+    "Gryffindorlab is a creative studio in Bangladesh: web design and website development, video editing, graphic design, branding and animation for clients worldwide.",
+  address: { "@type": "PostalAddress", addressCountry: "BD" },
+  areaServed: ["Bangladesh", "Worldwide"],
+  knowsAbout: [
+    "Web design",
+    "Web development",
+    "Video editing",
+    "Graphic design",
+    "Branding",
+    "Animation",
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Creative services",
+    itemListElement: serviceList.map((s) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: s.name,
+        description: s.makes,
+        areaServed: "Bangladesh",
+      },
+    })),
+  },
 };
 
 export default function Home() {
