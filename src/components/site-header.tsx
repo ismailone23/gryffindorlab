@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Mark } from "@/components/mark";
+// import { Mark } from "@/components/mark";
 
 export function SiteHeader() {
   const [hidden, setHidden] = useState(false);
@@ -24,14 +24,29 @@ export function SiteHeader() {
       data-hidden={hidden}
       className="site-header fixed top-4 left-1/2 z-60 flex w-[min(1440px,calc(100%-2*var(--gutter)))] -translate-x-1/2 items-center justify-between gap-4 rounded-[14px] border border-white/8 bg-[#0c0c0cd1] py-2 pr-2 pl-3.5 text-(--light) backdrop-blur-md"
     >
-      <Link href="/" aria-label="Gryffindorlab home" className="mark-spin flex items-center gap-2.5">
-        <Mark className="size-6" />
-        <span className="text-lg font-medium tracking-[-0.04em]">Gryffindorlab</span>
+      <Link
+        href="/#main"
+        aria-label="Gryffindorlab home"
+        className="mark-spin flex items-center gap-2.5"
+      >
+        {/* <Mark className="size-6" /> */}
+        <span className="text-lg font-medium tracking-[-0.04em]">
+          Gryffindorlab
+        </span>
       </Link>
-      <nav aria-label="Main navigation" className="hidden gap-7 text-sm min-[721px]:flex">
-        <a className="nav-link" href="#services">Services</a>
-        <a className="nav-link" href="#work">Work</a>
-        <a className="nav-link" href="#voices">Voices</a>
+      <nav
+        aria-label="Main navigation"
+        className="hidden gap-7 text-sm min-[721px]:flex"
+      >
+        <a className="nav-link" href="#services">
+          Services
+        </a>
+        <a className="nav-link" href="#work">
+          Work
+        </a>
+        <a className="nav-link" href="#voices">
+          Voices
+        </a>
       </nav>
       <a href="#contact" className="white-button h-9.5 rounded-lg px-4 text-sm">
         Contact

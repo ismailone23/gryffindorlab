@@ -79,7 +79,7 @@ textarea {
 }
 ::selection {
   color: #1f1f1f;
-  background: var(--orange);
+  background: #e0e0e0;
 }
 
 #services,
@@ -93,7 +93,8 @@ textarea {
   transition: transform 0.5s var(--ease-out), opacity 0.3s;
 }
 .site-header[data-hidden="true"]:not(:focus-within) {
-  transform: translate(-50%, -140%);
+  /* Y only: Tailwind's -translate-x-1/2 sets the separate `translate` property, which already centers it */
+  transform: translateY(-140%);
   opacity: 0;
 }
 .nav-link {
@@ -119,12 +120,49 @@ textarea {
   transform: scaleX(1);
   transform-origin: left;
 }
-.mark-spin svg g {
+/* Tilt lives only in CSS so rest and hover rotate about the same centre. */
+.mark-shapes {
   transform-origin: 20px 20px;
-  transition: transform 0.5s var(--ease-out);
+  transform: rotate(-15deg);
 }
-.mark-spin:hover svg g {
+.mark-spin .mark-shapes {
+  transition: transform 0.3s linear;
+}
+.mark-spin:hover .mark-shapes {
   transform: rotate(-105deg);
+}
+/* LED dots for PixelIcon: lit = frame A at rest, frame B on hover; each dot flips after its own --d. */
+.px {
+  background: #262626;
+  transition: background-color 40ms linear var(--d);
+}
+.px[data-a] { background: #ededed; }
+.group:hover .px[data-a]:not([data-b]) { background: #262626; }
+.group:hover .px[data-b] { background: #ededed; }
+@media (prefers-reduced-motion: reduce) {
+  .px { transition: none; }
+}
+/* Work grid LED panel: each cell switches on after its own --d; text lights once the panel is mostly on. */
+/* Each cell dims the picture and darkens the gap around it (the 1px outline covers the 2px grid gap). */
+.led {
+  background: rgb(10 10 10 / 0.66);
+  outline: 1px solid rgb(0 0 0 / 0.9);
+  opacity: 0;
+  transition: opacity 40ms linear var(--d);
+}
+.led-text {
+  opacity: 0;
+  transition: opacity 120ms linear;
+}
+.group:hover .led,
+.group:focus-visible .led { opacity: 1; }
+.group:hover .led-text,
+.group:focus-visible .led-text { opacity: 1; transition-delay: 220ms; }
+@media (hover: none) {
+  .led-text { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .led, .led-text { transition: none; }
 }
 .white-button {
   display: inline-flex;
@@ -154,39 +192,30 @@ textarea {
   from { opacity: 0; transform: translateY(28px); }
   to { opacity: 1; transform: none; }
 }
-@keyframes float {
-  50% { transform: translateY(-12px); }
-}
-@keyframes breathe {
-  0%, 100% { opacity: 0.7; }
-  50% { opacity: 1; }
-}
 @keyframes pop {
   from { opacity: 0; transform: scale(0.6); }
   to { opacity: 1; transform: none; }
 }
-@keyframes turn {
-  0%, 100% { transform: rotateX(14deg) rotateY(-28deg) rotateZ(-6deg); }
-  50% { transform: rotateX(6deg) rotateY(-12deg) rotateZ(-2deg); }
-}
 .rise { animation: rise 1s var(--ease-out) both; }
-.float { animation: float 7s ease-in-out infinite; }
-.turn { animation: turn 9s ease-in-out infinite; }
 .pin { animation: pop 0.5s var(--ease-out) both; }
 .builder-layer {
   transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
 }
-.hero-glow,
-.statement-glow {
-  animation: breathe 6s ease-in-out infinite;
-  background: radial-gradient(closest-side, rgb(252 103 73 / 0.22), transparent);
+/* Scroll reveal (see useReveal in App.tsx). --i staggers siblings by 90ms. */
+.js-reveal :is(.section-title, [data-reveal]) {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s var(--ease-out) calc(var(--i, 0) * 90ms),
+    transform 0.7s var(--ease-out) calc(var(--i, 0) * 90ms),
+    background-color 0.3s;
 }
-@supports (animation-timeline: view()) {
-  .reveal {
-    animation: rise linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 30%;
-  }
+.js-reveal :is(.section-title, [data-reveal]).in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal :is(.section-title, [data-reveal]) { transform: none; }
 }
 
 #book-a-call {

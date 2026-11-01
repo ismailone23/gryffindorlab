@@ -16,16 +16,17 @@ export function ContactFinale() {
         <div className="flex flex-wrap items-end justify-between gap-x-14 gap-y-8">
           <div className="min-w-0 flex-[1_1_520px]">
             <h2
+              data-reveal
               id="contact-heading"
               className="m-0 text-[clamp(44px,5.4vw,80px)] leading-none font-medium tracking-[-0.05em]"
             >
               Tell us what you’re building<span className="text-(--orange)">.</span>
             </h2>
-            <p className="mt-5 max-w-105 text-[17px] text-[#a3a3a3]">
+            <p data-reveal style={{ "--i": 1 } as React.CSSProperties} className="mt-5 max-w-105 text-[17px] text-[#a3a3a3]">
               Start with an idea, or find a time to talk below.
             </p>
           </div>
-          <div className="flex flex-wrap items-center gap-7">
+          <div data-reveal style={{ "--i": 2 } as React.CSSProperties} className="flex flex-wrap items-center gap-7">
             <DialogTrigger asChild>
               <button type="button" className="white-button h-13 rounded-[10px] px-6 text-[17px]">
                 Start a project

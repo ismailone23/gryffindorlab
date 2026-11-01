@@ -2,8 +2,25 @@
 
 import { useState } from "react";
 
-// Add approved client quotes here; nothing is written on a client's behalf.
-const quotes: { text: string; who: string; org: string }[] = [];
+// shortcut: sample quotes so the layout and arrows work, replace with approved client quotes before launch.
+// The "Sample" labels stay visible on purpose so nothing reads as a real client's words.
+const quotes: { text: string; who: string; org: string }[] = [
+  {
+    text: "They took a messy brief and came back with a site we were proud to send around.",
+    who: "Client name",
+    org: "Sample quote · Website",
+  },
+  {
+    text: "Every cut felt considered. The edit made the story clearer than we'd planned it.",
+    who: "Client name",
+    org: "Sample quote · Video editing",
+  },
+  {
+    text: "One small team, quick replies, and files that were ready to use the day they arrived.",
+    who: "Client name",
+    org: "Sample quote · Graphic design",
+  },
+];
 
 export function Testimonials() {
   const [index, setIndex] = useState(0);
@@ -16,11 +33,11 @@ export function Testimonials() {
       className="bg-white px-(--gutter) py-30 text-[#0a0a0a]"
     >
       <div className="mx-auto max-w-[1440px]">
-        <h2 id="voices-heading" className="section-title">
+        <h2 id="voices-heading" className="section-title text-[clamp(24px,2.2vw,32px)]!">
           Client voices
         </h2>
         <div className="mt-10 flex flex-wrap items-end gap-x-16 gap-y-8">
-          <blockquote className="reveal m-0 min-h-[3.2em] flex-[3_1_560px] text-[clamp(32px,3.8vw,56px)] leading-[1.06] font-medium tracking-[-0.045em]">
+          <blockquote data-reveal style={{ "--i": 1 } as React.CSSProperties} className="m-0 min-h-[3.2em] flex-[3_1_560px] text-[clamp(32px,3.8vw,56px)] leading-[1.06] font-medium tracking-[-0.045em]">
             {quote ? `“${quote.text}”` : "Their words go here once they approve them."}
           </blockquote>
           {quote && (

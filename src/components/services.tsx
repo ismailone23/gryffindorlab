@@ -1,54 +1,37 @@
-"use client";
+import { PixelIcon } from "@/components/pixel-icon";
 
-import { useState } from "react";
-
-// shortcut: stock photos stand in for real work, swap them in public/images when projects ship
 const list = [
-  { name: "Website development", img: "/images/web.jpg", alt: "Laptop on a café table" },
-  { name: "Web design", img: "/images/illustration.jpg", alt: "Wireframe sketches in a notebook" },
-  { name: "Video editing", img: "/images/video.jpg", alt: "Film camera resting on piano keys" },
-  { name: "Animation", img: "/images/animation.jpg", alt: "Desk with monitor and drawing tablet" },
-  { name: "Graphic design", img: "/images/design.jpg", alt: "Open design book with logo studies" },
-  { name: "Branding", img: "/images/branding.jpg", alt: "Branded print goods on a table" },
-  { name: "Illustration", img: "/images/illustration.jpg", alt: "Sketchbook pages" },
+  { name: "Website development", makes: "CI/CD and cloud deploys · APIs and databases · LLM integrations" },
+  { name: "Video editing", makes: "Cuts and pacing · Colour and sound · Captions" },
+  { name: "Animation", makes: "Motion graphics · Logo animation · Explainers" },
+  { name: "Graphic design", makes: "Layouts and print · Social assets · Pitch decks" },
+  { name: "Branding", makes: "Logos · Identity systems · Brand guidelines" },
+  { name: "Illustration", makes: "Editorial pieces · Product art · Custom icons" },
 ];
 
 export function Services() {
-  const [active, setActive] = useState(0);
-
   return (
-    <section
-      id="services"
-      aria-labelledby="services-heading"
-      className="bg-white px-(--gutter) py-30 text-[#0a0a0a]"
-    >
+    <section id="services" aria-labelledby="services-heading" className="bg-white px-(--gutter) py-30 text-[#0a0a0a]">
       <div className="mx-auto max-w-[1440px]">
         <h2 id="services-heading" className="section-title">
           What we do
         </h2>
-        <div className="mt-14 flex flex-wrap items-start gap-x-16 gap-y-12">
-          <div className="reveal aspect-[1.15] min-w-0 flex-[1_1_440px] overflow-hidden rounded bg-[#f2f2f2]">
-            <img src={list[active].img} alt={list[active].alt} className="size-full object-cover" />
-          </div>
-          <ul className="m-0 flex-[1_1_520px] list-none p-0">
-            {list.map((item, i) => (
-              <li key={item.name}>
-                <button
-                  type="button"
-                  aria-pressed={active === i}
-                  onMouseEnter={() => setActive(i)}
-                  onFocus={() => setActive(i)}
-                  onClick={() => setActive(i)}
-                  className={`text-left text-[clamp(40px,5vw,76px)] leading-[1.02] font-medium tracking-[-0.05em] transition-[color,transform] duration-450 ease-(--ease-out) hover:text-[#0a0a0a] ${
-                    active === i ? "translate-x-8 text-[#0a0a0a]" : "text-[#c4c4c4]"
-                  }`}
-                >
-                  {item.name}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ul className="m-0 mt-12 grid list-none gap-2 p-0 min-[640px]:grid-cols-2 min-[1100px]:grid-cols-3">
+          {list.map((item, i) => (
+            <li
+              key={item.name}
+              data-reveal
+              style={{ "--i": i % 3 } as React.CSSProperties}
+              className="group flex min-h-[clamp(240px,22vw,320px)] flex-col justify-between bg-[#0a0a0a] p-[clamp(20px,2vw,28px)] text-[#ededed] transition-colors duration-300 hover:bg-[#151515]"
+            >
+              <PixelIcon name={item.name} />
+              <div>
+                <h3 className="text-[clamp(24px,2vw,30px)] leading-tight font-medium tracking-[-0.03em]">{item.name}</h3>
+                <p className="mt-2 text-[15px] leading-snug text-[#a3a3a3]">{item.makes}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

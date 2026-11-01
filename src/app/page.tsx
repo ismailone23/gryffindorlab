@@ -5,9 +5,9 @@ import { siteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Gryffindorlab — Great ideas. Made real.",
+    title: "Gryffindorlab — Good ideas. Made real.",
     description:
-      "Video editing, website development, and graphic design. Great ideas. Made real.",
+      "Video editing, website development, and graphic design. Good ideas. Made real.",
     siteName: "Gryffindorlab",
     locale: "en_US",
     type: "website",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Gryffindorlab — Great ideas. Made real.",
+        alt: "Gryffindorlab — Good ideas. Made real.",
       },
     ],
   },

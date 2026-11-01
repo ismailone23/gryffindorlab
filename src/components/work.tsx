@@ -1,64 +1,103 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
 import { workCategories } from "@/lib/work";
 
+type Slug = (typeof workCategories)[number]["slug"];
+
 // shortcut: stock photos until real project images exist
-const images: Record<(typeof workCategories)[number]["slug"], string[]> = {
-  design: ["design", "branding", "illustration"],
-  branding: ["branding", "design", "web"],
-  illustration: ["illustration", "design", "animation"],
-  animation: ["animation", "video", "web"],
-  "web-design": ["web", "illustration", "animation"],
-  "video-editing": ["video", "animation", "web"],
+const clips: Record<Slug, { img: string; makes: string[] }> = {
+  design: {
+    img: "design",
+    makes: ["Layouts and print", "Social assets", "Pitch decks"],
+  },
+  branding: {
+    img: "branding",
+    makes: ["Logos", "Identity systems", "Brand guidelines"],
+  },
+  illustration: {
+    img: "illustration",
+    makes: ["Editorial pieces", "Product art", "Custom icons"],
+  },
+  animation: {
+    img: "animation",
+    makes: ["Motion graphics", "Logo animation", "Explainers"],
+  },
+  "web-design": {
+    img: "web",
+    makes: [
+      "CI/CD and cloud deploys",
+      "APIs and databases",
+      "LLM integrations",
+    ],
+  },
+  "video-editing": {
+    img: "video",
+    makes: ["Cuts and pacing", "Colour and sound", "Captions"],
+  },
 };
 
-export function Work() {
-  const [open, setOpen] = useState(0);
+const COLS = 16;
+const ROWS = 12; // 16x12 square cells on a 4:3 picture
+// Deterministic 0..17 per cell (same on server and client), scattered so cells light in no visible order.
+const scatter = (i: number) =>
+  Math.floor(((((Math.sin(i * 12.9898) * 43758.5453) % 1) + 1) % 1) * 18);
 
+export function Work() {
   return (
-    <section id="work" aria-labelledby="work-heading" className="bg-white pb-30 text-[#0a0a0a]">
-      <div className="mx-auto max-w-[1440px] px-(--gutter) pb-10">
+    <section
+      id="work"
+      aria-labelledby="work-heading"
+      className="bg-white pt-30 text-[#0a0a0a]"
+    >
+      <div className="mx-auto max-w-360 px-(--gutter)">
         <h2 id="work-heading" className="section-title">
-          Selected work
+          Selected work<span className="text-ring">.</span>
         </h2>
       </div>
-      {workCategories.map((work, i) => (
-        <div key={work.slug} className="border-t border-[#e6e6e6]">
-          <button
-            type="button"
-            aria-expanded={open === i}
-            onClick={() => setOpen(open === i ? -1 : i)}
-            className={`flex w-full items-center justify-between gap-4 px-(--gutter) py-6 text-left text-[clamp(32px,3.4vw,52px)] leading-[1.05] font-medium tracking-[-0.045em] transition-colors hover:text-[#0a0a0a] ${
-              open === i ? "text-[#0a0a0a]" : "text-[#8a8a8a]"
-            }`}
+      <ul className="m-0 mt-12 grid list-none p-0 min-[640px]:grid-cols-2 min-[1100px]:grid-cols-3">
+        {workCategories.map((work, i) => (
+          <li
+            key={work.slug}
+            data-reveal
+            style={{ "--i": i % 3 } as React.CSSProperties}
           >
-            {work.name}
-            <span aria-hidden="true" className="text-[28px] font-light">
-              {open === i ? "−" : "+"}
-            </span>
-          </button>
-          {open === i && (
-            <div>
-              <div className="grid h-[clamp(220px,26vw,380px)] grid-cols-[.8fr_1fr_1fr] gap-2">
-                {images[work.slug].map((name) => (
-                  <img key={name} src={`/images/${name}.jpg`} alt="" className="size-full object-cover" />
+            <Link
+              href={`/case-studies/${work.slug}/`}
+              aria-label={`${work.name} case study`}
+              className="group relative block aspect-4/3 overflow-hidden bg-[#0a0a0a] -outline-offset-4"
+            >
+              <img
+                src={`/images/${clips[work.slug].img}.jpg`}
+                alt=""
+                className="size-full object-cover"
+              />
+              {/* LED panel: cells switch on one by one over the picture on hover (.led in index.css). */}
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 grid grid-cols-16 grid-rows-12 gap-0.5 [@media(hover:none)]:hidden"
+              >
+                {Array.from({ length: COLS * ROWS }, (_, i) => (
+                  <span
+                    key={i}
+                    className="led"
+                    style={
+                      { "--d": `${scatter(i) * 16}ms` } as React.CSSProperties
+                    }
+                  />
                 ))}
-              </div>
-              <div className="mx-auto max-w-[1440px] px-(--gutter) pt-7 pb-10">
-                <Link
-                  href={`/case-studies/${work.slug}/`}
-                  className="border-b border-current pb-0.5 text-[17px] font-medium"
-                >
-                  See the {work.name.toLowerCase()} case study
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
-      ))}
-      <div className="border-t border-[#e6e6e6]" />
+              </span>
+              <span className="led-text absolute inset-x-0 bottom-0 flex flex-col gap-2 p-[clamp(20px,2.4vw,32px)] text-[#ededed] [@media(hover:none)]:bg-black/75">
+                <span className="font-(family-name:--font-pixel) text-[clamp(22px,2.2vw,32px)] leading-none">
+                  {work.name}
+                  <span className="text-ring">.</span>
+                </span>
+                <span className="text-[15px] text-[#bdbdbd]">
+                  {clips[work.slug].makes.join(" · ")}
+                </span>
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

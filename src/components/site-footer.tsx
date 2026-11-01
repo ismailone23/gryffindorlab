@@ -1,14 +1,32 @@
+// figlet "ANSI Regular", same block font as the hero headline; the trailing "██" is the orange full stop.
+const wordmark = [
+  " ██████  ██████  ██    ██ ███████ ███████ ██ ███    ██ ██████   ██████  ██████  ██       █████  ██████",
+  "██       ██   ██  ██  ██  ██      ██      ██ ████   ██ ██   ██ ██    ██ ██   ██ ██      ██   ██ ██   ██",
+  "██   ███ ██████    ████   █████   █████   ██ ██ ██  ██ ██   ██ ██    ██ ██████  ██      ███████ ██████",
+  "██    ██ ██   ██    ██    ██      ██      ██ ██  ██ ██ ██   ██ ██    ██ ██   ██ ██      ██   ██ ██   ██",
+  " ██████  ██   ██    ██    ██      ██      ██ ██   ████ ██████   ██████  ██   ██ ███████ ██   ██ ██████ ",
+];
+
 export function SiteFooter() {
   return (
-    <footer className="bg-black px-(--gutter) pb-12 text-sm text-[#8a8a8a]">
-      <div className="mx-auto flex max-w-[1440px] flex-wrap justify-between gap-4 border-t border-[#1f1f1f] pt-6">
-        <span>© {new Date().getFullYear()} Gryffindorlab</span>
-        <nav aria-label="Footer navigation" className="flex flex-wrap gap-6">
-          <a href="#services" className="hover:text-(--paper)">Services</a>
-          <a href="#work" className="hover:text-(--paper)">Work</a>
-          <a href="#voices" className="hover:text-(--paper)">Voices</a>
-          <a href="#main" className="hover:text-(--paper)">Back to top</a>
-        </nav>
+    <footer className="bg-black px-(--gutter) pt-16 pb-10 text-[#8a8a8a]">
+      <div className="mx-auto max-w-360">
+        {/* @container: the block art scales to the column width (106 columns incl. the full stop). */}
+        <div aria-hidden="true" className="@container">
+          <pre className="m-0 font-mono text-[calc(100cqw/64)] leading-none text-[#ededed]">
+            {wordmark.map((row, i) => (
+              <span key={i} className="block">
+                {row}
+                {i === wordmark.length - 1 && (
+                  <span className="text-ring">██</span>
+                )}
+              </span>
+            ))}
+          </pre>
+        </div>
+        <div className="mt-10 font-(family-name:--font-pixel) text-[13px]">
+          <span>© {new Date().getFullYear()} Gryffindorlab</span>
+        </div>
       </div>
     </footer>
   );

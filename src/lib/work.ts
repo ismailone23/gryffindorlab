@@ -3,6 +3,6 @@ export const workCategories = [
   { slug: 'branding', name: 'Branding' },
   { slug: 'illustration', name: 'Illustration' },
   { slug: 'animation', name: 'Animation' },
-  { slug: 'web-design', name: 'Web design' },
+  { slug: 'web-design', name: 'Website development' },
   { slug: 'video-editing', name: 'Video editing' },
 ] as const

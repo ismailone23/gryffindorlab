@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/select";
 import { services } from "@/lib/services";
 
-export function ProjectBrief({ dark = false }: { dark?: boolean }) {
+export function ProjectBrief({ dark = false, service = "A bit of everything" }: { dark?: boolean; service?: string }) {
   const submitButton = useRef<HTMLButtonElement>(null);
   const openingTrigger = useRef<HTMLElement | null>(null);
   const [status, setStatus] = useState<
@@ -73,20 +73,20 @@ export function ProjectBrief({ dark = false }: { dark?: boolean }) {
         event.preventDefault();
         openingTrigger.current?.focus({ preventScroll: true });
       }}
-      className="project-brief max-h-[calc(100dvh-36px)] max-w-140 gap-4 overflow-y-auto rounded-xl border-0 bg-background p-[28px_24px] shadow-[0_24px_80px_#00000030] max-[390px]:p-[28px_24px] min-[391px]:p-10 sm:max-w-140 **:data-[slot=dialog-close]:top-3 **:data-[slot=dialog-close]:right-3 **:data-[slot=dialog-close]:grid **:data-[slot=dialog-close]:size-10 **:data-[slot=dialog-close]:place-items-center"
+      className="project-brief max-h-[calc(100dvh-36px)] max-w-120 gap-3 overflow-y-auto rounded-xl border-0 bg-background p-[24px_20px] shadow-[0_24px_80px_#00000030] max-[390px]:p-[24px_20px] min-[391px]:p-7 sm:max-w-120 **:data-[slot=dialog-close]:top-3 **:data-[slot=dialog-close]:right-3 **:data-[slot=dialog-close]:grid **:data-[slot=dialog-close]:size-10 **:data-[slot=dialog-close]:place-items-center"
     >
       <DialogHeader className="text-left">
-        <DialogTitle className="font-(family-name:--display) text-[36px] leading-none font-semibold tracking-[-0.04em] min-[391px]:text-[42px]">
+        <DialogTitle className="font-(family-name:--display) text-[28px] leading-none font-semibold tracking-[-0.04em] min-[391px]:text-[32px]">
           Let’s make
           <br />
           something good.
         </DialogTitle>
-        <DialogDescription className="mt-2 text-sm leading-[1.6] text-muted-foreground">
+        <DialogDescription className="mt-1 text-sm leading-[1.6] text-muted-foreground">
           A few details to get your idea moving.
         </DialogDescription>
       </DialogHeader>
       <form
-        className="mt-2.5 grid gap-5 [&_label]:flex [&_label]:flex-col [&_label]:gap-2 [&_label]:text-sm [&_label]:font-semibold [&_input]:w-full [&_input]:min-w-0 [&_input]:rounded-[5px] [&_input]:border [&_input]:border-[#565656] [&_input]:bg-transparent [&_input]:p-3 [&_input]:text-[15px] [&_input]:font-normal [&_input]:outline-offset-[3px] [&_input]:placeholder:text-[#b0b0b0] [&_textarea]:min-h-22.5 [&_textarea]:max-h-55 [&_textarea]:w-full [&_textarea]:resize-y [&_textarea]:rounded-[5px] [&_textarea]:border [&_textarea]:border-[#565656] [&_textarea]:bg-transparent [&_textarea]:p-3 [&_textarea]:text-[15px] [&_textarea]:font-normal [&_textarea]:outline-offset-[3px] [&_textarea]:placeholder:text-[#b0b0b0] [&_input:focus-visible]:outline-2 [&_input:focus-visible]:outline-(--ink) [&_textarea:focus-visible]:outline-2 [&_textarea:focus-visible]:outline-(--ink)"
+        className="mt-2 grid gap-4 [&_label]:flex [&_label]:flex-col [&_label]:gap-1.5 [&_label]:text-sm [&_label]:font-semibold [&_input]:w-full [&_input]:min-w-0 [&_input]:rounded-[5px] [&_input]:border [&_input]:border-[#565656] [&_input]:bg-transparent [&_input]:px-3 [&_input]:py-2.5 [&_input]:text-[15px] [&_input]:font-normal [&_input]:outline-offset-[3px] [&_input]:placeholder:text-[#b0b0b0] [&_textarea]:min-h-20 [&_textarea]:max-h-55 [&_textarea]:w-full [&_textarea]:resize-y [&_textarea]:rounded-[5px] [&_textarea]:border [&_textarea]:border-[#565656] [&_textarea]:bg-transparent [&_textarea]:px-3 [&_textarea]:py-2.5 [&_textarea]:text-[15px] [&_textarea]:font-normal [&_textarea]:outline-offset-[3px] [&_textarea]:placeholder:text-[#b0b0b0] [&_input:focus-visible]:outline-2 [&_input:focus-visible]:outline-(--ink) [&_textarea:focus-visible]:outline-2 [&_textarea:focus-visible]:outline-(--ink)"
         onSubmit={sendBrief}
         onChange={() => {
           if (status === "error" || status === "limited") setStatus("idle");
@@ -103,7 +103,7 @@ export function ProjectBrief({ dark = false }: { dark?: boolean }) {
             autoComplete="off"
           />
         </div>
-        <div className="grid grid-cols-1 gap-4 min-[391px]:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 min-[391px]:grid-cols-2">
           <label>
             Your name
             <input
@@ -126,20 +126,20 @@ export function ProjectBrief({ dark = false }: { dark?: boolean }) {
             />
           </label>
         </div>
-        <div className="grid gap-2">
+        <div className="grid gap-1.5">
           <label htmlFor="project-service" className="text-sm font-semibold">
             What can we help with?
           </label>
           <Select
             name="service"
-            defaultValue="A bit of everything"
+            defaultValue={service}
             onValueChange={() => {
               if (status === "error" || status === "limited") setStatus("idle");
             }}
           >
             <SelectTrigger
               id="project-service"
-              className="h-12! w-full! rounded-[5px] border-[#565656] bg-transparent px-3 text-[15px] font-normal text-foreground shadow-none dark:bg-transparent! dark:hover:bg-transparent! focus-visible:ring-(--ink)/40"
+              className="h-11! w-full! rounded-[5px] border-[#565656] bg-transparent px-3 text-[15px] font-normal text-foreground shadow-none dark:bg-transparent! dark:hover:bg-transparent! focus-visible:ring-(--ink)/40"
             >
               <SelectValue placeholder="Choose a service" />
             </SelectTrigger>
@@ -208,7 +208,7 @@ export function ProjectBrief({ dark = false }: { dark?: boolean }) {
           ref={submitButton}
           type="submit"
           disabled={status === "sending"}
-          className="h-12 w-full justify-center gap-2 rounded-full bg-foreground px-5 text-[15px] text-background hover:bg-(--brief-button-hover)"
+          className="h-11 w-full justify-center gap-2 rounded-full bg-foreground px-5 text-[15px] text-background hover:bg-(--brief-button-hover)"
         >
           Send your idea
           <ArrowUpRight aria-hidden="true" />
