@@ -5,14 +5,13 @@ import PerspectiveTunnelHero, {
   type TunnelItem,
 } from "@/components/ui/perspective-tunnel-hero";
 
-// shortcut: stock photos until real project images exist
 const tunnelItems: TunnelItem[] = [
-  { src: "/images/web.jpg", title: "Website development" },
-  { src: "/images/video.jpg", title: "Video editing" },
-  { src: "/images/design.jpg", title: "Graphic design" },
-  { src: "/images/branding.jpg", title: "Branding" },
-  { src: "/images/animation.jpg", title: "Animation" },
-  { src: "/images/illustration.jpg", title: "Illustration" },
+  { src: "/work/tile-web.jpg", title: "Website development" },
+  { src: "/work/tile-video.jpg", title: "Video editing" },
+  { src: "/work/tile-design.jpg", title: "Graphic design" },
+  { src: "/work/tile-branding.jpg", title: "Branding" },
+  { src: "/work/tile-animation.jpg", title: "Animation" },
+  { src: "/work/tile-gultu.jpg", title: "Illustration" },
 ];
 
 // figlet "ANSI Regular" font (pure pixel blocks), generated once.
