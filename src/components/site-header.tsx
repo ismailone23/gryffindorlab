@@ -27,7 +27,7 @@ export function SiteHeader() {
       <Link
         href="/#main"
         aria-label="Gryffindorlab home"
-        className="mark-spin flex items-center gap-2.5"
+        className="flex items-center"
       >
         {/* <Mark className="size-6" /> */}
         <span className="text-lg font-medium tracking-[-0.04em]">
