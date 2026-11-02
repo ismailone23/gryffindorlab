@@ -32,13 +32,22 @@ export function Testimonials() {
       aria-labelledby="voices-heading"
       className="bg-white px-(--gutter) py-30 text-[#0a0a0a]"
     >
-      <div className="mx-auto max-w-[1440px]">
-        <h2 id="voices-heading" className="section-title text-[clamp(24px,2.2vw,32px)]!">
+      <div className="mx-auto max-w-360">
+        <h2
+          id="voices-heading"
+          className="section-title text-[clamp(24px,2.2vw,32px)]!"
+        >
           Client voices
         </h2>
         <div className="mt-10 flex flex-wrap items-end gap-x-16 gap-y-8">
-          <blockquote data-reveal style={{ "--i": 1 } as React.CSSProperties} className="m-0 min-h-[3.2em] flex-[3_1_560px] text-[clamp(32px,3.8vw,56px)] leading-[1.06] font-medium tracking-[-0.045em]">
-            {quote ? `“${quote.text}”` : "Their words go here once they approve them."}
+          <blockquote
+            data-reveal
+            style={{ "--i": 1 } as React.CSSProperties}
+            className="m-0 min-h-[3.2em] flex-[3_1_560px] text-[clamp(32px,3.8vw,56px)] leading-[1.06] font-medium tracking-[-0.045em]"
+          >
+            {quote
+              ? `“${quote.text}”`
+              : "Their words go here once they approve them."}
           </blockquote>
           {quote && (
             <div className="flex flex-[1_1_240px] flex-col gap-5">
@@ -52,7 +61,9 @@ export function Testimonials() {
                   <button
                     type="button"
                     aria-label="Previous quote"
-                    onClick={() => setIndex((index + quotes.length - 1) % quotes.length)}
+                    onClick={() =>
+                      setIndex((index + quotes.length - 1) % quotes.length)
+                    }
                     className="size-11 rounded-full border border-[#e0e0e0] text-lg"
                   >
                     ‹

@@ -3,26 +3,25 @@ import { workCategories } from "@/lib/work";
 
 type Slug = (typeof workCategories)[number]["slug"];
 
-// shortcut: stock photos until real project images exist
 const clips: Record<Slug, { img: string; makes: string[] }> = {
   design: {
-    img: "design",
+    img: "/work/tile-design.jpg",
     makes: ["Layouts and print", "Social assets", "Pitch decks"],
   },
   branding: {
-    img: "branding",
+    img: "/work/tile-branding.jpg",
     makes: ["Logos", "Identity systems", "Brand guidelines"],
   },
   illustration: {
-    img: "illustration",
+    img: "/work/tile-gultu.jpg",
     makes: ["Editorial pieces", "Product art", "Custom icons"],
   },
   animation: {
-    img: "animation",
+    img: "/work/tile-animation.jpg",
     makes: ["Motion graphics", "Logo animation", "Explainers"],
   },
   "web-design": {
-    img: "web",
+    img: "/work/tile-web.jpg",
     makes: [
       "CI/CD and cloud deploys",
       "APIs and databases",
@@ -30,7 +29,7 @@ const clips: Record<Slug, { img: string; makes: string[] }> = {
     ],
   },
   "video-editing": {
-    img: "video",
+    img: "/work/tile-video.jpg",
     makes: ["Cuts and pacing", "Colour and sound", "Captions"],
   },
 };
@@ -66,8 +65,8 @@ export function Work() {
               className="group relative block aspect-4/3 overflow-hidden bg-[#0a0a0a] -outline-offset-4"
             >
               <img
-                src={`/images/${clips[work.slug].img}.jpg`}
-                alt=""
+                src={clips[work.slug].img}
+                alt={`${work.name} project preview`}
                 className="size-full object-cover"
               />
               {/* LED panel: cells switch on one by one over the picture on hover (.led in index.css). */}
