@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     "web design Dhaka",
     "Gryffindorlab",
   ],
-  icons: { icon: "/favicon.svg" },
+  icons: { icon: "/favicon.png" },
 };
 
 export default function RootLayout({

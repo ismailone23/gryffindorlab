@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-// import { Mark } from "@/components/mark";
+import Image from "next/image";
 
 export function SiteHeader() {
   const [hidden, setHidden] = useState(false);
@@ -27,12 +27,9 @@ export function SiteHeader() {
       <Link
         href="/#main"
         aria-label="Gryffindorlab home"
-        className="flex items-center"
+        className="flex items-center gap-2"
       >
-        {/* <Mark className="size-6" /> */}
-        <span className="text-lg font-medium tracking-[-0.04em]">
-          Gryffindorlab
-        </span>
+        <Image src="/logo.png" width={134} height={38} alt="Gryffindorlab" className="h-8 w-auto" priority />
       </Link>
       <nav
         aria-label="Main navigation"

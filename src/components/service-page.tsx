@@ -28,11 +28,11 @@ export function PageHeader() {
         className="inline-flex items-center gap-2.5 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
       >
         <Image
-          src="/favicon.svg"
+          src="/favicon.png"
           width={40}
           height={40}
           alt=""
-          className="size-9 rounded-sm min-[901px]:size-10"
+          className="size-9 min-[901px]:size-10"
         />
         <span className="font-(family-name:--display) text-lg font-semibold tracking-[-0.035em]">
           Gryffindorlab<span className="text-ring">.</span>

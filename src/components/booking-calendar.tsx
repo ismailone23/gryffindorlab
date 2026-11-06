@@ -210,11 +210,11 @@ export function BookingCalendar() {
       <div className="border-b border-white/20 px-6 py-8 min-[901px]:border-r min-[901px]:border-b-0 min-[901px]:px-7 min-[901px]:py-8">
         <div className="flex items-center gap-3 text-sm text-muted-foreground">
           <img
-            src="/favicon.svg"
+            src="/favicon.png"
             width="36"
             height="36"
             alt=""
-            className="size-9 rounded-[5px]"
+            className="size-9"
           />
           Gryffindorlab
         </div>

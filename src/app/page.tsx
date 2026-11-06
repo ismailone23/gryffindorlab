@@ -30,7 +30,7 @@ const organization = {
   "@type": "ProfessionalService",
   name: "Gryffindorlab",
   url: siteUrl,
-  logo: siteUrl + "/favicon.svg",
+  logo: siteUrl + "/favicon.png",
   email: "info@gryffindorlab.com",
   image: siteUrl + "/og-image.png",
   description:
