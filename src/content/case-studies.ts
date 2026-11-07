@@ -23,9 +23,9 @@ export const caseStudies: Record<ServiceSlug, CaseStudyData> = {
     challenge:
       "Booking a doctor often means phone calls, paper notes and records kept in different places. CareWell needed one place where patients find a doctor and book a visit, doctors manage their time, and health records stay with the patient.",
     approach:
-      "We built separate patient and doctor workspaces behind one sign-in. Patients search by name, specialty or location and book open times. Doctors set weekly hours in the Asia/Dhaka time zone, review appointment requests and work through a serial-ordered queue. An AI assistant helps patients choose a specialty and book or ask for a new time. Prescriptions and care plans appear in the patient's health records.",
+      "We built separate patient and doctor workspaces behind one sign-in. Patients search by name, specialty or location and book open times. Doctors set weekly hours in the Asia/Dhaka time zone, review appointment requests and work through a serial-ordered queue. An AI assistant helps patients choose a specialty and book or ask for a new time. Doctors order lab tests and prescribe medicines from a priced list, and the assistant can answer what a test or medicine costs. Prescriptions and care plans appear in the patient's health records. The API runs in Docker on our own VPS behind automatic HTTPS.",
     result:
-      "A live platform with doctor search, booking, availability, a daily patient queue, an AI booking assistant and health records. You can try it at carewell-lemon.vercel.app.",
+      "A live platform with doctor search, booking, availability, a daily patient queue, an AI booking assistant and health records. You can try it at carewell.ismailh.dev.",
   },
   // Draft from the public channel; confirm the details and add real results (views, watch time) if you have them.
   "video-editing": {

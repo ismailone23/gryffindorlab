@@ -143,9 +143,9 @@ export const services: Record<ServiceSlug, Service> = {
     projects: [
       {
         name: "CareWell",
-        href: "https://carewell-lemon.vercel.app",
+        href: "https://carewell.ismailh.dev",
         summary:
-          "A healthcare platform where patients find doctors and book visits, and doctors manage their hours, queue and prescriptions. An AI assistant helps patients pick a specialty and book. An AI assistant helps patients pick a specialty and book.",
+          "A healthcare platform where patients find doctors and book visits, and doctors manage their hours, queue and prescriptions. Lab tests and medicines are priced in the clinic's own list, and the assistant can answer what a test or medicine costs. The API runs on our own VPS with Docker and automatic HTTPS, and the web app is on Vercel.",
         shots: [
           {
             src: "/work/carewell-patient-side.webp",
@@ -169,7 +169,19 @@ export const services: Record<ServiceSlug, Service> = {
             src: "/work/carewell-ai-assistant.webp",
             alt: "CareWell AI assistant chat where a patient types fever for 3 days and gets a suggested specialty",
             caption:
-              "AI assistant: patients describe what they need in plain words, and it suggests a specialty and helps them book or ask for a new time. It handles bookings only, not medical advice.",
+              "AI assistant: patients describe what they need in plain words, and it suggests a specialty and helps them book or ask for a new time. It handles bookings and prices only, not medical advice.",
+          },
+          {
+            src: "/work/carewell-architecture.webp",
+            alt: "CareWell production architecture: browser to Vercel, then Caddy, the API, Postgres and Redis on one Oracle VM in Docker",
+            caption:
+              "Architecture: the web app runs on Vercel and talks to a Dockerised API, Postgres and Redis behind Caddy with automatic HTTPS, all on one 1 GB Oracle VM.",
+          },
+          {
+            src: "/work/carewell-ops.webp",
+            alt: "Terminal on the CareWell server showing healthy Docker containers, a 200 health check, memory use and passing tests",
+            caption:
+              "In production: healthy containers, a 190 ms health check, memory use on the small VM and passing tests. The API shuts down gracefully, so deploys never cut a request in half.",
           },
         ],
       },
