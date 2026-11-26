@@ -64,6 +64,11 @@ const makes = (slug: ServiceSlug) =>
     .slice(0, 3)
     .map((i) => i.title)
     .join(" · ");
+// Image sits in a hairline frame; it eases up slightly on hover, only for real pointers.
+const frame =
+  "relative block overflow-hidden rounded-xl after:pointer-events-none after:absolute after:inset-0 after:rounded-xl after:ring-1 after:ring-white/10 after:ring-inset";
+const zoom =
+  "aspect-4/3 w-full object-cover transition-transform duration-700 ease-(--ease-out) motion-reduce:transition-none [@media(hover:hover)]:group-hover:scale-[1.03]";
 const focus =
   "rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring";
 
@@ -80,7 +85,7 @@ export default function CaseStudies() {
       ))}
       <PageHeader />
       <main className="py-10 min-[901px]:py-16">
-        <div className="grid items-end gap-8 border-b border-border pb-12 min-[901px]:grid-cols-2">
+        <div className="grid items-end gap-8 border-b border-white/10 pb-12 min-[901px]:grid-cols-2">
           <h1 className={`${h1} min-[901px]:text-[clamp(56px,6vw,96px)]`}>
             Case studies<span className="text-ring">.</span>
           </h1>
@@ -96,17 +101,19 @@ export default function CaseStudies() {
             href={`/case-studies/${f.slug}`}
             className={`group mt-16 grid items-center gap-8 min-[901px]:grid-cols-[1.6fr_1fr] min-[901px]:gap-12 ${focus}`}
           >
-            <Image
-              src={f.image}
-              alt={f.imageAlt}
-              width={960}
-              height={750}
-              priority
-              sizes="(min-width: 901px) 60vw, 100vw"
-              className="aspect-4/3 w-full rounded-xl object-cover"
-            />
+            <span className={frame}>
+              <Image
+                src={f.image}
+                alt={f.imageAlt}
+                width={960}
+                height={750}
+                priority
+                sizes="(min-width: 901px) 60vw, 100vw"
+                className={zoom}
+              />
+            </span>
             <div className="grid gap-5">
-              <p className="m-0 text-sm text-ring">
+              <p className="m-0 text-sm text-muted-foreground">
                 Featured · {f.projects!.length} projects
               </p>
               <h2 className="m-0 font-(family-name:--font-pixel) text-[clamp(32px,3.2vw,44px)] leading-none font-normal">
@@ -127,32 +134,35 @@ export default function CaseStudies() {
         )}
 
         <ul className="m-0 mt-24 grid list-none gap-x-6 gap-y-14 p-0 min-[640px]:grid-cols-2 min-[1100px]:grid-cols-3">
-          {rest.map((slug) => {
+          {rest.map((slug, i) => {
             const s = services[slug];
             return (
-              <li key={slug}>
+              <li
+                key={slug}
+                data-reveal
+                style={{ "--i": i % 3 } as React.CSSProperties}
+              >
                 <Link
                   href={`/case-studies/${slug}`}
                   className={`group grid gap-4 ${focus}`}
                 >
-                  <Image
-                    src={s.image}
-                    alt={s.imageAlt}
-                    width={960}
-                    height={750}
-                    sizes="(min-width: 1100px) 30vw, (min-width: 640px) 45vw, 100vw"
-                    className="aspect-4/3 w-full rounded-xl object-cover"
-                  />
+                  <span className={frame}>
+                    <Image
+                      src={s.image}
+                      alt={s.imageAlt}
+                      width={960}
+                      height={750}
+                      sizes="(min-width: 1100px) 30vw, (min-width: 640px) 45vw, 100vw"
+                      className={zoom}
+                    />
+                  </span>
                   <span className="flex items-baseline justify-between gap-4">
                     <h2 className="m-0 font-(family-name:--font-pixel) text-[clamp(22px,2vw,26px)] leading-none font-normal transition-colors group-hover:text-ring">
                       {s.name}
                       <span className="text-ring">.</span>
                     </h2>
-                    <span aria-hidden="true" className="text-muted-foreground">
-                      →
-                    </span>
                   </span>
-                  <p className="m-0 text-[15px] leading-[1.5] text-muted-foreground">
+                  <p className="m-0 text-base leading-[1.5] text-muted-foreground">
                     {makes(slug)}
                   </p>
                 </Link>
@@ -160,7 +170,7 @@ export default function CaseStudies() {
             );
           })}
         </ul>
-        <section className="mt-32 flex flex-wrap items-end justify-between gap-8 border-t border-border pt-16">
+        <section className="mt-32 flex flex-wrap items-end justify-between gap-8 border-t border-white/10 pt-16">
           <div>
             <h2 className="m-0 font-(family-name:--display) text-[clamp(28px,3vw,40px)] leading-[1.1] font-medium tracking-[-0.04em]">
               Have a project in mind?

@@ -4,6 +4,7 @@ import { services, type Service } from "@/content/services";
 import { caseStudies } from "@/content/case-studies";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { Reveal } from "@/components/reveal";
 import {
   breadcrumbJsonLd,
   breadcrumbs,
@@ -29,6 +30,7 @@ export function PageHeader() {
   return (
     <>
       <SiteHeader />
+      <Reveal />
       <div aria-hidden="true" className="h-24 min-[901px]:h-28" />
     </>
   );
@@ -47,6 +49,7 @@ function Row({
   return (
     <section
       aria-labelledby={id}
+      data-reveal
       className="grid gap-6 min-[901px]:grid-cols-[1fr_2fr] min-[901px]:gap-16"
     >
       <h2 id={id} className={h2}>
@@ -74,13 +77,6 @@ export function ServicePage({ service }: { service: Service }) {
       "Work",
       service.projects?.map((p) => p.name).join(", ") ||
         study.client.split(",")[0],
-    ],
-    [
-      "Includes",
-      service.included
-        .slice(0, 3)
-        .map((i) => i.title)
-        .join(", "),
     ],
     ["Tools", service.tools.slice(0, 3).join(", ")],
     ["Based in", "Dhaka, working worldwide"],
@@ -118,7 +114,7 @@ export function ServicePage({ service }: { service: Service }) {
               {service.name}
               <span className="text-ring">.</span>
             </h1>
-            <p className="mt-7 mb-0 max-w-2xl text-lg leading-[1.5] text-foreground/80 min-[901px]:text-[22px]">
+            <p className="mt-7 mb-0 max-w-2xl text-lg leading-[1.5] text-foreground/80 min-[901px]:text-xl">
               {service.intro[0]}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -130,14 +126,14 @@ export function ServicePage({ service }: { service: Service }) {
               </Link>
             </div>
           </div>
-          <dl className="m-0 border-b border-border text-[15px]">
+          <dl className="m-0 border-b border-white/10 text-base">
             {facts.map(([label, value]) => (
               <div
                 key={label}
-                className="flex justify-between gap-6 border-t border-border py-3.5"
+                className="grid gap-1 border-t border-white/10 py-4 min-[640px]:flex min-[640px]:justify-between min-[640px]:gap-6"
               >
                 <dt className="shrink-0 text-muted-foreground">{label}</dt>
-                <dd className="m-0 text-right">{value}</dd>
+                <dd className="m-0 min-[640px]:text-right">{value}</dd>
               </div>
             ))}
           </dl>
@@ -156,16 +152,17 @@ export function ServicePage({ service }: { service: Service }) {
           />
         )}
 
-        <div className="mt-24 grid gap-24">
+        <div className="mt-24 grid gap-32">
           {service.projects?.map((project) => (
             <section
               key={project.name}
               aria-label={project.name}
-              className="grid gap-10"
+              data-reveal
+              className="grid gap-12"
             >
               <div className="grid gap-6 min-[901px]:grid-cols-[1fr_2fr] min-[901px]:gap-16">
                 <div>
-                  <p className="m-0 text-sm text-ring">Project</p>
+                  <p className="m-0 text-sm text-muted-foreground">Project</p>
                   <h2
                     className={`${pixelTitle} mt-3 text-[clamp(28px,3vw,40px)]`}
                   >
@@ -176,7 +173,7 @@ export function ServicePage({ service }: { service: Service }) {
                     href={project.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`${quietLink} mt-5 inline-block text-[15px] font-medium text-foreground`}
+                    className={`${quietLink} mt-5 inline-block text-base font-medium text-foreground`}
                   >
                     Visit the live site ↗
                   </a>
@@ -195,7 +192,7 @@ export function ServicePage({ service }: { service: Service }) {
                       width={1200}
                       height={750}
                       sizes="(min-width: 760px) 50vw, 100vw"
-                      className="h-auto w-full rounded-xl border border-border"
+                      className="h-auto w-full rounded-xl border border-white/10"
                     />
                     <p className={caption}>{shot.caption}</p>
                   </li>
@@ -245,22 +242,20 @@ export function ServicePage({ service }: { service: Service }) {
           {study.result && (
             <section
               aria-labelledby="case-study"
-              className="grid gap-8 border-t border-border pt-12 min-[901px]:grid-cols-[1fr_2fr] min-[901px]:gap-16"
+              data-reveal
+              className="grid gap-8 border-t border-white/10 pt-12 min-[901px]:grid-cols-[1fr_2fr] min-[901px]:gap-16"
             >
               <div>
-                <p className="m-0 text-sm text-ring">Case study</p>
+                <p className="m-0 text-sm text-muted-foreground">Case study</p>
                 <h2
                   id="case-study"
                   className={`${pixelTitle} mt-3 text-[clamp(24px,2.6vw,36px)]`}
                 >
-                  {study.client.split(",")[0]}
-                  <span className="text-ring">.</span>
+                  Result<span className="text-ring">.</span>
                 </h2>
-                {study.client.includes(",") && (
-                  <p className="mt-3 mb-0 text-[15px] text-muted-foreground">
-                    {study.client.slice(study.client.indexOf(",") + 1).trim()}
-                  </p>
-                )}
+                <p className="mt-3 mb-0 text-base text-muted-foreground">
+                  {study.client}
+                </p>
               </div>
               <div>
                 <p className="m-0 text-[clamp(22px,2.2vw,32px)] leading-[1.3] font-medium tracking-[-0.02em]">
@@ -275,11 +270,14 @@ export function ServicePage({ service }: { service: Service }) {
                   )
                     .filter(([, text]) => text)
                     .map(([label, text]) => (
-                      <div key={label} className="border-t border-border pt-4">
+                      <div
+                        key={label}
+                        className="border-t border-white/10 pt-4"
+                      >
                         <h3 className="m-0 text-sm font-medium text-muted-foreground">
                           {label}
                         </h3>
-                        <p className="mt-2.5 mb-0 text-base leading-[1.65] text-foreground/80">
+                        <p className="mt-3 mb-0 text-base leading-[1.65] text-foreground/80">
                           {text}
                         </p>
                       </div>
@@ -292,9 +290,9 @@ export function ServicePage({ service }: { service: Service }) {
           <Row id="included" title="What you get">
             <ul className="m-0 grid list-none gap-x-10 p-0 min-[760px]:grid-cols-2">
               {service.included.map((item) => (
-                <li key={item.title} className="border-t border-border py-4">
+                <li key={item.title} className="border-t border-white/10 py-4">
                   <h3 className="m-0 text-base font-medium">{item.title}</h3>
-                  <p className="mt-1 mb-0 text-[15px] leading-[1.6] text-muted-foreground">
+                  <p className="mt-1 mb-0 text-base leading-[1.6] text-muted-foreground">
                     {item.text}
                   </p>
                 </li>
@@ -307,7 +305,7 @@ export function ServicePage({ service }: { service: Service }) {
               {service.process.map((text, i) => (
                 <li
                   key={stepNames[i]}
-                  className={`border-t-2 pt-3.5 ${i === 0 ? "border-ring" : "border-border"}`}
+                  className={`border-t-2 pt-4 border-white/10`}
                 >
                   <h3 className={`${pixelTitle} text-lg`}>{stepNames[i]}</h3>
                   <p className="mt-2 mb-0 text-sm leading-[1.55] text-muted-foreground">
@@ -321,9 +319,9 @@ export function ServicePage({ service }: { service: Service }) {
           <Row id="audience" title="Who it's for">
             <ul className="m-0 grid list-none gap-x-10 p-0 min-[760px]:grid-cols-2">
               {service.audience.map((item) => (
-                <li key={item.title} className="border-t border-border py-4">
+                <li key={item.title} className="border-t border-white/10 py-4">
                   <h3 className="m-0 text-base font-medium">{item.title}</h3>
-                  <p className="mt-1 mb-0 text-[15px] leading-[1.6] text-muted-foreground">
+                  <p className="mt-1 mb-0 text-base leading-[1.6] text-muted-foreground">
                     {item.text}
                   </p>
                 </li>
@@ -339,7 +337,10 @@ export function ServicePage({ service }: { service: Service }) {
 
           <Row id="faq" title="Questions">
             {service.faqs.map((f) => (
-              <details key={f.q} className="group border-t border-border py-5">
+              <details
+                key={f.q}
+                className="group border-t border-white/10 py-5"
+              >
                 <summary className="flex cursor-pointer list-none justify-between gap-4 rounded-sm text-lg font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring [&::-webkit-details-marker]:hidden">
                   {f.q}
                   <span
@@ -358,7 +359,8 @@ export function ServicePage({ service }: { service: Service }) {
 
           <section
             aria-labelledby="cta"
-            className="flex flex-wrap items-end justify-between gap-8 border-t border-border pt-16"
+            data-reveal
+            className="flex flex-wrap items-end justify-between gap-8 border-t border-white/10 pt-16"
           >
             <div>
               <h2 id="cta" className={h2}>
@@ -367,7 +369,7 @@ export function ServicePage({ service }: { service: Service }) {
               <p className="mt-3 mb-0 text-lg text-foreground/80">
                 Tell us what you need. We reply with next steps and a quote.
               </p>
-              <p className="mt-7 mb-0 text-[15px] text-muted-foreground">
+              <p className="mt-7 mb-0 text-base text-muted-foreground">
                 Related:{" "}
                 {service.related.map((slug, i) => (
                   <span key={slug}>
