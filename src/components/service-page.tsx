@@ -15,7 +15,7 @@ import {
 
 const stepNames = ["Brief", "Plan", "Make", "Review", "Launch"];
 export const h1 =
-  "m-0 font-(family-name:--font-pixel) text-[clamp(34px,4.2vw,64px)] leading-[1.05] font-normal text-balance";
+  "m-0 text-[clamp(40px,4.6vw,64px)] leading-[1.02] font-medium tracking-[-0.045em] text-balance";
 const h2 =
   "m-0 font-(family-name:--display) text-[clamp(28px,3vw,40px)] leading-[1.1] font-medium tracking-[-0.04em]";
 export const btn =
@@ -61,7 +61,7 @@ function Row({
 }
 
 const pixelTitle =
-  "m-0 font-(family-name:--font-pixel) font-normal leading-none";
+  "m-0 font-medium leading-[1.05] tracking-[-0.04em]";
 const caption = "mt-3 mb-0 text-sm leading-[1.5] text-muted-foreground";
 
 export function ServicePage({ service }: { service: Service }) {
@@ -307,7 +307,7 @@ export function ServicePage({ service }: { service: Service }) {
                   key={stepNames[i]}
                   className={`border-t-2 pt-4 border-white/10`}
                 >
-                  <h3 className={`${pixelTitle} text-lg`}>{stepNames[i]}</h3>
+                  <h3 className="m-0 text-lg font-medium">{stepNames[i]}</h3>
                   <p className="mt-2 mb-0 text-sm leading-[1.55] text-muted-foreground">
                     {text}
                   </p>

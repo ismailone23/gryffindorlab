@@ -116,7 +116,7 @@ export default function CaseStudies() {
               <p className="m-0 text-sm text-muted-foreground">
                 Featured · {f.projects!.length} projects
               </p>
-              <h2 className="m-0 font-(family-name:--font-pixel) text-[clamp(32px,3.2vw,44px)] leading-none font-normal">
+              <h2 className="m-0 text-[clamp(32px,3.2vw,44px)] leading-[1.05] font-medium tracking-[-0.04em]">
                 {f.name}
                 <span className="text-ring">.</span>
               </h2>
@@ -157,12 +157,12 @@ export default function CaseStudies() {
                     />
                   </span>
                   <span className="flex items-baseline justify-between gap-4">
-                    <h2 className="m-0 font-(family-name:--font-pixel) text-[clamp(22px,2vw,26px)] leading-none font-normal transition-colors group-hover:text-ring">
+                    <h2 className="m-0 text-[clamp(22px,2vw,26px)] leading-[1.05] font-medium tracking-[-0.04em] transition-colors group-hover:text-ring">
                       {s.name}
                       <span className="text-ring">.</span>
                     </h2>
                   </span>
-                  <p className="m-0 text-base leading-[1.5] text-muted-foreground">
+                  <p className="m-0 text-base leading-normal text-muted-foreground">
                     {makes(slug)}
                   </p>
                 </Link>
