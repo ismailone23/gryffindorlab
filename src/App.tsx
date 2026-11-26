@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Dialog } from "@/components/ui/dialog";
 import { Hero } from "@/components/hero";
+import { useReveal } from "@/components/reveal";
 import { StartHere, ANY_SERVICE } from "@/components/start-here";
 import { Services } from "@/components/services";
 import { Process } from "@/components/process";
@@ -51,27 +52,6 @@ function useSmoothWheel() {
       cancelAnimationFrame(frame);
       removeEventListener("wheel", onWheel);
     };
-  }, []);
-}
-
-// Fade-and-rise for headings and [data-reveal] blocks as they enter (styles in index.css).
-// The hidden state only applies once this runs, so content stays visible without JS.
-function useReveal() {
-  useEffect(() => {
-    const items = document.querySelectorAll(".section-title, [data-reveal]");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          entry.target.classList.add("in");
-          observer.unobserve(entry.target);
-        }
-      },
-      { rootMargin: "0px 0px -10% 0px" },
-    );
-    document.documentElement.classList.add("js-reveal");
-    items.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
   }, []);
 }
 
