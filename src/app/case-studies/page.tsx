@@ -124,7 +124,10 @@ export default function CaseStudies() {
                   <span className="text-ring">.</span>
                 </h2>
                 <p className="m-0 text-lg leading-[1.6] text-foreground/80">
-                  {f.projects!.map((p) => p.name).join(" and ")}. {f.intro[0]}
+                  {new Intl.ListFormat("en").format(
+                    f.projects!.map((p) => p.name),
+                  )}
+                  . {f.intro[0]}
                 </p>
                 <p className="m-0 text-sm text-muted-foreground">
                   {makes(f.slug)}

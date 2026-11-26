@@ -205,6 +205,84 @@ export const services: Record<ServiceSlug, Service> = {
           },
         ],
       },
+      {
+        name: "Impact Matrix",
+        href: "https://www.impactmatrixbd.org",
+        summary:
+          "A platform that helps social projects in Bangladesh find backers and show their results. Projects sit under six domains, from education and health to climate and disaster response, so companies and institutions can browse by cause and back what fits.",
+        shots: [
+          {
+            src: "/work/impact-home.webp",
+            alt: "Impact Matrix homepage on desktop and phone: Creating impact in Bangladesh over a misty forest",
+            caption:
+              "The opening: the headline is cut out of a forest photograph, then opens into the full picture as you scroll.",
+          },
+          {
+            src: "/work/impact-domains.webp",
+            alt: "Impact Matrix domain cards for education, health, environment, disaster response, livelihood and sports",
+            caption:
+              "Six domains, each with the kinds of projects it covers and a link to browse them.",
+          },
+          {
+            src: "/work/impact-process.webp",
+            alt: "Impact Matrix section explaining how a project goes from listed to reported, beside a photo of two boys on a bicycle",
+            caption:
+              "How it works, in four plain steps: listed, sorted, found and reported.",
+          },
+        ],
+      },
+      {
+        name: "Bangladesh Yoga Foundation",
+        href: "https://www.bangladeshyogafoundation.org",
+        summary:
+          "A bilingual site for a yoga foundation in Dhaka. It explains what the foundation teaches, lists courses and the open-air, studio and online sessions, and makes joining the next session the main action.",
+        shots: [
+          {
+            src: "/work/yoga-home.webp",
+            alt: "Bangladesh Yoga Foundation homepage on desktop and phone: Yoga for health, peace and harmony over an open-air class",
+            caption:
+              "The homepage: an open-air class, one line on what they teach, and Join a session as the first action.",
+          },
+          {
+            src: "/work/yoga-about.webp",
+            alt: "Bangladesh Yoga Foundation about section with health, peace and harmony beside a beach yoga photo",
+            caption:
+              "What yoga means to the foundation, in three short lines next to a real class.",
+          },
+          {
+            src: "/work/yoga-founder.webp",
+            alt: "Founder section with a photo of Kazi Mahtab Shuman holding a certificate and his training listed",
+            caption:
+              "The founder, his training and a link to his certificate, so new students know who teaches them.",
+          },
+        ],
+      },
+      {
+        name: "BanglaLex",
+        href: "https://banglalex.ismailh.dev",
+        summary:
+          "Legal research on Bangladesh law where every citation is the exact text of the statute, with a link to its source. It indexes 1,683 acts and 48,281 provisions, answers in English or Bangla, runs AI courtroom hearings for practice, and works from AI coding tools over MCP.",
+        shots: [
+          {
+            src: "/work/banglalex-home.webp",
+            alt: "BanglaLex research screen on desktop and phone with example questions in English and Bangla",
+            caption:
+              "Ask a question in English or Bangla. Each answer cites the statute line by line.",
+          },
+          {
+            src: "/work/banglalex-hearing.webp",
+            alt: "BanglaLex courtroom simulator hearing with claimant and defence arguments, cited sections and a progress list",
+            caption:
+              "The courtroom simulator: AI counsel argue both sides of a bounced-cheque case, citing real sections, and an AI judge decides.",
+          },
+          {
+            src: "/work/banglalex-setup.webp",
+            alt: "BanglaLex developer setup page with the MCP endpoint and setup steps for coding agents",
+            caption:
+              "Developer setup: one MCP endpoint, no key, with steps for Devin, Claude Code, ChatGPT and others.",
+          },
+        ],
+      },
     ],
   },
 
@@ -214,9 +292,9 @@ export const services: Record<ServiceSlug, Service> = {
     h1: "Video Editing Services in Bangladesh",
     description:
       "Video editing services in Bangladesh for brands, YouTubers and businesses. Clean cuts, colour, sound and captions from Dhaka. Book a free call with us.",
-    image: "/work/tile-video.jpg",
+    image: "/work/ve-singapore.webp",
     imageAlt:
-      "Thumbnail of the Luxembourg video edited by Gryffindorlab, a green valley with village houses",
+      "Our edit of Singapore's Impossible Development playing in a video window, its thumbnail of the city skyline and a glowing map",
     intro: [
       "We turn raw footage into videos that are clear, well paced and ready to publish. You send the clips. We deliver the finished edit.",
       "Our video editing services in Bangladesh suit brands, creators and teams that shoot good footage but have no time to cut it. We edit ads, social clips, interviews, product videos and long-form content.",
@@ -426,28 +504,52 @@ export const services: Record<ServiceSlug, Service> = {
     related: ["branding", "illustration", "web-design"],
     gallery: [
       {
-        src: "/work/bangla-type-poster.webp",
+        src: "/work/gd-gupi-gayen.webp",
+        alt: "Orange Bangla display lettering for Gupi Gayen Bagha Bayen on a light patterned background",
+        width: 1600,
+        height: 1000,
+      },
+      {
+        src: "/work/gd-keno-poster.webp",
         alt: "Orange poster with black hand-drawn Bangla lettering and an ink splash figure",
-        width: 883,
-        height: 1400,
+        width: 1600,
+        height: 1000,
       },
       {
-        src: "/work/bangla-lettering.webp",
-        alt: "Orange Bangla display lettering on a light patterned background",
-        width: 1400,
-        height: 831,
+        src: "/work/gd-book-contents.webp",
+        alt: "Open book showing a contents page with seven numbered chapters",
+        width: 1600,
+        height: 1000,
       },
       {
-        src: "/work/doodle-illustration.webp",
-        alt: "Colourful doodle poster full of planets, buildings, scientists and school items",
-        width: 1322,
-        height: 1400,
-      },
-      {
-        src: "/work/book-layout.webp",
+        src: "/work/gd-book-colour.webp",
         alt: "Open book spread with colourful abstract graphics and a Thank you page",
-        width: 1400,
-        height: 911,
+        width: 1600,
+        height: 1000,
+      },
+      {
+        src: "/work/gd-comic-crow.webp",
+        alt: "A three-panel comic page about 1971 beside a black ink drawing of a crow singing into a microphone",
+        width: 1600,
+        height: 1000,
+      },
+      {
+        src: "/work/gd-doodle.webp",
+        alt: "Colourful doodle poster full of planets, buildings, scientists and school items",
+        width: 1600,
+        height: 1000,
+      },
+      {
+        src: "/work/gd-chithi-pathao.webp",
+        alt: "Night-sea poem card with a woman on the shore and Bangla verse",
+        width: 1600,
+        height: 1000,
+      },
+      {
+        src: "/work/gd-book-spread.webp",
+        alt: "Open book spread pairing a line drawing of a circular grate with its photograph",
+        width: 1600,
+        height: 1000,
       },
     ],
   },
@@ -657,8 +759,7 @@ export const services: Record<ServiceSlug, Service> = {
     videos: [
       {
         id: "jY_HhkcANP0",
-        title:
-          "প্রথম বিশ্বযুদ্ধ কীভাবে শুরু হলো? দুটো গুলি থেকে গোটা ইউরোপে যুদ্ধ",
+        title: "প্রথম বিশ্বযুদ্ধ কীভাবে শুরু হলো? দুটো গুলি থেকে গোটা ইউরোপে যুদ্ধ",
       },
       {
         id: "__NHgbN9CRM",
@@ -775,40 +876,40 @@ export const services: Record<ServiceSlug, Service> = {
     related: ["design", "animation", "branding"],
     gallery: [
       {
-        src: "/work/girl-in-saree.webp",
+        src: "/work/il-girl-in-saree.webp",
         alt: "Flat-style illustration of a woman in a red saree framed by green leaves",
-        width: 1400,
-        height: 976,
+        width: 1600,
+        height: 1000,
       },
       {
-        src: "/work/gultu.webp",
-        alt: "Illustration of a child with a backpack and a small red fox standing in a misty forest",
-        width: 1050,
-        height: 1400,
+        src: "/work/il-gultu-sky.webp",
+        alt: "A child and a red fox in a misty forest beside a figure rising from a night sea in teal swirls",
+        width: 1600,
+        height: 1000,
       },
       {
-        src: "/work/misir-ali.webp",
-        alt: "Illustration of a man in a light shirt surrounded by floating books and stacks of old books",
-        width: 1400,
-        height: 1097,
-      },
-      {
-        src: "/work/feluda.webp",
+        src: "/work/il-feluda.webp",
         alt: "Illustration of a crowd of men in blue and maroon tones with a detective in the centre",
-        width: 1400,
-        height: 997,
+        width: 1600,
+        height: 1000,
       },
       {
-        src: "/work/sky-of-fantasy.webp",
-        alt: "Digital painting of a figure rising from a night sea in glowing teal swirls",
-        width: 1239,
-        height: 1400,
+        src: "/work/il-misir-ali.webp",
+        alt: "Illustration of a man in a light shirt surrounded by floating books and stacks of old books",
+        width: 1600,
+        height: 1000,
       },
       {
-        src: "/work/lantern-robot.webp",
-        alt: "Illustration of a boy walking beside a lantern-carrying robot in a dark forest at night",
-        width: 984,
-        height: 1400,
+        src: "/work/il-mecha-mustafiz.webp",
+        alt: "A boy beside a lantern robot at night, next to a cricket bowler in a green kit mid-delivery",
+        width: 1600,
+        height: 1000,
+      },
+      {
+        src: "/work/il-mustafiz.webp",
+        alt: "Painting of a Bangladesh fast bowler in green mid-delivery in front of a stadium crowd",
+        width: 1600,
+        height: 1000,
       },
     ],
   },
