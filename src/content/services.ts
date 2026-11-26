@@ -40,9 +40,9 @@ export const services: Record<ServiceSlug, Service> = {
     h1: "Website Development in Bangladesh",
     description:
       "Website development and web design in Dhaka, Bangladesh. Fast responsive sites, APIs and cloud deploys for clients worldwide. Book a free call with us.",
-    image: "/work/tile-web.jpg",
+    image: "/work/tile-web.webp",
     imageAlt:
-      "CareWell health platform shown in two browser windows: the landing page and the doctor availability screen",
+      "The Impact Matrix homepage in a browser window: a misty forest behind the headline Creating impact in Bangladesh",
     intro: [
       "We design and build websites and web apps. That means the layout, the code behind it, the content setup and the hosting, handled by one team.",
       "It suits businesses that need a site that loads fast, looks right on a phone and is easy to update. If you are searching for a web design agency in Bangladesh that also writes the code, that is what we do.",
@@ -292,7 +292,7 @@ export const services: Record<ServiceSlug, Service> = {
     h1: "Video Editing Services in Bangladesh",
     description:
       "Video editing services in Bangladesh for brands, YouTubers and businesses. Clean cuts, colour, sound and captions from Dhaka. Book a free call with us.",
-    image: "/work/ve-singapore.webp",
+    image: "/work/tile-video.webp",
     imageAlt:
       "Our edit of Singapore's Impossible Development playing in a video window, its thumbnail of the city skyline and a glowing map",
     intro: [
@@ -421,8 +421,8 @@ export const services: Record<ServiceSlug, Service> = {
     h1: "Graphic Design Services in Bangladesh",
     description:
       "Graphic design services in Bangladesh: social posts, print layouts, pitch decks and marketing assets from a Dhaka creative studio. Book a free call with us.",
-    image: "/work/tile-design.jpg",
-    imageAlt: "Orange Bangla display lettering on a light patterned background",
+    image: "/work/tile-design.webp",
+    imageAlt: "Orange Bangla lettering for Gupi Gayen Bagha Bayen, framed on a deep brown field",
     intro: [
       "We design the everyday things a business needs to look sharp: social posts, brochures, flyers, packaging layouts, reports and pitch decks.",
       "Our graphic design services in Bangladesh are for teams that want consistent, clear work without hiring a full in-house designer. We follow your brand, or help you build one first.",
@@ -572,8 +572,8 @@ export const services: Record<ServiceSlug, Service> = {
     h1: "Branding and Logo Design in Bangladesh",
     description:
       "Branding and logo design services in Bangladesh. Logos, identity systems and brand guidelines from a creative studio in Dhaka. Book a free call with us.",
-    image: "/work/tile-branding.jpg",
-    imageAlt: "Open book spread with colourful abstract graphics",
+    image: "/work/tile-branding.webp",
+    imageAlt: "A photographed book spread with colourful abstract graphics, framed on a plum field",
     intro: [
       "A brand is how people recognise and remember you. We create the logo, colours, type and rules that make your business look like one clear thing everywhere.",
       "Our branding services in Bangladesh are for new businesses that need an identity, and established ones that look dated or inconsistent. Logo design in Bangladesh is often rushed. We start with who you are and who you serve.",
@@ -673,9 +673,9 @@ export const services: Record<ServiceSlug, Service> = {
     h1: "Animation and Motion Graphics in Bangladesh",
     description:
       "Animation and motion graphics in Bangladesh: logo animation, explainers and social motion from a Dhaka studio for global clients. Book a free call with us.",
-    image: "/work/tile-animation.jpg",
+    image: "/work/tile-animation.webp",
     imageAlt:
-      "Illustration of a boy beside a lantern-carrying robot, in a cartoon animation style",
+      "A still of a boy beside a lantern robot, playing in a video window",
     intro: [
       "We make animation that explains things quickly and holds attention. That includes motion graphics, animated logos, explainer videos and short social clips.",
       "Our motion graphics and animation services in Bangladesh help teams with an idea that is hard to show with a still image or plain footage. Movement makes products, processes and stories easier to follow.",
@@ -791,9 +791,9 @@ export const services: Record<ServiceSlug, Service> = {
     h1: "Illustration Services in Bangladesh",
     description:
       "Custom illustration services in Bangladesh: editorial art, product visuals and icon sets. Creative studio in Dhaka for global clients. Book a free call with us.",
-    image: "/work/tile-gultu.jpg",
+    image: "/work/tile-illustration.webp",
     imageAlt:
-      "Illustration of a child with a backpack and a small red fox standing in a misty forest",
+      "Gultu: a child with a backpack and a small red fox in a misty forest, framed on a green field",
     intro: [
       "We create original illustrations that give your content a clear, distinct look. They can explain an idea, support a story or make a product feel friendly.",
       "Our illustration services in Bangladesh suit publishers, brands and product teams that want art made for them, not stock images everyone else has used.",

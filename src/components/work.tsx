@@ -5,23 +5,23 @@ type Slug = (typeof workCategories)[number]["slug"];
 
 const clips: Record<Slug, { img: string; makes: string[] }> = {
   design: {
-    img: "/work/tile-design.jpg",
+    img: "/work/tile-design.webp",
     makes: ["Layouts and print", "Social assets", "Pitch decks"],
   },
   branding: {
-    img: "/work/tile-branding.jpg",
+    img: "/work/tile-branding.webp",
     makes: ["Logos", "Identity systems", "Brand guidelines"],
   },
   illustration: {
-    img: "/work/tile-gultu.jpg",
+    img: "/work/tile-illustration.webp",
     makes: ["Editorial pieces", "Product art", "Custom icons"],
   },
   animation: {
-    img: "/work/tile-animation.jpg",
+    img: "/work/tile-animation.webp",
     makes: ["Motion graphics", "Logo animation", "Explainers"],
   },
   "web-design": {
-    img: "/work/tile-web.jpg",
+    img: "/work/tile-web.webp",
     makes: [
       "CI/CD and cloud deploys",
       "APIs and databases",
@@ -29,7 +29,7 @@ const clips: Record<Slug, { img: string; makes: string[] }> = {
     ],
   },
   "video-editing": {
-    img: "/work/tile-video.jpg",
+    img: "/work/tile-video.webp",
     makes: ["Cuts and pacing", "Colour and sound", "Captions"],
   },
 };
