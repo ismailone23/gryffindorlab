@@ -45,14 +45,14 @@ export function Work() {
     <section
       id="work"
       aria-labelledby="work-heading"
-      className="bg-white pt-30 text-[#0a0a0a]"
+      className="bg-white py-30 text-[#0a0a0a]"
     >
       <div className="mx-auto max-w-360 px-(--gutter)">
         <h2 id="work-heading" className="section-title">
           Selected work<span className="text-ring">.</span>
         </h2>
       </div>
-      <ul className="m-0 mt-12 grid list-none p-0 min-[640px]:grid-cols-2 min-[1100px]:grid-cols-3">
+      <ul className="mx-auto mt-12 grid max-w-360 list-none gap-x-6 gap-y-12 px-(--gutter) min-[640px]:grid-cols-2 min-[1100px]:grid-cols-3">
         {workCategories.map((work, i) => (
           <li
             key={work.slug}
@@ -62,36 +62,43 @@ export function Work() {
             <Link
               href={`/case-studies/${work.slug}/`}
               aria-label={`${work.name} case study`}
-              className="group relative block aspect-4/3 overflow-hidden bg-[#0a0a0a] -outline-offset-4"
+              className="group block outline-offset-4"
             >
-              <img
-                src={clips[work.slug].img}
-                alt={`${work.name} project preview`}
-                className="size-full object-cover"
-              />
-              {/* LED panel: cells switch on one by one over the picture on hover (.led in index.css). */}
-              <span
-                aria-hidden="true"
-                className="absolute inset-0 grid grid-cols-16 grid-rows-12 gap-0.5 [@media(hover:none)]:hidden"
-              >
-                {Array.from({ length: COLS * ROWS }, (_, i) => (
-                  <span
-                    key={i}
-                    className="led"
-                    style={
-                      { "--d": `${scatter(i) * 16}ms` } as React.CSSProperties
-                    }
-                  />
-                ))}
+              <span className="relative block aspect-4/3 overflow-hidden bg-[#0a0a0a] ring-1 ring-black/10">
+                <img
+                  src={clips[work.slug].img}
+                  alt={`${work.name} project preview`}
+                  loading="lazy"
+                  className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04] motion-reduce:transition-none"
+                />
+                {/* LED panel: cells switch on one by one over the picture on hover (.led in index.css). */}
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 grid grid-cols-16 grid-rows-12 gap-0.5 [@media(hover:none)]:hidden"
+                >
+                  {Array.from({ length: COLS * ROWS }, (_, i) => (
+                    <span
+                      key={i}
+                      className="led"
+                      style={
+                        { "--d": `${scatter(i) * 16}ms` } as React.CSSProperties
+                      }
+                    />
+                  ))}
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="led-text absolute inset-0 grid place-items-center font-(family-name:--font-pixel) text-[clamp(18px,1.6vw,24px)] text-[#ededed] [@media(hover:none)]:hidden"
+                >
+                  View case study →
+                </span>
               </span>
-              <span className="led-text absolute inset-x-0 bottom-0 flex flex-col gap-2 p-[clamp(20px,2.4vw,32px)] text-[#ededed] [@media(hover:none)]:bg-black/75">
-                <span className="font-(family-name:--font-pixel) text-[clamp(22px,2.2vw,32px)] leading-none">
-                  {work.name}
-                  <span className="text-ring">.</span>
-                </span>
-                <span className="text-[15px] text-[#bdbdbd]">
-                  {clips[work.slug].makes.join(" · ")}
-                </span>
+              <span className="mt-5 block font-(family-name:--font-pixel) text-[clamp(22px,2vw,28px)] leading-none">
+                {work.name}
+                <span className="text-ring">.</span>
+              </span>
+              <span className="mt-2 block text-[15px] text-[#5c5c5c]">
+                {clips[work.slug].makes.join(" · ")}
               </span>
             </Link>
           </li>

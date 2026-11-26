@@ -35,17 +35,17 @@ export function SiteHeader() {
         aria-label="Main navigation"
         className="hidden gap-7 text-sm min-[721px]:flex"
       >
-        <a className="nav-link" href="#services">
+        <a className="nav-link" href="/#services">
           Services
         </a>
-        <a className="nav-link" href="#work">
+        <a className="nav-link" href="/#work">
           Work
         </a>
-        <a className="nav-link" href="#voices">
+        <a className="nav-link" href="/#voices">
           Voices
         </a>
       </nav>
-      <a href="#contact" className="white-button h-9.5 rounded-lg px-4 text-sm">
+      <a href="/#contact" className="white-button h-9.5 rounded-lg px-4 text-sm">
         Contact
       </a>
     </header>
