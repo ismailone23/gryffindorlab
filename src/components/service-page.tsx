@@ -247,8 +247,12 @@ export function ServicePage({ service }: { service: Service }) {
             {service.videos && (
               <section aria-label="Video work">
                 <ul className="m-0 grid list-none gap-6 p-0 min-[901px]:grid-cols-3">
-                  {service.videos.map((v) => (
-                    <li key={v.id}>
+                  {service.videos.map((v, i) => (
+                    <li
+                      key={v.id}
+                      data-reveal
+                      style={{ "--i": i % 3 } as React.CSSProperties}
+                    >
                       <iframe
                         src={`https://www.youtube-nocookie.com/embed/${v.id}`}
                         title={v.title}

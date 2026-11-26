@@ -400,6 +400,18 @@ export const services: Record<ServiceSlug, Service> = {
         id: "O2NH5wgz5uw",
         title: "Arms Trade Explained: অস্ত্র ব্যবসার ট্রিলিয়ন ডলারের খেলা",
       },
+      {
+        id: "__NHgbN9CRM",
+        title: "The Rise of Japan: জাপান কীভাবে ইউরোপের বাইরে প্রথম শিল্পোন্নত দেশ হলো?",
+      },
+      {
+        id: "jY_HhkcANP0",
+        title: "প্রথম বিশ্বযুদ্ধ কীভাবে শুরু হলো? দুটো গুলি থেকে গোটা ইউরোপে যুদ্ধ",
+      },
+      {
+        id: "4RLPr8NOPpo",
+        title: "Silicon Valley কীভাবে প্রযুক্তিকে নিয়ন্ত্রণ করছে!",
+      },
     ],
   },
 
