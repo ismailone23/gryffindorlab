@@ -141,50 +141,6 @@ export const services: Record<ServiceSlug, Service> = {
     related: ["design", "branding", "video-editing"],
     projects: [
       {
-        name: "CareWell",
-        href: "https://carewell.ismailh.dev",
-        summary:
-          "A healthcare platform where patients find doctors and book visits, and doctors manage their hours, queue and prescriptions. Lab tests and medicines are priced in the clinic's own list, and the assistant can answer what a test or medicine costs. The API runs on our own VPS with Docker and automatic HTTPS, and the web app is on Vercel.",
-        shots: [
-          {
-            src: "/work/carewell-patient-side.webp",
-            alt: "CareWell patient screens: the landing page and the doctor search with specialties and open times",
-            caption:
-              "For patients: a clear landing page, then search by name, specialty or location and book an open time.",
-          },
-          {
-            src: "/work/carewell-doctor-side.webp",
-            alt: "CareWell doctor screens: weekly hours and public profile, and today's patient queue",
-            caption:
-              "For doctors: set weekly hours in the clinic time zone, then work through today's queue in serial order.",
-          },
-          {
-            src: "/work/carewell-prescriptions.webp",
-            alt: "CareWell prescription writing screen next to an issued prescription ready to print",
-            caption:
-              "Prescriptions: write complaints, findings, diagnosis, tests and medicines in one screen, then print or save a clean PDF.",
-          },
-          {
-            src: "/work/carewell-ai-assistant.webp",
-            alt: "CareWell AI assistant chat where a patient types fever for 3 days and gets a suggested specialty",
-            caption:
-              "AI assistant: patients describe what they need in plain words, and it suggests a specialty and helps them book or ask for a new time. It handles bookings and prices only, not medical advice.",
-          },
-          {
-            src: "/work/carewell-architecture.webp",
-            alt: "CareWell production architecture: browser to Vercel, then Caddy, the API, Postgres and Redis on one Oracle VM in Docker",
-            caption:
-              "Architecture: the web app runs on Vercel and talks to a Dockerised API, Postgres and Redis behind Caddy with automatic HTTPS, all on one 1 GB Oracle VM.",
-          },
-          {
-            src: "/work/carewell-ops.webp",
-            alt: "Terminal on the CareWell server showing healthy Docker containers, a 200 health check, memory use and passing tests",
-            caption:
-              "In production: healthy containers, a 190 ms health check, memory use on the small VM and passing tests. The API shuts down gracefully, so deploys never cut a request in half.",
-          },
-        ],
-      },
-      {
         name: "Innovation Cauldron Foundation",
         href: "https://www.innovationcauldron.org",
         summary:
@@ -222,12 +178,6 @@ export const services: Record<ServiceSlug, Service> = {
             caption:
               "Six domains, each with the kinds of projects it covers and a link to browse them.",
           },
-          {
-            src: "/work/impact-process.webp",
-            alt: "Impact Matrix section explaining how a project goes from listed to reported, beside a photo of two boys on a bicycle",
-            caption:
-              "How it works, in four plain steps: listed, sorted, found and reported.",
-          },
         ],
       },
       {
@@ -247,38 +197,6 @@ export const services: Record<ServiceSlug, Service> = {
             alt: "Bangladesh Yoga Foundation about section with health, peace and harmony beside a beach yoga photo",
             caption:
               "What yoga means to the foundation, in three short lines next to a real class.",
-          },
-          {
-            src: "/work/yoga-founder.webp",
-            alt: "Founder section with a photo of Kazi Mahtab Shuman holding a certificate and his training listed",
-            caption:
-              "The founder, his training and a link to his certificate, so new students know who teaches them.",
-          },
-        ],
-      },
-      {
-        name: "BanglaLex",
-        href: "https://banglalex.ismailh.dev",
-        summary:
-          "Legal research on Bangladesh law where every citation is the exact text of the statute, with a link to its source. It indexes 1,683 acts and 48,281 provisions, answers in English or Bangla, runs AI courtroom hearings for practice, and works from AI coding tools over MCP.",
-        shots: [
-          {
-            src: "/work/banglalex-home.webp",
-            alt: "BanglaLex research screen on desktop and phone with example questions in English and Bangla",
-            caption:
-              "Ask a question in English or Bangla. Each answer cites the statute line by line.",
-          },
-          {
-            src: "/work/banglalex-hearing.webp",
-            alt: "BanglaLex courtroom simulator hearing with claimant and defence arguments, cited sections and a progress list",
-            caption:
-              "The courtroom simulator: AI counsel argue both sides of a bounced-cheque case, citing real sections, and an AI judge decides.",
-          },
-          {
-            src: "/work/banglalex-setup.webp",
-            alt: "BanglaLex developer setup page with the MCP endpoint and setup steps for coding agents",
-            caption:
-              "Developer setup: one MCP endpoint, no key, with steps for Devin, Claude Code, ChatGPT and others.",
           },
         ],
       },
@@ -515,20 +433,8 @@ export const services: Record<ServiceSlug, Service> = {
     related: ["branding", "product-development", "web-design"],
     gallery: [
       {
-        src: "/work/gd-gupi-gayen.webp",
-        alt: "Orange Bangla display lettering for Gupi Gayen Bagha Bayen on a light patterned background",
-        width: 1600,
-        height: 1000,
-      },
-      {
         src: "/work/gd-keno-poster.webp",
         alt: "Orange poster with black hand-drawn Bangla lettering and an ink splash figure",
-        width: 1600,
-        height: 1000,
-      },
-      {
-        src: "/work/gd-book-contents.webp",
-        alt: "Open book showing a contents page with seven numbered chapters",
         width: 1600,
         height: 1000,
       },
@@ -545,20 +451,8 @@ export const services: Record<ServiceSlug, Service> = {
         height: 1000,
       },
       {
-        src: "/work/gd-doodle.webp",
-        alt: "Colourful doodle poster full of planets, buildings, scientists and school items",
-        width: 1600,
-        height: 1000,
-      },
-      {
         src: "/work/gd-chithi-pathao.webp",
         alt: "Night-sea poem card with a woman on the shore and Bangla verse",
-        width: 1600,
-        height: 1000,
-      },
-      {
-        src: "/work/gd-book-spread.webp",
-        alt: "Open book spread pairing a line drawing of a circular grate with its photograph",
         width: 1600,
         height: 1000,
       },
@@ -765,12 +659,55 @@ export const services: Record<ServiceSlug, Service> = {
       },
     ],
     related: ["web-design", "design", "branding"],
+    projects: [
+      {
+        name: "CareWell",
+        href: "https://carewell.ismailh.dev",
+        summary:
+          "A healthcare platform where patients find doctors and book visits, and doctors manage their hours, queue and prescriptions. Lab tests and medicines are priced in the clinic's own list, and the assistant can answer what a test or medicine costs.",
+        shots: [
+          {
+            src: "/work/carewell-patient-side.webp",
+            alt: "CareWell patient screens: the landing page and the doctor search with specialties and open times",
+            caption:
+              "For patients: a clear landing page, then search by name, specialty or location and book an open time.",
+          },
+          {
+            src: "/work/carewell-doctor-side.webp",
+            alt: "CareWell doctor screens: weekly hours and public profile, and today's patient queue",
+            caption:
+              "For doctors: set weekly hours in the clinic time zone, then work through today's queue in serial order.",
+          },
+          {
+            src: "/work/carewell-ai-assistant.webp",
+            alt: "CareWell AI assistant chat where a patient types fever for 3 days and gets a suggested specialty",
+            caption:
+              "AI assistant: patients describe what they need in plain words, and it suggests a specialty and helps them book or ask for a new time. It handles bookings and prices only, not medical advice.",
+          },
+        ],
+      },
+      {
+        name: "BanglaLex",
+        href: "https://banglalex.ismailh.dev",
+        summary:
+          "Legal research on Bangladesh law where every citation is the exact text of the statute, with a link to its source. It indexes 1,683 acts and 48,281 provisions, answers in English or Bangla and runs AI courtroom hearings for practice.",
+        shots: [
+          {
+            src: "/work/banglalex-home.webp",
+            alt: "BanglaLex research screen on desktop and phone with example questions in English and Bangla",
+            caption:
+              "Ask a question in English or Bangla. Each answer cites the statute line by line.",
+          },
+          {
+            src: "/work/banglalex-hearing.webp",
+            alt: "BanglaLex courtroom simulator hearing with claimant and defence arguments, cited sections and a progress list",
+            caption:
+              "The courtroom simulator: AI counsel argue both sides of a bounced-cheque case, citing real sections, and an AI judge decides.",
+          },
+        ],
+      },
+    ],
   },
 };
-
-// Product development shows our own products, the same write-ups as on the web page.
-services["product-development"].projects = services["web-design"].projects!.filter(
-  (p) => p.name === "CareWell" || p.name === "BanglaLex",
-);
 
 export const serviceSlugs = Object.keys(services) as ServiceSlug[];

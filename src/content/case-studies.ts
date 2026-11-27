@@ -17,16 +17,8 @@ const empty: CaseStudyData = {
 };
 
 export const caseStudies: Record<ServiceSlug, CaseStudyData> = {
-  // Written from what the live app does; add real outcomes or numbers only when you have them.
-  "web-design": {
-    client: "CareWell, a healthcare booking platform (our own build)",
-    challenge:
-      "Booking a doctor often means phone calls, paper notes and records kept in different places. CareWell needed one place where patients find a doctor and book a visit, doctors manage their time, and health records stay with the patient.",
-    approach:
-      "We built separate patient and doctor workspaces behind one sign-in. Patients search by name, specialty or location and book open times. Doctors set weekly hours in the Asia/Dhaka time zone, review appointment requests and work through a serial-ordered queue. An AI assistant helps patients choose a specialty and book or ask for a new time. Doctors order lab tests and prescribe medicines from a priced list, and the assistant can answer what a test or medicine costs. Prescriptions and care plans appear in the patient's health records. The API runs in Docker on our own VPS behind automatic HTTPS.",
-    result:
-      "A live platform with doctor search, booking, availability, a daily patient queue, an AI booking assistant and health records. You can try it at carewell.ismailh.dev.",
-  },
+  // CareWell moved to product development; add a client website case here when there is one.
+  "web-design": { ...empty },
   // Draft from the public channel; confirm the details and add real results (views, watch time) if you have them.
   "video-editing": {
     client: "Nahin Munker Sajin, a Bengali YouTube channel",
@@ -49,6 +41,14 @@ export const caseStudies: Record<ServiceSlug, CaseStudyData> = {
   },
   // TODO: real client project
   branding: { ...empty },
-  // The CareWell and BanglaLex write-ups above carry this page; add a client case when there is one.
-  "product-development": { ...empty },
+  // Written from what the live app does; add real outcomes or numbers only when you have them.
+  "product-development": {
+    client: "CareWell, a healthcare booking platform (our own build)",
+    challenge:
+      "Booking a doctor often means phone calls, paper notes and records kept in different places. CareWell needed one place where patients find a doctor and book a visit, doctors manage their time, and health records stay with the patient.",
+    approach:
+      "We built separate patient and doctor workspaces behind one sign-in. Patients search by name, specialty or location and book open times. Doctors set weekly hours in the clinic's time zone, review appointment requests and work through the day's queue in order. An AI assistant helps patients choose a specialty and book or ask for a new time. Doctors order lab tests and prescribe medicines from a priced list, and the assistant can answer what a test or medicine costs. Prescriptions and care plans appear in the patient's health records.",
+    result:
+      "A live platform with doctor search, booking, availability, a daily patient queue, an AI booking assistant and health records. You can try it at carewell.ismailh.dev.",
+  },
 };

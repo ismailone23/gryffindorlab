@@ -208,26 +208,8 @@ textarea {
     transform: none;
   }
 }
-@keyframes pop {
-  from {
-    opacity: 0;
-    transform: scale(0.6);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
 .rise {
   animation: rise 1s var(--ease-out) both;
-}
-.pin {
-  animation: pop 0.5s var(--ease-out) both;
-}
-.builder-layer {
-  transition:
-    opacity 0.6s var(--ease-out),
-    transform 0.6s var(--ease-out);
 }
 /* Scroll reveal (see useReveal in App.tsx). --i staggers siblings by 90ms. */
 .js-reveal :is(.section-title, [data-reveal]) {
