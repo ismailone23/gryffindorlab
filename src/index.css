@@ -16,7 +16,7 @@
   --color-border: var(--rule);
   --color-input: var(--rule);
   --color-ring: var(--orange);
-  --font-sans: var(--font-geist), "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--font-moderno), var(--font-geist), "Helvetica Neue", Arial, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --radius-sm: 4px;
   --radius-md: 6px;
@@ -24,7 +24,7 @@
 }
 
 :root {
-  font-family: var(--font-geist), "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-moderno), var(--font-geist), "Helvetica Neue", Arial, sans-serif;
   letter-spacing: -0.01em;
   color: #f4f4f4;
   background: #000000;
@@ -39,7 +39,7 @@
   --soft: #252525;
   --rule: #383838;
   --orange: #fc6749;
-  --display: var(--font-geist), "Helvetica Neue", Arial, sans-serif;
+  --display: var(--font-moderno), var(--font-geist), "Helvetica Neue", Arial, sans-serif;
   --gutter: clamp(16px, 2.6vw, 36px);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -102,6 +102,7 @@ textarea {
 .nav-link {
   position: relative;
   padding-block: 6px;
+  font-weight: 500;
   color: #bdbdbd;
   transition: color 0.2s;
 }
@@ -135,7 +136,7 @@ textarea {
   background: #262626;
 }
 .group:hover .px[data-b] {
-  background: #ededed;
+  background: var(--orange);
 }
 @media (prefers-reduced-motion: reduce) {
   .px {
@@ -148,7 +149,8 @@ textarea {
   background: rgb(10 10 10 / 0.66);
   outline: 1px solid rgb(0 0 0 / 0.9);
   opacity: 0;
-  transition: opacity 40ms linear var(--d);
+  /* Leaving clears the panel at once; only the switch-on is staggered. */
+  transition: opacity 120ms ease-out;
 }
 .led-text {
   opacity: 0;
@@ -157,6 +159,7 @@ textarea {
 .group:hover .led,
 .group:focus-visible .led {
   opacity: 1;
+  transition: opacity 40ms linear var(--d);
 }
 .group:hover .led-text,
 .group:focus-visible .led-text {

@@ -16,7 +16,7 @@ import { siteUrl } from "@/lib/site";
 const url = siteUrl + "/case-studies";
 const title = "Case Studies and Services in Bangladesh | Gryffindorlab";
 const description =
-  "Explore Gryffindorlab services and case studies: web development, video editing, graphic design, branding, animation and illustration from Dhaka, Bangladesh.";
+  "Explore Gryffindorlab services and case studies: web development, product development, video editing, graphic design and branding from Dhaka, Bangladesh.";
 
 export const metadata: Metadata = {
   title,
@@ -71,7 +71,9 @@ const makes = (slug: ServiceSlug) =>
     .map((i) => i.title)
     .join(" · ");
 // Image eases up slightly on hover, only for real pointers.
-const frame = "relative block overflow-hidden rounded-xl";
+// Frame dips on press so the tap feels heard.
+const frame =
+  "relative block overflow-hidden rounded-xl transition-transform duration-150 ease-out group-active:scale-[0.98] motion-reduce:transition-none";
 const zoom =
   "aspect-4/3 w-full object-cover transition-transform duration-700 ease-(--ease-out) motion-reduce:transition-none [@media(hover:hover)]:group-hover:scale-[1.03]";
 const focus =
@@ -96,7 +98,7 @@ export default function CaseStudies() {
               Case studies<span className="text-ring">.</span>
             </h1>
             <p className="m-0 max-w-xl text-lg leading-[1.55] text-foreground/80 min-[901px]:justify-self-end min-[901px]:text-xl">
-              Six things we make at our studio in Dhaka, Bangladesh. Each page
+              Five things we make at our studio in Dhaka, Bangladesh. Each page
               shows our work, what you get and how a job runs from brief to
               launch.
             </p>
@@ -132,7 +134,7 @@ export default function CaseStudies() {
                 <p className="m-0 text-sm text-muted-foreground">
                   {makes(f.slug)}
                 </p>
-                <span className="mt-2 font-medium transition-colors group-hover:text-ring">
+                <span className="mt-2 font-medium transition-colors [@media(hover:hover)]:group-hover:text-ring">
                   Read the case study →
                 </span>
               </div>
@@ -163,7 +165,7 @@ export default function CaseStudies() {
                       />
                     </span>
                     <span className="flex items-baseline justify-between gap-4">
-                      <h2 className="m-0 text-[clamp(22px,2vw,26px)] leading-[1.05] font-medium tracking-[-0.04em] transition-colors group-hover:text-ring">
+                      <h2 className="m-0 text-[clamp(22px,2vw,26px)] leading-[1.05] font-medium tracking-[-0.04em] transition-colors [@media(hover:hover)]:group-hover:text-ring">
                         {s.name}
                         <span className="text-ring">.</span>
                       </h2>
@@ -178,7 +180,7 @@ export default function CaseStudies() {
           </ul>
           <section
             data-reveal
-            className="mt-32 flex flex-wrap items-end justify-between gap-8 rounded-3xl bg-white/[0.05] p-6 min-[640px]:p-10 min-[901px]:p-16"
+            className="mt-32 flex flex-wrap items-end justify-between gap-8 rounded-3xl bg-white/5 p-6 min-[640px]:p-10 min-[901px]:p-16"
           >
             <div>
               <h2 className="m-0 font-(family-name:--display) text-[clamp(28px,3vw,40px)] leading-[1.1] font-medium tracking-[-0.04em]">

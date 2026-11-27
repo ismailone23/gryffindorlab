@@ -6,8 +6,7 @@ export type ServiceSlug =
   | "video-editing"
   | "design"
   | "branding"
-  | "animation"
-  | "illustration";
+  | "product-development";
 
 export type Service = {
   slug: ServiceSlug;
@@ -385,7 +384,7 @@ export const services: Record<ServiceSlug, Service> = {
         a: "Yes. We are based in Dhaka and work with clients worldwide. Files move through cloud folders and review links.",
       },
     ],
-    related: ["animation", "design", "web-design"],
+    related: ["product-development", "design", "web-design"],
     videos: [
       {
         id: "6lCQbjz35zw",
@@ -513,7 +512,7 @@ export const services: Record<ServiceSlug, Service> = {
         a: "Yes. We work from Dhaka with clients worldwide and handle everything online.",
       },
     ],
-    related: ["branding", "illustration", "web-design"],
+    related: ["branding", "product-development", "web-design"],
     gallery: [
       {
         src: "/work/gd-gupi-gayen.webp",
@@ -664,267 +663,114 @@ export const services: Record<ServiceSlug, Service> = {
         a: "Yes. We are in Dhaka and work online with clients worldwide.",
       },
     ],
-    related: ["design", "web-design", "illustration"],
+    related: ["design", "web-design", "product-development"],
   },
 
-  animation: {
-    slug: "animation",
-    name: "Animation",
-    h1: "Animation and Motion Graphics in Bangladesh",
+  "product-development": {
+    slug: "product-development",
+    name: "Product Development",
+    h1: "Product Development in Bangladesh",
     description:
-      "Animation and motion graphics in Bangladesh: logo animation, explainers and social motion from a Dhaka studio for global clients. Book a free call with us.",
-    image: "/work/tile-animation.webp",
+      "Product development in Dhaka, Bangladesh: we take a software idea from first sketch to a live product with AI features, for founders worldwide. Book a call.",
+    image: "/work/tile-product.webp",
     imageAlt:
-      "A still of a boy beside a lantern robot, playing in a video window",
+      "CareWell in two browser windows: the Find a doctor home page and the doctor search list",
     intro: [
-      "We make animation that explains things quickly and holds attention. That includes motion graphics, animated logos, explainer videos and short social clips.",
-      "Our motion graphics and animation services in Bangladesh help teams with an idea that is hard to show with a still image or plain footage. Movement makes products, processes and stories easier to follow.",
-      "Gryffindorlab is a creative studio in Dhaka, Bangladesh. We work with clients worldwide.",
-      "Animation takes planning. Before we move anything, we agree on the message, the length and the visual style. A short script and storyboard save a lot of rework, because changes are cheap on paper and costly after animation.",
-      "We keep motion simple and purposeful. Each movement should guide the eye or explain a step. Heavy effects that distract from the message are left out.",
-      "Animated pieces often need to work in many places at once: a website, a pitch, social feeds. We plan sizes and file types early so the same work can be reused.",
-      "We also work with what you already have. Existing logos, icons and brand colours can be animated directly, which keeps costs down and keeps the result consistent with your other materials.",
-      "We also think about sound. Even a short logo animation feels better with a clean sound effect, and an explainer needs balanced music and voice. We include simple sound design so the finished piece feels complete.",
+      "We turn a product idea into working software people can sign up for and use. Design, code, AI features and hosting are handled by one small team.",
+      "It suits founders and teams who have a clear problem to solve but no product team yet. If you are looking for product development in Bangladesh that goes past a mock-up to a live launch, that is what we do.",
+      "Gryffindorlab is a creative studio based in Dhaka, Bangladesh. We work with clients in Bangladesh and around the world.",
+      "We start small on purpose. Together we pick the few features that prove the idea, build those well, and put them in front of real users before adding more.",
+      "The products below are our own: CareWell, a doctor booking platform, and BanglaLex, a legal research tool for Bangladesh law. Both are live, and both were planned, designed, built and launched by us.",
+      "After launch we keep improving the product with you, based on what users actually do. Code stays tidy and documented, so your own developers can take over whenever you are ready.",
     ],
     included: [
       {
-        title: "Motion graphics",
-        text: "Animated text, shapes and data for ads, intros and social media.",
+        title: "Product discovery",
+        text: "We agree on the problem, the users and the smallest version worth building.",
       },
       {
-        title: "Logo animation",
-        text: "Short logo reveals for videos, presentations and websites.",
+        title: "UX and interface design",
+        text: "Flows and screens tested as clickable prototypes before any code.",
       },
       {
-        title: "Explainer videos",
-        text: "Script-to-screen animated videos that explain a product or idea.",
+        title: "MVP build",
+        text: "Web app, API and database, built to grow past the first release.",
       },
       {
-        title: "Storyboards",
-        text: "Frame-by-frame plans you approve before animation begins.",
+        title: "AI features",
+        text: "Assistants, search and summaries powered by language models, where they help users.",
       },
       {
-        title: "Sound and voice-over sync",
-        text: "Timing matched to music, effects and narration.",
+        title: "Launch and hosting",
+        text: "Cloud deploys, automatic releases and monitoring from day one.",
       },
       {
-        title: "Web-ready exports",
-        text: "Video, GIF or lightweight formats sized for each channel.",
+        title: "Iteration after launch",
+        text: "New features and fixes guided by real usage.",
       },
     ],
     process: [
-      "You describe the message, the audience and where the animation will appear.",
-      "We write or refine the script, agree on length and style, and draw a storyboard.",
-      "We design the frames, animate them, and add music and sound.",
-      "You review a draft animation. We adjust timing, visuals and text.",
-      "We export the final files and share them in the formats you chose.",
+      "You tell us the idea, who it is for and what success looks like.",
+      "We agree on the first version, map the main flows and set a timeline.",
+      "We design and build in short cycles, with a working preview you can try each week.",
+      "You test with real users. We fix, polish and tighten what they struggle with.",
+      "We launch, watch how it is used and plan the next release with you.",
     ],
     tools: [
-      "Adobe After Effects",
-      "Adobe Illustrator",
-      "Blender",
-      "Lottie",
-      "Adobe Premiere Pro",
-      "Audition",
+      "Figma",
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Docker",
+      "OpenAI and Claude APIs",
     ],
     audience: [
       {
-        title: "Startups and software products",
-        text: "Short explainers that show how the product works.",
+        title: "Founders",
+        text: "A first version you can show users and investors.",
       },
       {
-        title: "Marketing teams",
-        text: "Animated ads and social clips that stand out in the feed.",
+        title: "Small businesses",
+        text: "Internal tools and customer apps that replace spreadsheets and paperwork.",
       },
       {
-        title: "Educators and course makers",
-        text: "Visuals that make hard topics simple.",
+        title: "Non-profits and public projects",
+        text: "Platforms that put services and information online.",
       },
       {
-        title: "Video creators",
-        text: "Intros, lower thirds and transitions with a custom look.",
+        title: "Product teams",
+        text: "Extra hands to design and ship a feature or a new product line.",
       },
     ],
     faqs: [
       {
-        q: "How is animation priced?",
-        a: "By length, style and complexity. We quote after reviewing the idea and the script, before starting.",
+        q: "How is product development priced?",
+        a: "We scope the first version together and quote for it before we start. Later releases are quoted separately or covered by a monthly arrangement.",
       },
       {
-        q: "How long does an animation take?",
-        a: "A short logo reveal is quick. An explainer takes longer because of scripting, storyboards and animation. We set dates in the plan.",
+        q: "How long does a first version take?",
+        a: "It depends on the scope. We agree a timeline in the plan and share a working preview every week, so you see progress as it happens.",
       },
       {
-        q: "How many revisions can I request?",
-        a: "Changes are easiest at storyboard stage. We agree revision rounds up front for each phase.",
+        q: "Who owns the code?",
+        a: "You do. We hand over the code, the accounts and the documentation at launch.",
       },
       {
-        q: "What formats will I get?",
-        a: "MP4 as standard, plus GIF, WebM or Lottie where it suits the use. Source files can be added if agreed.",
+        q: "Can you add AI to an existing product?",
+        a: "Yes. We add assistants, search or summaries to what you already have, and we tell you plainly when AI is not the right fit.",
       },
       {
         q: "Do you work with international clients?",
-        a: "Yes. We work from Dhaka with clients worldwide and share work through online review links.",
+        a: "Yes. We work from Dhaka with clients worldwide, over video calls and shared project boards.",
       },
     ],
-    related: ["video-editing", "illustration", "branding"],
-    videos: [
-      {
-        id: "jY_HhkcANP0",
-        title: "প্রথম বিশ্বযুদ্ধ কীভাবে শুরু হলো? দুটো গুলি থেকে গোটা ইউরোপে যুদ্ধ",
-      },
-      {
-        id: "__NHgbN9CRM",
-        title:
-          "The Rise of Japan: জাপান কীভাবে ইউরোপের বাইরে প্রথম শিল্পোন্নত দেশ হলো?",
-      },
-      {
-        id: "4RLPr8NOPpo",
-        title: "Silicon Valley কীভাবে প্রযুক্তিকে নিয়ন্ত্রণ করছে!",
-      },
-    ],
-  },
-
-  illustration: {
-    slug: "illustration",
-    name: "Illustration",
-    h1: "Illustration Services in Bangladesh",
-    description:
-      "Custom illustration services in Bangladesh: editorial art, product visuals and icon sets. Creative studio in Dhaka for global clients. Book a free call with us.",
-    image: "/work/tile-illustration.webp",
-    imageAlt:
-      "Gultu: a child with a backpack and a small red fox in a misty forest, framed on a green field",
-    intro: [
-      "We create original illustrations that give your content a clear, distinct look. They can explain an idea, support a story or make a product feel friendly.",
-      "Our illustration services in Bangladesh suit publishers, brands and product teams that want art made for them, not stock images everyone else has used.",
-      "Gryffindorlab is a creative studio in Dhaka, Bangladesh. We work with clients worldwide.",
-      "Illustration lets you show things a camera cannot, like an idea, a process or a mood. It also helps a brand stand out when most competitors use the same stock photos and icons.",
-      "We start with rough sketches so you can steer the direction early. Once the composition and style are agreed, we move to colour and detail, which keeps the number of big changes low.",
-      "We care about consistency. If you need ten pieces, they should look like the same hand made them, with matching line weight, colour and level of detail.",
-      "Rights are clear from the start. We agree where the artwork can be used, such as print, web or packaging, and put it in writing, so you can publish with confidence.",
-      "We can adapt a style over time. If your first set works well, we can extend it with new scenes, seasonal variations or extra icons, without changing the look your audience already knows.",
-      "Illustration also works well beside your other creative work. The same artwork can appear on a website, in a video intro, on packaging and in social posts. We plan for that reuse early, so each piece is drawn with space for text and a clean crop for small screens. Good briefs help too: tell us the feeling, the audience and where it will appear, and we handle the rest.",
-    ],
-    included: [
-      {
-        title: "Editorial illustration",
-        text: "Images for articles, newsletters, reports and book pages.",
-      },
-      {
-        title: "Product and website art",
-        text: "Hero images, spot illustrations and empty-state graphics.",
-      },
-      {
-        title: "Custom icon sets",
-        text: "Matching icons in one consistent style.",
-      },
-      {
-        title: "Character design",
-        text: "Mascots and characters for brands, apps and stories.",
-      },
-      {
-        title: "Social and marketing art",
-        text: "Illustrations sized for posts, banners and campaigns.",
-      },
-      {
-        title: "Layered source files",
-        text: "Editable files so your team can adapt the artwork later.",
-      },
-    ],
-    process: [
-      "You share the subject, the audience, and examples of styles you like.",
-      "We agree on the number of pieces, style, size and timeline.",
-      "We sketch, then you pick a direction before we move to full colour.",
-      "You review the finished art with clear notes. We refine details.",
-      "We deliver final files in the formats you need, with usage notes.",
-    ],
-    tools: [
-      "Adobe Illustrator",
-      "Adobe Photoshop",
-      "Procreate",
-      "Figma",
-      "Affinity Designer",
-    ],
-    audience: [
-      {
-        title: "Publishers and writers",
-        text: "Cover and article art that fits the story.",
-      },
-      {
-        title: "Brands and agencies",
-        text: "A custom visual style for campaigns and websites.",
-      },
-      {
-        title: "Software and app teams",
-        text: "Friendly illustrations for onboarding, help pages and marketing.",
-      },
-      {
-        title: "Educators",
-        text: "Clear visuals for books, slides and courses.",
-      },
-    ],
-    faqs: [
-      {
-        q: "How do you price illustration?",
-        a: "By number of pieces, detail and use. We quote after you explain the project and share references.",
-      },
-      {
-        q: "How long does an illustration take?",
-        a: "A single piece takes a few days to a couple of weeks. Sets take longer. We confirm timing in the plan.",
-      },
-      {
-        q: "How many revisions are included?",
-        a: "We include sketch-stage and final-stage revision rounds, agreed before we begin.",
-      },
-      {
-        q: "What files will I receive?",
-        a: "PNG and JPG for general use, SVG or PDF for vector work, and layered source files when agreed.",
-      },
-      {
-        q: "Do you work with clients outside Bangladesh?",
-        a: "Yes. We work from Dhaka with clients worldwide, fully online.",
-      },
-    ],
-    related: ["design", "animation", "branding"],
-    gallery: [
-      {
-        src: "/work/il-girl-in-saree.webp",
-        alt: "Flat-style illustration of a woman in a red saree framed by green leaves",
-        width: 1600,
-        height: 1000,
-      },
-      {
-        src: "/work/il-gultu-sky.webp",
-        alt: "A child and a red fox in a misty forest beside a figure rising from a night sea in teal swirls",
-        width: 1600,
-        height: 1000,
-      },
-      {
-        src: "/work/il-feluda.webp",
-        alt: "Illustration of a crowd of men in blue and maroon tones with a detective in the centre",
-        width: 1600,
-        height: 1000,
-      },
-      {
-        src: "/work/il-misir-ali.webp",
-        alt: "Illustration of a man in a light shirt surrounded by floating books and stacks of old books",
-        width: 1600,
-        height: 1000,
-      },
-      {
-        src: "/work/il-mecha-mustafiz.webp",
-        alt: "A boy beside a lantern robot at night, next to a cricket bowler in a green kit mid-delivery",
-        width: 1600,
-        height: 1000,
-      },
-      {
-        src: "/work/il-mustafiz.webp",
-        alt: "Painting of a Bangladesh fast bowler in green mid-delivery in front of a stadium crowd",
-        width: 1600,
-        height: 1000,
-      },
-    ],
+    related: ["web-design", "design", "branding"],
   },
 };
+
+// Product development shows our own products, the same write-ups as on the web page.
+services["product-development"].projects = services["web-design"].projects!.filter(
+  (p) => p.name === "CareWell" || p.name === "BanglaLex",
+);
 
 export const serviceSlugs = Object.keys(services) as ServiceSlug[];

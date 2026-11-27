@@ -6,7 +6,8 @@ import { motion, useScroll, useSpring, useTransform, type MotionValue } from "fr
 // Adapted from the 21st.dev "perspective-tunnel-hero": progress comes from real page scroll
 // over a pinned stage (no wheel hijacking), colours follow the site, cards are decorative and still (no pointer drift).
 
-export type TunnelItem = { src: string; title: string };
+// crop: [x, y, w, h] in px of a 1280x960 source; the card shows only that box.
+export type TunnelItem = { src: string; title: string; crop: [number, number, number, number] };
 
 type Card = {
   item: TunnelItem;
@@ -63,13 +64,25 @@ function TunnelCard({
     (currZ) => `translate3d(calc(-50% + ${baseX}px), calc(-50% + ${baseY}px), ${currZ}px) rotateZ(${card.rotationZ}deg)`,
   );
 
+  const [cx, cy, cw, ch] = card.item.crop;
+
   return (
     <motion.div
-      style={{ width, transform, opacity, zIndex: card.index + 1 }}
-      className="absolute top-1/2 left-1/2 aspect-[4/5] will-change-transform"
+      style={{ width, aspectRatio: `${cw} / ${ch}`, transform, opacity, zIndex: card.index + 1 }}
+      className="absolute top-1/2 left-1/2 will-change-transform"
     >
-      <div className="relative size-full overflow-hidden rounded-2xl bg-[#111] shadow-2xl shadow-black/90 ring-1 ring-white/12">
-        <img src={card.item.src} alt="" draggable={false} className="size-full object-cover" />
+      <div className="relative size-full overflow-hidden rounded-lg shadow-2xl shadow-black/90">
+        <img
+          src={card.item.src}
+          alt=""
+          draggable={false}
+          className="absolute max-w-none"
+          style={{
+            width: `${(1280 / cw) * 100}%`,
+            left: `${(-cx / cw) * 100}%`,
+            top: `${(-cy / ch) * 100}%`,
+          }}
+        />
         <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/80 via-black/10 to-transparent p-4">
           <span className="font-(family-name:--font-pixel) text-xs text-white/95">{card.item.title}</span>
         </div>

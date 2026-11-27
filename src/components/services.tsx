@@ -9,16 +9,15 @@ export const serviceList = [
     name: "Video editing",
     makes: "Cuts and pacing · Colour and sound · Captions",
   },
-  { name: "Animation", makes: "Motion graphics · Logo animation · Explainers" },
+  {
+    name: "Product development",
+    makes: "MVPs · AI features · Launch and iteration",
+  },
   {
     name: "Graphic design",
     makes: "Layouts and print · Social assets · Pitch decks",
   },
   { name: "Branding", makes: "Logos · Identity systems · Brand guidelines" },
-  {
-    name: "Illustration",
-    makes: "Editorial pieces · Product art · Custom icons",
-  },
 ];
 
 export function Services() {

@@ -2,7 +2,7 @@
 const faqs = [
   {
     q: "What do you work on?",
-    a: "Video editing, website development, graphic design, branding, animation and illustration.",
+    a: "Video editing, website development, product development, graphic design and branding.",
   },
   {
     q: "How do we start?",

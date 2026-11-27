@@ -14,7 +14,7 @@ const choices = [
       design: "Graphic design",
     }[s.id],
   })),
-  { service: ANY_SERVICE, icon: "Branding" },
+  { service: ANY_SERVICE, icon: "Everything" },
 ];
 
 export function StartHere({ onPick }: { onPick: (service: string) => void }) {
