@@ -49,16 +49,6 @@ export const caseStudies: Record<ServiceSlug, CaseStudyData> = {
   },
   // TODO: real client project
   branding: { ...empty },
-  // TODO: real client project
-  animation: { ...empty },
-  // Draft from the artwork shown above; confirm the details and add real results if you have them.
-  illustration: {
-    client: "Character and editorial illustration series (portfolio work)",
-    challenge:
-      "Illustrations for stories and articles need a consistent look, so a set of pieces feels like it was made by one hand.",
-    approach:
-      "We kept line, colour palette and level of detail steady across the series, and worked from rough sketches to full colour so the direction was agreed early.",
-    result:
-      "A series of finished illustrations, from forest scenes to book-filled interiors, shown in the work above.",
-  },
+  // The CareWell and BanglaLex write-ups above carry this page; add a client case when there is one.
+  "product-development": { ...empty },
 };

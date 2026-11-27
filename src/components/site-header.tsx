@@ -38,9 +38,6 @@ export function SiteHeader() {
         <a className="nav-link" href="/#services">
           Services
         </a>
-        <a className="nav-link" href="/#work">
-          Work
-        </a>
         <a className="nav-link" href="/#voices">
           Voices
         </a>

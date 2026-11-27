@@ -1,3 +1,11 @@
+import { Facebook, Instagram, Linkedin, MapPin } from "lucide-react";
+
+const socials = [
+  ["Facebook", Facebook],
+  ["LinkedIn", Linkedin],
+  ["Instagram", Instagram],
+] as const;
+
 // figlet "ANSI Regular", same block font as the hero headline; the trailing "██" is the orange full stop.
 const wordmark = [
   " ██████  ██████  ██    ██ ███████ ███████ ██ ███    ██ ██████   ██████  ██████  ██       █████  ██████",
@@ -24,11 +32,25 @@ export function SiteFooter() {
             ))}
           </pre>
         </div>
-        <div className="mt-10 font-(family-name:--font-pixel) text-[13px]">
-          <span>
-            © {new Date().getFullYear()} Gryffindorlab · Creative studio in
-            Bangladesh
-          </span>
+        <div className="mt-10 flex flex-wrap items-end justify-between gap-6 text-sm">
+          <div className="grid gap-3">
+            <address className="flex items-center gap-2 text-base text-[#ededed] not-italic">
+              <MapPin aria-hidden="true" className="size-4 shrink-0 text-ring" />
+              Suvastu Rialto Tower, Level-7, Dhanmondi 4A
+            </address>
+            <span>
+              © {new Date().getFullYear()} Gryffindorlab · Creative studio in
+              Bangladesh
+            </span>
+          </div>
+          {/* shortcut: logos only, no profile links yet; wrap each in <a href> once the URLs exist. */}
+          <ul className="m-0 flex list-none gap-5 p-0 text-[#ededed]">
+            {socials.map(([label, Icon]) => (
+              <li key={label}>
+                <Icon role="img" aria-label={label} className="size-5" />
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </footer>

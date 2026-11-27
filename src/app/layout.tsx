@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Silkscreen } from "next/font/google";
+import { Geist, Geist_Mono, MuseoModerno, Silkscreen } from "next/font/google";
 import { siteUrl } from "@/lib/site";
 import "../index.css";
 
@@ -14,11 +14,17 @@ const pixel = Silkscreen({
   variable: "--font-pixel",
 });
 
+// Trial: site-wide text face (closest Google Fonts match to "Moderna"; the dafont Moderna has no digits).
+const moderno = MuseoModerno({
+  subsets: ["latin"],
+  variable: "--font-moderno",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Gryffindorlab | Creative Studio",
   description:
-    "Gryffindorlab is a creative studio in Bangladesh: web design and website development, video editing, graphic design, branding and animation for clients worldwide.",
+    "Gryffindorlab is a creative studio in Bangladesh: web design and website development, video editing, product development, graphic design and branding for clients worldwide.",
   keywords: [
     "creative studio in Bangladesh",
     "creative agency in Bangladesh",
@@ -31,8 +37,8 @@ export const metadata: Metadata = {
     "creative design agency Bangladesh",
     "branding agency in Bangladesh",
     "logo design Bangladesh",
-    "motion graphics and animation Bangladesh",
-    "illustration services Bangladesh",
+    "product development Bangladesh",
+    "MVP development Bangladesh",
     "web design Dhaka",
     "Gryffindorlab",
   ],
@@ -46,7 +52,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${geist.variable} ${geistMono.variable} ${pixel.variable}`}
+      className={`${geist.variable} ${geistMono.variable} ${pixel.variable} ${moderno.variable}`}
     >
       <body>{children}</body>
     </html>

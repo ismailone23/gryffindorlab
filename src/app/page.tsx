@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Gryffindorlab | Creative Studio",
     description:
-      "Gryffindorlab is a creative studio in Bangladesh: web design and website development, video editing, graphic design, branding and animation for clients worldwide.",
+      "Gryffindorlab is a creative studio in Bangladesh: web design and website development, video editing, product development, graphic design and branding for clients worldwide.",
     siteName: "Gryffindorlab",
     locale: "en_US",
     type: "website",
@@ -34,7 +34,7 @@ const organization = {
   email: "info@gryffindorlab.com",
   image: siteUrl + "/og-image.png",
   description:
-    "Gryffindorlab is a creative studio in Bangladesh: web design and website development, video editing, graphic design, branding and animation for clients worldwide.",
+    "Gryffindorlab is a creative studio in Bangladesh: web design and website development, video editing, product development, graphic design and branding for clients worldwide.",
   address: { "@type": "PostalAddress", addressCountry: "BD" },
   areaServed: ["Bangladesh", "Worldwide"],
   knowsAbout: [
@@ -43,7 +43,7 @@ const organization = {
     "Video editing",
     "Graphic design",
     "Branding",
-    "Animation",
+    "Product development",
   ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",

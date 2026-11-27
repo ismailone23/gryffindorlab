@@ -5,13 +5,13 @@ import PerspectiveTunnelHero, {
   type TunnelItem,
 } from "@/components/ui/perspective-tunnel-hero";
 
+// crop: the piece inside each 1280x960 tile, without its coloured backdrop.
 const tunnelItems: TunnelItem[] = [
-  { src: "/work/tile-web.jpg", title: "Website development" },
-  { src: "/work/tile-video.jpg", title: "Video editing" },
-  { src: "/work/tile-design.jpg", title: "Graphic design" },
-  { src: "/work/tile-branding.jpg", title: "Branding" },
-  { src: "/work/tile-animation.jpg", title: "Animation" },
-  { src: "/work/tile-gultu.jpg", title: "Illustration" },
+  { src: "/work/tile-web.webp", title: "Website development", crop: [256, 229, 768, 515] },
+  { src: "/work/tile-video.webp", title: "Video editing", crop: [256, 255, 768, 464] },
+  { src: "/work/tile-design.webp", title: "Graphic design", crop: [269, 266, 743, 442] },
+  { src: "/work/tile-branding.webp", title: "Branding", crop: [281, 245, 730, 482] },
+  { src: "/work/tile-product.webp", title: "Product development", crop: [256, 240, 768, 480] },
 ];
 
 // figlet "ANSI Regular" font (pure pixel blocks), generated once.

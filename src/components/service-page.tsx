@@ -64,6 +64,8 @@ function Row({
 }
 
 const pixelTitle = "m-0 font-medium leading-[1.05] tracking-[-0.04em]";
+const slugify = (name: string) =>
+  name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 const caption = "mt-3 mb-0 text-sm leading-[1.5] text-muted-foreground";
 
 export function ServicePage({ service }: { service: Service }) {
@@ -159,81 +161,98 @@ export function ServicePage({ service }: { service: Service }) {
           )}
 
           <div className="mt-24 grid gap-32">
-            {service.projects?.map((project) => (
-              <section
-                key={project.name}
-                aria-label={project.name}
-                className="grid gap-12"
-              >
-                <div className="grid gap-6 min-[901px]:grid-cols-[1fr_2fr] min-[901px]:gap-16">
-                  <div data-reveal>
+            {service.projects?.map((project, n, all) => {
+              const next = all[n + 1];
+              return (
+                // The story stays pinned on the left while its shots scroll past on the right.
+                <section
+                  key={project.name}
+                  id={slugify(project.name)}
+                  aria-label={project.name}
+                  className="grid scroll-mt-28 gap-10 min-[901px]:grid-cols-[1fr_2fr] min-[901px]:gap-16"
+                >
+                  <div
+                    data-reveal
+                    className="min-[901px]:sticky min-[901px]:top-28 min-[901px]:self-start"
+                  >
                     <h2 className={`${pixelTitle} text-[clamp(28px,3vw,40px)]`}>
                       {project.name}
                       <span className="text-ring">.</span>
                     </h2>
-                    <a
-                      href={project.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`${quietLink} mt-5 inline-block text-base font-medium text-foreground`}
-                    >
-                      Visit the live site ↗
-                    </a>
+                    <p className="mt-5 mb-0 text-lg leading-[1.6] text-foreground/80">
+                      {project.summary}
+                    </p>
+                    <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-base font-medium">
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={quietLink}
+                      >
+                        Visit the live site ↗
+                      </a>
+                      {next && (
+                        <a
+                          href={`#${slugify(next.name)}`}
+                          className={`${quietLink} text-muted-foreground`}
+                        >
+                          Next: {next.name} ↓
+                        </a>
+                      )}
+                    </div>
                   </div>
-                  <p
-                    data-reveal
-                    style={{ "--i": 1 } as React.CSSProperties}
-                    className="m-0 text-lg leading-[1.6] text-foreground/80 min-[901px]:text-xl"
-                  >
-                    {project.summary}
-                  </p>
-                </div>
-                {/* Pairs; with an odd count the first shot spans the row so none is left alone. */}
-                <ul className="m-0 grid list-none gap-x-6 gap-y-10 p-0 min-[760px]:grid-cols-2 min-[760px]:[&>li:first-child:nth-last-child(odd)]:col-span-2">
-                  {project.shots.map((shot, i) => (
+                  <ul className="m-0 grid list-none gap-12 p-0">
+                    {project.shots.map((shot) => (
+                      <li key={shot.src} data-reveal>
+                        <Image
+                          src={shot.src}
+                          alt={shot.alt}
+                          width={1200}
+                          height={750}
+                          sizes="(min-width: 901px) 60vw, 100vw"
+                          className="h-auto w-full rounded-xl"
+                        />
+                        <p className={caption}>{shot.caption}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              );
+            })}
+
+            {service.gallery && (
+              <section aria-label="Selected work">
+                {/* Every piece shares one 16:10 frame, so a plain two-up grid keeps the rhythm. */}
+                <ul className="m-0 grid list-none gap-6 p-0 min-[760px]:grid-cols-2">
+                  {service.gallery.map((img, i) => (
                     <li
-                      key={shot.src}
+                      key={img.src}
                       data-reveal
                       style={{ "--i": i % 2 } as React.CSSProperties}
                     >
                       <Image
-                        src={shot.src}
-                        alt={shot.alt}
-                        width={1200}
-                        height={750}
+                        src={img.src}
+                        alt={img.alt}
+                        width={img.width}
+                        height={img.height}
                         sizes="(min-width: 760px) 50vw, 100vw"
                         className="h-auto w-full rounded-xl"
                       />
-                      <p className={caption}>{shot.caption}</p>
                     </li>
                   ))}
                 </ul>
-              </section>
-            ))}
-
-            {service.gallery && (
-              <section aria-label="Selected work">
-                <div className="columns-1 gap-6 min-[640px]:columns-2 min-[1100px]:columns-3">
-                  {service.gallery.map((img) => (
-                    <Image
-                      key={img.src}
-                      src={img.src}
-                      alt={img.alt}
-                      width={img.width}
-                      height={img.height}
-                      sizes="(min-width: 1100px) 30vw, (min-width: 640px) 45vw, 100vw"
-                      className="mb-6 h-auto w-full break-inside-avoid rounded-xl"
-                    />
-                  ))}
-                </div>
               </section>
             )}
 
             {service.videos && (
               <section aria-label="Video work">
                 <ul className="m-0 grid list-none gap-6 p-0 min-[901px]:grid-cols-3">
-                  {service.videos.map((v) => (
-                    <li key={v.id}>
+                  {service.videos.map((v, i) => (
+                    <li
+                      key={v.id}
+                      data-reveal
+                      style={{ "--i": i % 3 } as React.CSSProperties}
+                    >
                       <iframe
                         src={`https://www.youtube-nocookie.com/embed/${v.id}`}
                         title={v.title}
